@@ -513,8 +513,6 @@ class _ContainerHomeState extends State<ContainerHome> {
                                                             fontFamily: 'Inter',
                                                             fontSize: Dimens
                                                                 .textSize6,
-                                                            color: OwnerColors
-                                                                .darkGreen,
                                                           ),
                                                         ),
                                                       ],
