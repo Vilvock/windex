@@ -9,6 +9,11 @@ import 'owner_colors.dart';
 class Styles {
 
   var styleDefaultButton = ButtonStyle(
+    shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          // Change your radius here
+          borderRadius: BorderRadius.circular(Dimens.radiusApplication),
+        )),
     padding: MaterialStateProperty.all<EdgeInsets>(
         EdgeInsets.all(Dimens.buttonPaddingApplication)),
     backgroundColor: MaterialStateProperty.all(OwnerColors.colorPrimary),
@@ -22,7 +27,7 @@ class Styles {
 
   var styleDefaultTextButton = TextStyle(
       fontFamily: 'Inter',
-      fontSize: Dimens.textSize7,
+      fontSize: Dimens.textSize6,
       color: Colors.white);
 
   var styleAlternativeTextButton = TextStyle(

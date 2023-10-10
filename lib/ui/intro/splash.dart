@@ -19,11 +19,11 @@ class _SplashState extends State<Splash> {
     Future.delayed(Duration(seconds: 2), () async {
       await Preferences.init();
 
-      // if (await Preferences.getLogin()) {
-      //   Navigator.pushReplacementNamed(context, '/ui/home');
-      // } else {
-      //   Navigator.pushReplacementNamed(context, '/ui/onboarding');
-      // }
+      if (await Preferences.getLogin()) {
+        Navigator.pushReplacementNamed(context, '/ui/home');
+      } else {
+        Navigator.pushReplacementNamed(context, '/ui/onboarding');
+      }
     });
   }
 

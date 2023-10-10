@@ -372,7 +372,7 @@ class _ContainerHomeState extends State<ContainerHome> {
                                                     isActive:
                                                         index == _pageIndex,
                                                     color: OwnerColors
-                                                        .colorPrimary),
+                                                        .colorPrimaryDark),
                                               )),
                                     ],
                                   )),

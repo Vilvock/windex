@@ -23,7 +23,7 @@ class Dimens {
   static const double elevationApplication = 2.0;
   static const double paddingApplication = 16.0;
   static const double marginApplication = 16.0;
-  static const double radiusApplication = 16.0;
+  static const double radiusApplication = 24.0;
   static const double textFieldPaddingApplication = 20.0;
 
 

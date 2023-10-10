@@ -15,13 +15,13 @@ class DotIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(2, 24, 2, 24),
+      padding: const EdgeInsets.fromLTRB(4, 24, 4, 24),
       child: AnimatedContainer(
           duration: Duration(milliseconds: 300),
-          height: isActive ? 6 : 6,
-          width: isActive ? 14 : 6,
+          height: isActive ? 8 : 8,
+          width: isActive ? 22 : 8,
           decoration: BoxDecoration(
-              color: isActive ? color : Colors.black54,
+              color: isActive ? color : Colors.white70,
               borderRadius: BorderRadius.all(Radius.circular(12)))),
     );
   }

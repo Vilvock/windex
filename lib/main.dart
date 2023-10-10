@@ -75,6 +75,7 @@ void main() async {
       scaffoldBackgroundColor: Colors.white, //fundo de todo app
       primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary)),
+      fontFamily: 'MontSerrat',
     ),
     debugShowCheckedModeBanner: false,
     title: "Windex",

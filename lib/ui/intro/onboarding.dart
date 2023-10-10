@@ -38,6 +38,7 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: OwnerColors.colorAccent,
         child: Stack(
           children: [
             Container(
@@ -55,39 +56,45 @@ class _OnboardingState extends State<Onboarding> {
                           subtitle: demo_data[index].subtitle,
                         ))),
             Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                  margin: EdgeInsets.only(top: 50, right: 26),
-                  child: GestureDetector(
-                      onTap: () {
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.all(Dimens.paddingApplication),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ...List.generate(
+                        demo_data.length,
+                            (index) => DotIndicator(
+                          isActive: index == _pageIndex,
+                          color: OwnerColors.colorPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.only(top: Dimens.marginApplication),
+                    height: 50,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: Styles().styleDefaultButton,
+                      onPressed: () async {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(builder: (context) => Login()),
                             ModalRoute.withName("/ui/login"));
                       },
-                      child: Text(
-                        "Pular".toUpperCase(),
-                        style: TextStyle(color: Colors.white),
-                      ))),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: Dimens.paddingApplication),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ...List.generate(
-                      demo_data.length,
-                      (index) => DotIndicator(
-                        isActive: index == _pageIndex,
-                        color: Colors.white,
-                      ),
+                      child: Text("Permitir",
+                          style: Styles().styleDefaultTextButton),
                     ),
-                  ],
-                ),
+                  ),
+
+                  SizedBox(height: 40,),
+                ],)
               ),
-            )
+            ),
+
           ],
         ),
       ),
@@ -105,21 +112,21 @@ class Onboard {
 final List<Onboard> demo_data = [
   Onboard(
     image: 'images/slide1.png',
-    title: "BEM VINDO A SAFETY GLASSES",
+    title: "Conheça novas pessoas",
     subtitle:
-        "FÁBRICA DE ÓCULOS DE SEGURANÇA COM MAIS DE 12 ANOS DE ATUAÇÃO NÓS PROTEGEMOS SUA EMPRESA E SEUS COLABORADORES!",
+        Strings.shortLoremIpsum,
   ),
   Onboard(
     image: 'images/slide2.png',
-    title: "SAFETY APP ÓCULOS COM AGILIDADE",
+    title: "Acessar\nLocalização",
     subtitle:
-        "COM O APP VOCÊ PASSA A TER SEUS ÓCULOS DE SEGURANÇA COM GRAU, DE FORMA RÁPIDA E ÁGIL. A QUALIDADE, BELEZA E CONFORTO NA PALMA DA MÃO.",
+        "Para que o aplicativo funcione corretamente, precisamos acessar sua localização.",
   ),
   Onboard(
     image: 'images/slide3.png',
-    title: "FÁCIL DE PEDIR, RÁPIDO EM CHEGAR",
+    title: "Permitir\nNotificações",
     subtitle:
-        "AQUI VOCÊ VAI ESCOLHER SEUS ÓCULOS DE SEGURANÇA EM 3 ETAPAS: ARMAÇÃO, DEPOIS LENTE E ENVIO DE FOTO E RECEITA",
+        "Não perca atualizações do nosso aplicativo, permita acesso às suas notificações.",
   ),
 ];
 
