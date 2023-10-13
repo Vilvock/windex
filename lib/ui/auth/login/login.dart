@@ -93,7 +93,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         body:
         Container(
               color: OwnerColors.colorAccent,
@@ -323,27 +323,26 @@ class _LoginState extends State<Login> {
                             Container(alignment: Alignment.center, width: double.infinity, child:
                             RichText(
                               text: TextSpan(
-                                style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: Dimens.textSize5,
-                                ),
                                 children: <TextSpan>[
-                                  TextSpan(text: 'Não possui uma conta? ',style: TextStyle(
+                                  TextSpan(text: 'Não possui uma conta?  ',style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: Dimens.textSize6,
+                                    fontSize: Dimens.textSize5,
                                     fontWeight: FontWeight.w300,
+                                      wordSpacing: 0.5
                                   ),),
                                   TextSpan(
                                       text: 'Cadastre-se',
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: Dimens.textSize6,
+                                        fontSize: Dimens.textSize5,
                                         fontWeight: FontWeight.w900,
                                         decoration: TextDecoration.underline,
+                                          wordSpacing: 0.5
                                       ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
-                                          Navigator.pop(context);
+                                          Navigator.pushNamed(
+                                              context, "/ui/register");
                                         }),
                                 ],
                               ),
