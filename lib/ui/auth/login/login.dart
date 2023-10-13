@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:windex/res/assets.dart';
 
 import '../../../config/application_messages.dart';
 import '../../../config/preferences.dart';
@@ -308,14 +309,56 @@ class _LoginState extends State<Login> {
                             SizedBox(height: Dimens.marginApplication),
                             Container(
                               width: double.infinity,
-                              margin:
-                              EdgeInsets.only(bottom: Dimens.minMarginApplication),
                               child: Text(
                                 "ou",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: Dimens.textSize6,
                                   color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: Dimens.marginApplication),
+                            Container(
+                              height: 52,
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                style: Styles().styleOutlinedRedButton,
+                                onPressed: () async {
+
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(Assets.google),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "Entrar com Google",
+                                      style: Styles().styleOutlinedTextButton,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: Dimens.marginApplication),
+                            Container(
+                              height: 52,
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                style: Styles().styleOutlinedRedButton,
+                                onPressed: () async {
+
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(Assets.facebook),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "Entrar com Facebook",
+                                      style: Styles().styleOutlinedTextButton,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

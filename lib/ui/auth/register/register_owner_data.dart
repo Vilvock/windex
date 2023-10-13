@@ -1,10 +1,11 @@
 import 'dart:convert';
-import 'dart:ffi';
+import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:windex/res/assets.dart';
 
 import '../../../config/application_messages.dart';
 import '../../../config/masks.dart';
@@ -57,7 +58,6 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
 
   List<Widget> gridItems = [];
 
-
   @override
   void initState() {
     super.initState();
@@ -85,24 +85,22 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
       }
 
       gridItems.add(InkWell(
-          onTap: () =>
-          {
-          },
+          onTap: () => {},
           child: Container(
-              margin: EdgeInsets.all(
-                  Dimens.minMarginApplication),
+              margin: EdgeInsets.all(Dimens.minMarginApplication),
               decoration: BoxDecoration(
-                border: Border.all(
-                    width: 0.2,
-                    color: OwnerColors.lightGrey),
+                border: Border.all(width: 0.2, color: OwnerColors.lightGrey),
                 borderRadius:
-                BorderRadius.all(Radius.circular(Dimens.radiusApplication)),
+                    BorderRadius.all(Radius.circular(Dimens.radiusApplication)),
               ),
               child: Column(
-                  mainAxisAlignment:
-                  MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.access_time, size: 30, color: Colors.white,),
+                    Icon(
+                      Icons.access_time,
+                      size: 30,
+                      color: Colors.white,
+                    ),
                     // Image.asset(source,
                     //   width: 24, height: 24, color: OwnerColors.colorPrimary,),
                     SizedBox(
@@ -117,11 +115,7 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                         fontSize: Dimens.textSize4,
                       ),
                     ),
-                  ]
-              )
-          )
-      )
-      );
+                  ]))));
     }
   }
 
@@ -154,8 +148,7 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
 
       print('HTTP_BODY: $body');
 
-      final json = await postRequest.sendPostRequest(
-          "", body);
+      final json = await postRequest.sendPostRequest("", body);
 
       List<Map<String, dynamic>> _map = [];
       _map = List<Map<String, dynamic>>.from(jsonDecode(json));
@@ -600,7 +593,7 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                               ),
                               SizedBox(height: 4),
                               Text(
-                                "Insira seu email e senha.",
+                                "Insira seus dados pessoais.",
                                 style: TextStyle(
                                     fontSize: Dimens.textSize6,
                                     color: Colors.white,
@@ -609,12 +602,51 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                                 textAlign: TextAlign.start,
                               ),
                               SizedBox(height: 32),
+                              Align( alignment: Alignment.center,child:
+                              Container(
+                                alignment: Alignment.center,
+                                  height: 74,
+                                  width: 74,
+                                  margin: EdgeInsets.only(
+                                      right: Dimens.marginApplication),
+                                  child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        ClipOval(
+                                          child: SizedBox.fromSize(
+                                            size: Size.fromRadius(42),
+                                            // Image radius
+                                            child: Image.asset(
+                                              Assets.default_image,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: SizedBox(
+                                                width: 34,
+                                                height: 34,
+                                                child: FittedBox(
+                                                  child: FloatingActionButton
+                                                      .small(
+                                                    child: Image.asset(
+                                                      Assets.edit,
+                                                      width: 14,
+                                                      height: 14,
+                                                    ),
+                                                    backgroundColor:
+                                                        OwnerColors.colorAccent,
+                                                    onPressed: () {},
+                                                  ),
+                                                )))
+                                      ]))),
+                              SizedBox(height: 32),
                               Container(
                                 width: double.infinity,
                                 margin: EdgeInsets.only(
                                     bottom: Dimens.minMarginApplication),
                                 child: Text(
-                                  "E-mail",
+                                  "Nome",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: Dimens.textSize4,
@@ -624,7 +656,7 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                               ),
                               SizedBox(height: 2),
                               TextField(
-                                controller: emailController,
+                                controller: nameController,
                                 decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -634,7 +666,7 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                                     borderSide: BorderSide(
                                         color: Colors.grey, width: 0.4),
                                   ),
-                                  hintText: 'Digite seu e-mail',
+                                  hintText: 'Nome Completo',
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(
@@ -652,6 +684,107 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                                   fontSize: Dimens.textSize5,
                                 ),
                               ),
+                              SizedBox(height: 32),
+                              Container(
+                                width: double.infinity,
+                                margin: EdgeInsets.only(
+                                    bottom: Dimens.minMarginApplication),
+                                child: Text(
+                                  "Whatsapp",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: Dimens.textSize4,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 2),
+                              TextField(
+                                inputFormatters: [Masks().cellphoneMask()],
+                                controller: cellphoneController,
+                                decoration: InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.white70, width: 0.8),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey, width: 0.4),
+                                  ),
+                                  hintText: '(00) 00000-0000',
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        Dimens.radiusApplication),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  filled: true,
+                                  fillColor: OwnerColors.colorAccent,
+                                  contentPadding: EdgeInsets.all(
+                                      Dimens.textFieldPaddingApplication),
+                                ),
+                                keyboardType: TextInputType.number,
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: Dimens.textSize5,
+                                ),
+                              ),
+                              SizedBox(height: 32),
+                              Container(
+                                width: double.infinity,
+                                margin: EdgeInsets.only(
+                                    bottom: Dimens.minMarginApplication),
+                                child: Text(
+                                  "Gênero",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: Dimens.textSize4,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 2),
+                              Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 0.2,
+                                        color: OwnerColors.lightGrey),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                            Dimens.minRadiusApplication)),
+                                  ),
+                                  child: IntrinsicHeight(
+                                      child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: TextField(
+                                          onTap: () {},
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            hintText: 'Informe seu Gênero',
+                                            hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                            filled: false,
+                                            border: InputBorder.none,
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(Dimens
+                                                .textFieldPaddingApplication),
+                                          ),
+                                          keyboardType: TextInputType.number,
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: Dimens.textSize5,
+                                          ),
+                                        ),
+                                      ),
+                                      IconButton(
+                                          onPressed: () async {},
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down_outlined,
+                                            color: Colors.white,
+                                          )),
+                                    ],
+                                  ))),
                               SizedBox(height: 32),
                             ],
                           ));
@@ -696,7 +829,7 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                               ),
                               SizedBox(height: 32),
 
- /*                             FutureBuilder<List<Map<String, dynamic>>>(
+                              /*                             FutureBuilder<List<Map<String, dynamic>>>(
                                   future: listProducts(),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
@@ -760,16 +893,17 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                                                     ]))));
                                       }
 
-                                      return*/ Container(
-                                        // margin: EdgeInsets.only(left: 10, right: 10),
-                                        child: GridView.count(
-                                          childAspectRatio: 1.0,
-                                          primary: false,
-                                          shrinkWrap: true,
-                                          crossAxisCount: 3,
-                                          children: gridItems,
-                                        ),
-                                      )/*;
+                                      return*/
+                              Container(
+                                // margin: EdgeInsets.only(left: 10, right: 10),
+                                child: GridView.count(
+                                  childAspectRatio: 1.0,
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  crossAxisCount: 3,
+                                  children: gridItems,
+                                ),
+                              ) /*;
                                     } else if (snapshot.hasError) {
                                       return Text('${snapshot.error}');
                                     }
@@ -804,7 +938,6 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                         child: ElevatedButton(
                           style: Styles().styleDefaultButton,
                           onPressed: () async {
-
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(builder: (context) => Home()),
