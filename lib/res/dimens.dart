@@ -26,7 +26,7 @@ class Dimens {
   static const double paddingApplication = 16.0;
   static const double marginApplication = 16.0;
   static const double radiusApplication = 24.0;
-  static const double textFieldPaddingApplication = 20.0;
+  static const double textFieldPaddingApplication = 18.0;
 
 
   static const double maxPaddingApplication = 20.0;
