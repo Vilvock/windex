@@ -90,6 +90,9 @@ flutter:
   assets:
     - images/main_icon.png
     - images/splash.png
+    - images/onboarding_background.png
+    - images/maps.png
+    - images/notifications.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

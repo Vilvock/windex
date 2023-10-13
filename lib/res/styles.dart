@@ -26,33 +26,21 @@ class Styles {
   );
 
   var styleDefaultTextButton = TextStyle(
-      fontFamily: 'Inter',
       fontSize: Dimens.textSize6,
-      color: Colors.white);
+      color: Colors.white,
+      wordSpacing: 0.5,
+      fontWeight: FontWeight.w700);
 
   var styleAlternativeTextButton = TextStyle(
-      fontFamily: 'Inter',
       fontSize: Dimens.textSize4,
-      color: Colors.white);
-
-  var styleTitleText = TextStyle(
-    fontFamily: 'Inter',
-    fontSize: Dimens.textSize7,
-    fontWeight: FontWeight.w600,
-    color: Colors.white,
-  );
+      color: Colors.white,
+      wordSpacing: 0.5,
+      fontWeight: FontWeight.w500);
 
   var styleShapeBottomSheet = RoundedRectangleBorder(
     borderRadius: BorderRadius.vertical(
-      top: Radius.circular(Dimens.minRadiusApplication),
+      top: Radius.circular(Dimens.radiusApplication),
     ),
-  );
-
-  var styleDescriptionText = TextStyle(
-    fontFamily: 'Inter',
-    fontSize: Dimens.textSize5,
-    color: Colors.white,
-    letterSpacing: 0.5
   );
 
   var div_horizontal = Divider(

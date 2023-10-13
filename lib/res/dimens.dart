@@ -14,6 +14,8 @@ class Dimens {
   static const double textSize7 = 20.0;
   static const double textSize8 = 24.0;
   static const double textSize9 = 28.0;
+  static const double textSize10 = 32.0;
+  static const double textSize11 = 38.0;
 
   static const double minElevationApplication = 1.0;
   static const double minPaddingApplication = 8.0;
