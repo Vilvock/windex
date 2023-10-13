@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
+import 'package:windex/res/assets.dart';
 
 import '../../config/application_messages.dart';
 import '../../config/preferences.dart';
@@ -328,6 +329,7 @@ class _ContainerHomeState extends State<ContainerHome> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
+          title: "Início",
           isVisibleIcon: true,
           isVisibleBackButton: false,
           isVisibleNotificationsButton: true,
@@ -335,209 +337,90 @@ class _ContainerHomeState extends State<ContainerHome> {
           // isVisibleTaskAddButton: true,
         ),
         body: Container(
-            height: double.infinity,
             child: RefreshIndicator(
                 onRefresh: _pullRefresh,
                 child: SingleChildScrollView(
                     child: Container(
-                        height: MediaQuery.of(context).size.height,
                         child: Column(children: [
-                          Stack(
-                            alignment: Alignment.center,
+                          Row(
                             children: [
-                              CarouselSlider(
-                                items: carouselItems,
-                                options: CarouselOptions(
-                                  height: 220,
-                                  viewportFraction: 1,
-                                  autoPlay: true,
-                                  onPageChanged: (index, reason) {
-                                    setState(() {
-                                      _pageIndex = index;
-                                    });
-                                  },
-                                ),
-                              ),
-                              Positioned(
-                                  bottom: 0,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ...List.generate(
-                                          carouselItems.length,
-                                          (index) => Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 4),
-                                                child: DotIndicator(
-                                                    isActive:
-                                                        index == _pageIndex,
-                                                    color: OwnerColors
-                                                        .colorPrimaryDark),
-                                              )),
-                                    ],
-                                  )),
+                              Expanded(
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1, color: OwnerColors.lightGrey),
+                                        borderRadius: BorderRadius.all(Radius.circular(
+                                            Dimens.minRadiusApplication)),
+                                      ),
+                                      margin: EdgeInsets.all(Dimens.marginApplication),
+                                      child: IntrinsicHeight(
+                                          child: Row(
+                                            children: [
+                                              IconButton(
+                                                  onPressed: () {},
+                                                  icon: Image.asset('images/search.png',
+                                                      width: 20, height: 20)),
+                                              Expanded(
+                                                child: TextField(
+                                                  decoration: InputDecoration(
+                                                    hintText: 'Pesquisar...',
+                                                    hintStyle:
+                                                    TextStyle(color: Colors.grey),
+                                                    filled: false,
+                                                    border: InputBorder.none,
+                                                    fillColor: Colors.white,
+                                                    contentPadding: EdgeInsets.all(
+                                                        Dimens.textFieldPaddingApplication),
+                                                  ),
+                                                  keyboardType: TextInputType.text,
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: Dimens.textSize5,
+                                                  ),
+                                                ),
+                                              ),
+                                              VerticalDivider(
+                                                color: Colors.black12,
+                                                width: 2,
+                                                thickness: 1.5,
+                                                indent: 6,
+                                                endIndent: 6,
+                                              ),
+                                              IconButton(
+                                                  onPressed: () async {
+
+                                                  },
+                                                  icon: Image.asset('images/filter.png',
+                                                      width: 20, height: 20)),
+                                            ],
+                                          )))),
                             ],
                           ),
-                          SizedBox(height: Dimens.marginApplication),
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: Dimens.marginApplication,
-                                right: Dimens.marginApplication),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Produtos em Destaque",
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: Dimens.textSize6,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                                // Text(
-                                //   "Ver mais",
-                                //   style: TextStyle(
-                                //     fontFamily: 'Inter',
-                                //     fontSize: Dimens.textSize5,
-                                //     color: OwnerColors.colorPrimaryDark,
-                                //   ),
-                                // ),
-                              ],
+                          CarouselSlider(
+                            items: carouselItems,
+                            options: CarouselOptions(
+                              height: 100,
+                              autoPlay: false,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _pageIndex = index;
+                                });
+                              },
                             ),
                           ),
-                          FutureBuilder<List<Map<String, dynamic>>>(
-                              future: listProducts(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return ListView.builder(
-                                    padding: EdgeInsets.only(bottom: 100),
-                                    primary: false,
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data!.length,
-                                    itemBuilder: (context, index) {
-                                      final response = Product.fromJson(
-                                          snapshot.data![index]);
 
-                                      return InkWell(
-                                          onTap: () => {
-                                                Navigator.pushNamed(context,
-                                                    "/ui/product_detail",
-                                                    arguments: {
-                                                      "id_product": response.id,
-                                                    })
-                                              },
-                                          child: Card(
-                                            elevation: 0,
-                                            color: OwnerColors.lightGrey,
-                                            margin: EdgeInsets.all(
-                                                Dimens.minMarginApplication),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(Dimens
-                                                      .minRadiusApplication),
-                                            ),
-                                            child: Container(
-                                              padding: EdgeInsets.all(
-                                                  Dimens.paddingApplication),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        right: Dimens
-                                                            .marginApplication),
-                                                    child: ClipOval(
-                                                      child: SizedBox.fromSize(
-                                                        size:
-                                                            Size.fromRadius(36),
-                                                        // Image radius
-                                                        child: Image.network(
-                                                            ApplicationConstant
-                                                                    .URL_PRODUCT +
-                                                                response.foto,
-                                                            fit: BoxFit.cover,
-                                                            /*fit: BoxFit.cover*/
-                                                            errorBuilder: (context,
-                                                                    exception,
-                                                                    stackTrack) =>
-                                                                Image.asset(
-                                                                  'images/main_logo_1.png',
-                                                                )),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          response.nome_produto,
-                                                          maxLines: 2,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style: TextStyle(
-                                                            fontFamily: 'Inter',
-                                                            fontSize: Dimens
-                                                                .textSize5,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                            height: Dimens
-                                                                .minMarginApplication),
-                                                        Text(
-                                                          "Cod: #" +
-                                                              response
-                                                                  .codigo_produto,
-                                                          style: TextStyle(
-                                                            fontFamily: 'Inter',
-                                                            fontSize: Dimens
-                                                                .textSize4,
-                                                            color:
-                                                                Colors.black54,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                            height: Dimens
-                                                                .marginApplication),
-                                                        Text(
-                                                          "",
-                                                          style: TextStyle(
-                                                            fontFamily: 'Inter',
-                                                            fontSize: Dimens
-                                                                .textSize6,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ));
-                                    },
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Styles().defaultErrorRequest;
-                                }
-                                return Styles().defaultLoading;
-                              })
-                        ]))))));
+                        ])
+                    )
+                )
+            )
+        )
+    );
   }
 }
 
 final List<Widget> carouselItems = [
-  CarouselItemBuilder(image: 'images/hotcoat.jpeg'),
-  CarouselItemBuilder(image: 'images/entrega.jpeg'),
-  CarouselItemBuilder(image: 'images/lentes.jpeg'),
-  CarouselItemBuilder(image: 'images/armacao.jpeg'),
+  CarouselItemBuilder(image: Assets.generic),
+  CarouselItemBuilder(image: Assets.generic),
 ];
 
 class CarouselItemBuilder extends StatelessWidget {
@@ -548,17 +431,20 @@ class CarouselItemBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Dimens.minRadiusApplication),
-        ),
-        margin: EdgeInsets.all(Dimens.minMarginApplication),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          child: Image.asset(
-            image,
-            fit: BoxFit.cover,
-          ),
+      body: Container(
+        padding: EdgeInsets.all(23),
+        margin: EdgeInsets.only(right: 6, left: 6),
+        width: double.infinity,
+        height: 100,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              OwnerColors.lightGrey,
+              OwnerColors.lightGrey
+            ], begin: Alignment.centerLeft, end: Alignment.centerRight),
+            borderRadius: BorderRadius.circular(Dimens.minRadiusApplication)),
+        /*width: MediaQuery.of(context).size.width * 0.90,*/
+        child: Image.asset(
+          image,
         ),
       ),
     );

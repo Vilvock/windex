@@ -30,20 +30,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              child: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.arrow_back_ios, size: 20),
-              ),
-            ),
-          ),
+          // Expanded(
+          //   flex: 1,
+          //   child: Container(
+          //     child: IconButton(
+          //       onPressed: () => Navigator.pop(context),
+          //       icon: const Icon(Icons.arrow_back_ios, size: 20),
+          //     ),
+          //   ),
+          // ),
           Expanded(
             flex: 5,
             child: Container(
               child: Text(
-                'Venda de Animais',
+                title,
                 style: Theme.of(context).textTheme.titleMedium!.merge(
                   const TextStyle(
                     color: Colors.white,

@@ -72,7 +72,7 @@ void main() async {
 
   runApp(MaterialApp(
     theme: ThemeData(
-      scaffoldBackgroundColor: Colors.white, //fundo de todo app
+      scaffoldBackgroundColor: OwnerColors.colorAccent, //fundo de todo app
       primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary)),
       fontFamily: 'MontSerrat',
