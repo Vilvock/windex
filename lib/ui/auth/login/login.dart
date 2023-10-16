@@ -17,6 +17,7 @@ import '../../../res/owner_colors.dart';
 import '../../../res/styles.dart';
 import '../../../web_service/links.dart';
 import '../../../web_service/service_response.dart';
+import '../../components/alert_dialog_email.dart';
 import '../../components/custom_app_bar.dart';
 import '../../components/gradient_text.dart';
 import '../../main/home.dart';
@@ -243,25 +244,14 @@ class _LoginState extends State<Login> {
                                           ),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () async {
-                                    //           final result = await showModalBottomSheet<dynamic>(
-                                    //               isScrollControlled: true,
-                                    //               context: context,
-                                    //               shape: Styles().styleShapeBottomSheet,
-                                    //               clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    //               builder: (BuildContext context) {
-                                    //                 return EmailAlertDialog();
-                                    //               });
-                                    //           if (result == true) {
-                                    //             Navigator.pushNamed(
-                                    //               context,
-                                    //               "/ui/wait",
-                                    //               /*   arguments: {
-                                    //   "id_product": response.id,
-                                    // }*/
-                                    //             );
-                                    //           }
-                                              // Navigator.pushNamed(
-                                              //     context, "/ui/recover_password");
+                                              showModalBottomSheet<dynamic>(
+                                                  isScrollControlled: true,
+                                                  context: context,
+                                                  shape: Styles().styleShapeBottomSheet,
+                                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                  builder: (BuildContext context) {
+                                                    return EmailAlertDialog();
+                                                  });
                                             }),
                                     ],
                                   ),

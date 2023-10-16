@@ -10,5 +10,6 @@ abstract class Assets {
   static const String google = "images/google.png";
   static const String default_image = "images/default_image.png";
   static const String edit = "images/edit.png";
+  static const String security = "images/security.png";
 
 }

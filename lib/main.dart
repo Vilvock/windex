@@ -72,14 +72,17 @@ void main() async {
 
   runApp(MaterialApp(
     theme: ThemeData(
-      scaffoldBackgroundColor: OwnerColors.colorAccent, //fundo de todo app
-      primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary),
-      colorScheme: ColorScheme.fromSwatch(primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary)),
-      fontFamily: 'MontSerrat',
-    ),
+        scaffoldBackgroundColor: OwnerColors.colorAccent,
+        //fundo de todo app
+        primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary),
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary)),
+        fontFamily: 'MontSerrat',
+        bottomSheetTheme:
+            BottomSheetThemeData(backgroundColor: OwnerColors.colorAccent)),
     debugShowCheckedModeBanner: false,
     title: "Windex",
-    initialRoute:'/ui/splash',
+    initialRoute: '/ui/splash',
     color: OwnerColors.colorPrimary,
     routes: {
       '/ui/splash': (context) => Splash(),
@@ -100,8 +103,6 @@ void main() async {
       // '/ui/step_3': (context) => Step3(),
       // '/ui/step_4': (context) => Step4(),
       // '/ui/cart': (context) => CartShopping(),
-
-
     },
   ));
 }

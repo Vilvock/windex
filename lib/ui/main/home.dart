@@ -27,7 +27,7 @@ import '../components/alert_dialog_generic.dart';
 import '../components/custom_app_bar.dart';
 import '../components/dot_indicator.dart';
 import 'main_menu.dart';
-import 'orders.dart';
+import 'qr_code_reader.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
     var widgetItems = <Widget>[];
 
     widgetItems.add(ContainerHome());
-    widgetItems.add(Orders());
+    widgetItems.add(QrCodeReader());
     widgetItems.add(MainMenu());
 
     List<Widget> _widgetOptions = widgetItems;
