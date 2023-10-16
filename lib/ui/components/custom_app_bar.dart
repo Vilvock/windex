@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:windex/res/assets.dart';
 
 import '../../res/dimens.dart';
 import '../../res/owner_colors.dart';
@@ -21,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      actions: _returnFavoriteIcon(context),
+      actions: _returnActions(context),
       automaticallyImplyLeading: this.isVisibleBackButton,
       leading: _returnBackIcon(this.isVisibleBackButton, context),
       backgroundColor: Colors.transparent,
@@ -81,53 +84,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return null;
   }
 
-  List<Widget> _returnFavoriteIcon(BuildContext context) {
+  List<Widget> _returnActions(BuildContext context) {
     List<Widget> _widgetList = <Widget>[];
 
     if (isVisibleNotificationsButton) {
-      _widgetList.add(IconButton(
-        icon: Stack(
-          children: <Widget>[
-             Image.asset('images/cart.png', height: 24, width: 24, color: OwnerColors.colorPrimary,),
-            Visibility(visible: counter != "" && counter != "0", child:
-            Positioned(
-              right: 0,
-              child: Container(
-                padding: EdgeInsets.all(1),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(7),
-                ),
-                constraints: BoxConstraints(
-                  minWidth: 14,
-                  minHeight: 14,
-                ),
-                child: Text(
-                  counter,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 9,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ))
-          ],
-        ),
-        onPressed: () {
-          Navigator.pushNamed(context, "/ui/cart");
-        },
-      ));
-    }
-
-    if (isVisibleNotificationsButton) {
-      _widgetList.add(IconButton(
-        icon:
-        Image.asset('images/bell.png', height: 24, width: 24, color: OwnerColors.colorPrimary,),
-        onPressed: () {
-          Navigator.pushNamed(context, "/ui/notifications");
-        },
-      ));
     }
 
     return _widgetList;

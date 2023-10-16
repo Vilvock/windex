@@ -99,6 +99,12 @@ flutter:
     - images/default_image.png
     - images/edit.png
     - images/security.png
+    - images/home.png
+    - images/scan.png
+    - images/profile.png
+    - images/filter.png
+    - images/bell.png
+    - images/menu.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

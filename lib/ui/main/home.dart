@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -125,30 +126,57 @@ class BottomNavBar extends StatelessWidget {
     var bottomNavigationBarItems = <BottomNavigationBarItem>[];
 
     bottomNavigationBarItems.add(BottomNavigationBarItem(
-      activeIcon: Image.asset('images/home.png', height: 24, width: 24, color: OwnerColors.colorPrimary,),
-      icon: Image.asset('images/home.png', height: 24, width: 24, color: OwnerColors.colorPrimaryDark,),
-      label: Strings.home,
-    ));
+        activeIcon: Image.asset(
+          Assets.home,
+          height: 24,
+          width: 24,
+          color: Colors.white,
+        ),
+        icon: Image.asset(
+          Assets.home,
+          height: 24,
+          width: 24,
+          color: Colors.grey,
+        ),
+        label: ""));
     bottomNavigationBarItems.add(BottomNavigationBarItem(
-      activeIcon: Image.asset('images/list.png', height: 24, width: 24, color: OwnerColors.colorPrimary,),
-      icon: Image.asset('images/list.png', height: 24, width: 24, color: OwnerColors.colorPrimaryDark,),
-      label: Strings.orders,
-    ));
+        activeIcon: Image.asset(
+          Assets.scan,
+          height: 24,
+          width: 24,
+          color: Colors.white,
+        ),
+        icon: Image.asset(
+          Assets.scan,
+          height: 24,
+          width: 24,
+          color: Colors.grey,
+        ),
+        label: ""));
     bottomNavigationBarItems.add(BottomNavigationBarItem(
-      activeIcon: Image.asset('images/menu.png', height: 24, width: 24, color: OwnerColors.colorPrimary,),
-      icon: Image.asset('images/menu.png', height: 24, width: 24, color: OwnerColors.colorPrimaryDark,),
-      label: Strings.menu,
-    ));
+        activeIcon: Image.asset(
+          Assets.profile,
+          height: 24,
+          width: 24,
+          color: Colors.white,
+        ),
+        icon: Image.asset(
+          Assets.profile,
+          height: 24,
+          width: 24,
+          color: Colors.grey,
+        ),
+        label: ""));
     return BottomNavigationBar(
         key: globalKey,
         elevation: Dimens.elevationApplication,
         currentIndex: currentIndex,
         onTap: onTap,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: OwnerColors.colorPrimary,
-        unselectedItemColor: OwnerColors.darkGrey,
-        showSelectedLabels: true,
+        backgroundColor: OwnerColors.colorAccent,
+        selectedItemColor: Colors.white70,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: false,
         showUnselectedLabels: true,
         items: bottomNavigationBarItems);
   }
@@ -228,7 +256,6 @@ class _ContainerHomeState extends State<ContainerHome> {
 
       final response = Cart.fromJson(parsedResponse);
 
-
       final item = Item.fromJson(response.itens[0]);
 
       if (item.rows != 0) {
@@ -236,7 +263,6 @@ class _ContainerHomeState extends State<ContainerHome> {
           _counter = response.itens.length.toString();
         });
       }
-
 
       return response;
     } catch (e) {
@@ -328,93 +354,129 @@ class _ContainerHomeState extends State<ContainerHome> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar(
-          title: "Início",
-          isVisibleIcon: true,
-          isVisibleBackButton: false,
-          isVisibleNotificationsButton: true,
-          counter: _counter.toString(),
-          // isVisibleTaskAddButton: true,
-        ),
-        body: Container(
+        body: SafeArea( child: Container(
             child: RefreshIndicator(
                 onRefresh: _pullRefresh,
-                child: SingleChildScrollView(
-                    child: Container(
-                        child: Column(children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: 1, color: OwnerColors.lightGrey),
-                                        borderRadius: BorderRadius.all(Radius.circular(
-                                            Dimens.minRadiusApplication)),
-                                      ),
-                                      margin: EdgeInsets.all(Dimens.marginApplication),
-                                      child: IntrinsicHeight(
-                                          child: Row(
-                                            children: [
-                                              IconButton(
-                                                  onPressed: () {},
-                                                  icon: Image.asset('images/search.png',
-                                                      width: 20, height: 20)),
-                                              Expanded(
-                                                child: TextField(
-                                                  decoration: InputDecoration(
-                                                    hintText: 'Pesquisar...',
-                                                    hintStyle:
-                                                    TextStyle(color: Colors.grey),
-                                                    filled: false,
-                                                    border: InputBorder.none,
-                                                    fillColor: Colors.white,
-                                                    contentPadding: EdgeInsets.all(
-                                                        Dimens.textFieldPaddingApplication),
-                                                  ),
-                                                  keyboardType: TextInputType.text,
-                                                  style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: Dimens.textSize5,
-                                                  ),
-                                                ),
-                                              ),
-                                              VerticalDivider(
-                                                color: Colors.black12,
-                                                width: 2,
-                                                thickness: 1.5,
-                                                indent: 6,
-                                                endIndent: 6,
-                                              ),
-                                              IconButton(
-                                                  onPressed: () async {
+                child:
+                Column(children: [
+                  Row(children: [
+                    Container(
+                        margin: EdgeInsets.only(left: 10),
+                        child: IconButton(
+                          icon: Image.asset(Assets.menu, height: 24, width: 24),
+                          onPressed: () {
 
-                                                  },
-                                                  icon: Image.asset('images/filter.png',
-                                                      width: 20, height: 20)),
-                                            ],
-                                          )))),
-                            ],
-                          ),
-                          CarouselSlider(
-                            items: carouselItems,
-                            options: CarouselOptions(
-                              height: 100,
-                              autoPlay: false,
-                              onPageChanged: (index, reason) {
-                                setState(() {
-                                  _pageIndex = index;
-                                });
-                              },
+                          },
+                        )),
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        child: Text(
+                          "Início",
+                          style: Theme.of(context).textTheme.titleMedium!.merge(
+                            const TextStyle(
+                              color: Colors.white,
                             ),
                           ),
+                          maxLines: 2,   // TRY THIS
+                        ),
+                      ),
+                    ),
+                  ],),
+                  SingleChildScrollView(
+                      child: Container(
+                          child: Column(children: [
+                            Container(
+                              width: double.infinity,
+                              margin:
+                              EdgeInsets.only(top: Dimens.minMarginApplication),
+                              child: Text(
+                                "Rua Lorem ipsum, 000 - RT/ 9900 es",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: Dimens.textSize3,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 0.4, color: OwnerColors.lightGrey),
+                                          borderRadius: BorderRadius.all(Radius.circular(
+                                              Dimens.minRadiusApplication)),
+                                        ),
+                                        margin:
+                                        EdgeInsets.all(Dimens.maxMarginApplication),
+                                        child: IntrinsicHeight(
+                                            child: Row(
+                                              children: [
+                                                IconButton(
+                                                    onPressed: () {},
+                                                    icon: Icon(
+                                                      Icons.search,
+                                                      size: 24,
+                                                      color: Colors.white,
+                                                    )),
+                                                Expanded(
+                                                  child: TextField(
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Nome do Evento...',
+                                                      hintStyle:
+                                                      TextStyle(color: Colors.grey),
+                                                      filled: false,
+                                                      border: InputBorder.none,
+                                                      fillColor: Colors.white,
+                                                      contentPadding: EdgeInsets.all(
+                                                          Dimens.textFieldPaddingApplication),
+                                                    ),
+                                                    keyboardType: TextInputType.text,
+                                                    style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: Dimens.textSize5,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: 34,
+                                                  height: 34,
+                                                  child: Image.asset(Assets.filter),
+                                                  decoration: BoxDecoration(
+                                                    color: OwnerColors.colorAccent,
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(18.0)),
+                                                    border: Border.all(
+                                                      color: Colors.white,
+                                                      width: 0.3,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: Dimens.marginApplication,
+                                                )
+                                              ],
+                                            )))),
+                              ],
+                            ),
+                            CarouselSlider(
+                              items: carouselItems,
+                              options: CarouselOptions(
+                                height: 100,
+                                autoPlay: false,
+                                onPageChanged: (index, reason) {
+                                  setState(() {
+                                    _pageIndex = index;
+                                  });
+                                },
+                              ),
+                            ),
+                          ])))
+                ],)
 
-                        ])
-                    )
-                )
-            )
-        )
-    );
+            ))));
   }
 }
 
@@ -437,10 +499,10 @@ class CarouselItemBuilder extends StatelessWidget {
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              OwnerColors.lightGrey,
-              OwnerColors.lightGrey
-            ], begin: Alignment.centerLeft, end: Alignment.centerRight),
+            gradient: LinearGradient(
+                colors: [OwnerColors.lightGrey, OwnerColors.lightGrey],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight),
             borderRadius: BorderRadius.circular(Dimens.minRadiusApplication)),
         /*width: MediaQuery.of(context).size.width * 0.90,*/
         child: Image.asset(

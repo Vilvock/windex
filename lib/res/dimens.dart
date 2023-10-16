@@ -29,6 +29,7 @@ class Dimens {
   static const double textFieldPaddingApplication = 18.0;
 
 
+  static const double maxMarginApplication = 20.0;
   static const double maxPaddingApplication = 20.0;
 
 
