@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:windex/ui/components/alert_dialog_event_not_yet.dart';
 
 import '../../config/application_messages.dart';
 import '../../config/preferences.dart';
@@ -85,7 +86,38 @@ class _QrCodeReaderState extends State<QrCodeReader> {
                 onRefresh: _pullRefresh,
                 child: SingleChildScrollView(
                     child: Container(
-                        height: MediaQuery.of(context).size.height,)
+                        height: MediaQuery.of(context).size.height, child: Column(children: [
+
+                      Container(
+                        margin: EdgeInsets.only(top: Dimens.marginApplication),
+                        height: 52,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: Styles().styleDefaultButton,
+                          onPressed: () async {
+                            showModalBottomSheet<dynamic>(
+                                isScrollControlled: true,
+                                context: context,
+                                shape: Styles().styleShapeBottomSheet,
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                builder: (BuildContext context) {
+                                  return EventNotYetAlertDialog();
+                                });
+
+                          },
+                          child: (_isLoading)
+                              ? const SizedBox(
+                              width: Dimens.buttonIndicatorWidth,
+                              height: Dimens.buttonIndicatorHeight,
+                              child: CircularProgressIndicator(
+                                color: OwnerColors.colorAccent,
+                                strokeWidth: Dimens.buttonIndicatorStrokes,
+                              ))
+                              :  Text("Ok",
+                              style: Styles().styleDefaultTextButton),
+                        ),
+                      ),
+                    ]),)
                 )
             )
         )

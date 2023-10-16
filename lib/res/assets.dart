@@ -17,5 +17,6 @@ abstract class Assets {
   static const String filter = "images/filter.png";
   static const String bell = "images/bell.png";
   static const String menu = "images/menu.png";
+  static const String gold_scan = "images/gold_scan.png";
 
 }

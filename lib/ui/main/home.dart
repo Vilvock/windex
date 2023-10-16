@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -65,38 +66,7 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                      margin: EdgeInsets.all(Dimens.marginApplication),
-                      width: 140,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, "/ui/begin");
-                          },
-                          style: Styles().styleDefaultButton,
-                          child: Container(
-                              child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.add_shopping_cart,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              SizedBox(
-                                width: Dimens.minMarginApplication,
-                              ),
-                              Text("Orçamento",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: Dimens.textSize5,
-                                      color: Colors.white))
-                            ],
-                          )))))
-            ],
+            children: [],
           )
         ],
       ),
@@ -182,7 +152,8 @@ class BottomNavBar extends StatelessWidget {
   }
 }
 
-class _ContainerHomeState extends State<ContainerHome> {
+class _ContainerHomeState extends State<ContainerHome>
+    with TickerProviderStateMixin {
   bool _isLoading = false;
   bool _isLoadingDialog = false;
 
@@ -193,8 +164,16 @@ class _ContainerHomeState extends State<ContainerHome> {
   late Validator validator;
   final postRequest = PostRequest();
 
+  late TabController _tabController;
+
   @override
   void initState() {
+    _tabController = TabController(
+      initialIndex: 0,
+      length: 2,
+      vsync: this,
+    );
+
     validator = Validator(context: context);
     saveFcm();
     openCart();
@@ -354,129 +333,197 @@ class _ContainerHomeState extends State<ContainerHome> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: SafeArea( child: Container(
-            child: RefreshIndicator(
-                onRefresh: _pullRefresh,
-                child:
-                Column(children: [
-                  Row(children: [
-                    Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: IconButton(
-                          icon: Image.asset(Assets.menu, height: 24, width: 24),
-                          onPressed: () {
-
-                          },
-                        )),
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        child: Text(
-                          "Início",
-                          style: Theme.of(context).textTheme.titleMedium!.merge(
-                            const TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          maxLines: 2,   // TRY THIS
-                        ),
-                      ),
-                    ),
-                  ],),
-                  SingleChildScrollView(
-                      child: Container(
-                          child: Column(children: [
+        body: SafeArea(
+            child: Container(
+                child: RefreshIndicator(
+                    onRefresh: _pullRefresh,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
                             Container(
-                              width: double.infinity,
-                              margin:
-                              EdgeInsets.only(top: Dimens.minMarginApplication),
-                              child: Text(
-                                "Rua Lorem ipsum, 000 - RT/ 9900 es",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: Dimens.textSize3,
-                                  color: Colors.white,
+                                margin: EdgeInsets.only(left: 10),
+                                child: IconButton(
+                                  icon: Image.asset(Assets.menu,
+                                      height: 24, width: 24),
+                                  onPressed: () {},
+                                )),
+                            Expanded(
+                              flex: 5,
+                              child: Container(
+                                child: Text(
+                                  "Início",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .merge(
+                                        const TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                  maxLines: 2, // TRY THIS
                                 ),
                               ),
                             ),
-                            Row(
-                              children: [
-                                Expanded(
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 0.4, color: OwnerColors.lightGrey),
-                                          borderRadius: BorderRadius.all(Radius.circular(
-                                              Dimens.minRadiusApplication)),
-                                        ),
-                                        margin:
-                                        EdgeInsets.all(Dimens.maxMarginApplication),
-                                        child: IntrinsicHeight(
-                                            child: Row(
-                                              children: [
-                                                IconButton(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                      Icons.search,
-                                                      size: 24,
-                                                      color: Colors.white,
-                                                    )),
-                                                Expanded(
-                                                  child: TextField(
-                                                    decoration: InputDecoration(
-                                                      hintText: 'Nome do Evento...',
-                                                      hintStyle:
-                                                      TextStyle(color: Colors.grey),
-                                                      filled: false,
-                                                      border: InputBorder.none,
-                                                      fillColor: Colors.white,
-                                                      contentPadding: EdgeInsets.all(
-                                                          Dimens.textFieldPaddingApplication),
-                                                    ),
-                                                    keyboardType: TextInputType.text,
-                                                    style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: Dimens.textSize5,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  width: 34,
-                                                  height: 34,
-                                                  child: Image.asset(Assets.filter),
-                                                  decoration: BoxDecoration(
-                                                    color: OwnerColors.colorAccent,
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(18.0)),
-                                                    border: Border.all(
-                                                      color: Colors.white,
-                                                      width: 0.3,
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: Dimens.marginApplication,
-                                                )
-                                              ],
-                                            )))),
-                              ],
-                            ),
-                            CarouselSlider(
-                              items: carouselItems,
-                              options: CarouselOptions(
-                                height: 100,
-                                autoPlay: false,
-                                onPageChanged: (index, reason) {
-                                  setState(() {
-                                    _pageIndex = index;
-                                  });
-                                },
+                          ],
+                        ),
+                        Expanded(child:
+                        SingleChildScrollView(
+                            child: Column(children: [
+                          Container(
+                            margin: EdgeInsets.only(
+                                top: Dimens.minMarginApplication),
+                            child: Text(
+                              "Rua Lorem ipsum, 000 - RT/ 9900 es",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: Dimens.textSize3,
+                                color: Colors.white,
                               ),
                             ),
-                          ])))
-                ],)
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 0.4,
+                                            color: OwnerColors.lightGrey),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(
+                                                Dimens.minRadiusApplication)),
+                                      ),
+                                      margin: EdgeInsets.all(
+                                          Dimens.maxMarginApplication),
+                                      child: IntrinsicHeight(
+                                          child: Row(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                Icons.search,
+                                                size: 24,
+                                                color: Colors.white,
+                                              )),
+                                          Expanded(
+                                            child: TextField(
+                                              decoration: InputDecoration(
+                                                hintText: 'Nome do Evento...',
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                filled: false,
+                                                border: InputBorder.none,
+                                                fillColor: Colors.white,
+                                                contentPadding: EdgeInsets.all(
+                                                    Dimens
+                                                        .textFieldPaddingApplication),
+                                              ),
+                                              keyboardType: TextInputType.text,
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: Dimens.textSize5,
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 34,
+                                            height: 34,
+                                            child: Image.asset(Assets.filter),
+                                            decoration: BoxDecoration(
+                                              color: OwnerColors.colorAccent,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(18.0)),
+                                              border: Border.all(
+                                                color: Colors.white,
+                                                width: 0.3,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: Dimens.marginApplication,
+                                          )
+                                        ],
+                                      )))),
+                            ],
+                          ),
+                          CarouselSlider(
+                            items: carouselItems,
+                            options: CarouselOptions(
+                              height: 100,
+                              autoPlay: false,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _pageIndex = index;
+                                });
+                              },
+                            ),
+                          ),
+                          SizedBox(height: Dimens.marginApplication),
+                          Container(
+                            height: 60,
+                            child: TabBar(
+                              tabs: [
+                                Container(
+                                  child: Text(
+                                    "Horário",
+                                    style: TextStyle(
+                                      fontSize: Dimens.textSize6,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                    child: Text(
+                                  "Proximidade",
+                                  style: TextStyle(
+                                    fontSize: Dimens.textSize6,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ))
+                              ],
+                              unselectedLabelColor: Colors.grey,
+                              indicatorColor: OwnerColors.colorPrimary,
+                              labelColor: Colors.black,
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              indicatorWeight: 2.0,
+                              isScrollable: false,
+                              controller: _tabController,
+                              onTap: (value) {
+                                setState(() {
+                                  // if (value == 0) {
+                                  //   _isChanged = false;
+                                  // } else {
+                                  //   _isChanged = true;
+                                  // }
+                                });
 
-            ))));
+                                print(value);
+                              },
+                            ),
+                          ),
+                          Container(
+                            child: AutoScaleTabBarView(
+                                controller: _tabController,
+                                children: <Widget>[
+                                  Container(
+                                      padding: EdgeInsets.all(
+                                          Dimens.paddingApplication),
+                                      height: 900,
+                                      child: Column(
+                                        children: [],
+                                      )),
+                                  Container(
+                                    padding: EdgeInsets.all(
+                                        Dimens.paddingApplication),
+                                    height: /*_hasSchedule ? */ 700 /*: 236*/,
+                                    child: Column(children: []),
+                                  )
+                                ]),
+                          ),
+                        ])))
+                      ],
+                    )))));
   }
 }
 
@@ -500,7 +547,7 @@ class CarouselItemBuilder extends StatelessWidget {
         height: 100,
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [OwnerColors.lightGrey, OwnerColors.lightGrey],
+                colors: [Color(0xFFBDBDBD), Color(0xFFBDBDBD)],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight),
             borderRadius: BorderRadius.circular(Dimens.minRadiusApplication)),
