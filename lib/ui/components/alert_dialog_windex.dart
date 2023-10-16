@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_datetime_picker/flutter_cupertino_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -17,16 +18,16 @@ import '../../res/styles.dart';
 import '../../web_service/links.dart';
 import '../../web_service/service_response.dart';
 
-class EventNotYetAlertDialog extends StatefulWidget {
-  EventNotYetAlertDialog({Key? key});
+class WindexPremiumAlertDialog extends StatefulWidget {
+  WindexPremiumAlertDialog({Key? key});
 
   // DialogGeneric({Key? key}) : super(key: key);
 
   @override
-  State<EventNotYetAlertDialog> createState() => _EventNotYetAlertDialog();
+  State<WindexPremiumAlertDialog> createState() => _WindexPremiumAlertDialog ();
 }
 
-class _EventNotYetAlertDialog extends State<EventNotYetAlertDialog> {
+class _WindexPremiumAlertDialog  extends State<WindexPremiumAlertDialog> {
 
   late bool _isLoading = false;
 
@@ -66,11 +67,11 @@ class _EventNotYetAlertDialog extends State<EventNotYetAlertDialog> {
                       },
                     )),
                 // SizedBox(height: Dimens.minMarginApplication),
-                Image.asset(Assets.gold_scan, height: 80, width: 80,),
+                Image.asset(Assets.ticket, height: 80, width: 80,),
                 SizedBox(height: Dimens.minMarginApplication),
                 Text(
                   textAlign: TextAlign.center,
-                  "Evento não iniciado.",
+                  "Plano Windex",
                   style: TextStyle(
                     fontSize: Dimens.textSize7,
                     fontWeight: FontWeight.bold,
@@ -80,7 +81,7 @@ class _EventNotYetAlertDialog extends State<EventNotYetAlertDialog> {
                 SizedBox(height: Dimens.marginApplication),
                 Text(
                   textAlign: TextAlign.center,
-                  "O evento que você tentou escanear ainda não começou.",
+                  "Ops… Contrate um plano para ter acesso completo a sala virtual.",
                   style: TextStyle(
                     fontSize: Dimens.textSize6,
                     color: Colors.white,
@@ -106,14 +107,41 @@ class _EventNotYetAlertDialog extends State<EventNotYetAlertDialog> {
                           color: OwnerColors.colorAccent,
                           strokeWidth: Dimens.buttonIndicatorStrokes,
                         ))
-                        :  Text("Ok",
+                        :  Text("Assinar",
                         style: Styles().styleDefaultTextButton),
                   ),
                 ),
 
                 SizedBox(height: Dimens.marginApplication),
 
+                Container(
+                    width: double.infinity,
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: Dimens.textSize5,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(text: ''),
+                          TextSpan(
+                              text: 'Continuar sem Premium',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: Dimens.textSize7,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.underline,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () async {
 
+                                }),
+                        ],
+                      ),
+                    )),
+
+                SizedBox(height: Dimens.marginApplication),
               ],
             ),
           ),

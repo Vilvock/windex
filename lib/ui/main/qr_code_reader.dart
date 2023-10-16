@@ -2,7 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:windex/ui/components/alert_dialog_disable_account.dart';
 import 'package:windex/ui/components/alert_dialog_event_not_yet.dart';
+import 'package:windex/ui/components/alert_dialog_logout.dart';
+import 'package:windex/ui/components/alert_dialog_windex.dart';
 
 import '../../config/application_messages.dart';
 import '../../config/preferences.dart';
@@ -101,7 +104,7 @@ class _QrCodeReaderState extends State<QrCodeReader> {
                                 shape: Styles().styleShapeBottomSheet,
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 builder: (BuildContext context) {
-                                  return EventNotYetAlertDialog();
+                                  return DisableAccountAlertDialog();
                                 });
 
                           },
