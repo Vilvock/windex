@@ -59,6 +59,7 @@ dependencies:
   intl: ^0.18.1
   flutter_cupertino_datetime_picker: ^3.0.0
   url_launcher: ^6.1.11
+  flutter_rating_bar: ^4.0.1
 
 
 dev_dependencies:
@@ -110,6 +111,7 @@ flutter:
     - images/attention.png
     - images/wallet.png
     - images/logout.png
+    - images/star.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

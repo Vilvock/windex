@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:windex/ui/components/alert_dialog_disable_account.dart';
 import 'package:windex/ui/components/alert_dialog_event_not_yet.dart';
 import 'package:windex/ui/components/alert_dialog_logout.dart';
+import 'package:windex/ui/components/alert_dialog_rating.dart';
 import 'package:windex/ui/components/alert_dialog_wallet.dart';
 import 'package:windex/ui/components/alert_dialog_windex.dart';
 
@@ -105,7 +106,7 @@ class _QrCodeReaderState extends State<QrCodeReader> {
                                 shape: Styles().styleShapeBottomSheet,
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 builder: (BuildContext context) {
-                                  return WalletAlertDialog();
+                                  return RatingAlertDialog();
                                 });
 
                           },
