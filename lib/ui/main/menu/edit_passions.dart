@@ -87,7 +87,6 @@ class _EditPassions extends State<EditPassions> {
 
   @override
   void dispose() {
-
     super.dispose();
   }
 
@@ -99,8 +98,9 @@ class _EditPassions extends State<EditPassions> {
             padding: EdgeInsets.all(Dimens.maxPaddingApplication),
             child: CustomScrollView(slivers: [
               SliverFillRemaining(
-                hasScrollBody: false,
-                child: Column(
+                child: SafeArea(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(children: [
                       GestureDetector(
@@ -136,88 +136,15 @@ class _EditPassions extends State<EditPassions> {
                       textAlign: TextAlign.start,
                     ),
                     SizedBox(height: 32),
-
-                    /*                             FutureBuilder<List<Map<String, dynamic>>>(
-                                  future: listProducts(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      var gridItems = <Widget>[];
-
-                                      for (var i = 0; i < 8; i++) {
-                                        // final response =
-                                        // Product.fromJson(snapshot.data![i]);
-
-                                        var source = 'images/cow.png';
-                                        var source2 = 'images/cow.png';
-
-                                        if (i == 0) {
-                                          source = 'images/cow.png';
-                                          source2 = 'Gado';
-                                        } else if (i == 1){
-
-                                          source = 'images/map.png';
-                                          source2 = 'Terras';
-                                        } else {
-
-                                          source = 'images/gavel.png';
-                                          source2 = 'Outros';
-                                        }
-
-                                        gridItems.add(InkWell(
-                                            onTap: () => {
-                                              // Navigator.pushNamed(
-                                              //     context, "/ui/subcategories",
-                                              //     arguments: {
-                                              //       "id_category": response.id,
-                                              //     })
-                                            },
-                                            child: Container(
-                                                margin: EdgeInsets.all(
-                                                    Dimens.minMarginApplication),
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: OwnerColors.lightGrey),
-                                                  borderRadius:
-                                                  BorderRadius.all(Radius.circular(36)),
-                                                ),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Image.asset(source,
-                                                        width: 24, height: 24, color: OwnerColors.colorPrimary,),
-                                                      SizedBox(
-                                                        width: Dimens.minMarginApplication,
-                                                      ),
-                                                      Text(
-                                                        source2,
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                          fontSize: Dimens.textSize5,
-                                                        ),
-                                                      ),
-                                                    ]))));
-                                      }
-
-                                      return*/
-                    Container(
-                      // margin: EdgeInsets.only(left: 10, right: 10),
-                      child: GridView.count(
-                        childAspectRatio: 1.0,
-                        primary: false,
-                        shrinkWrap: true,
-                        crossAxisCount: 3,
-                        children: gridItems,
-                      ),
+                    GridView.count(
+                      childAspectRatio: 1.0,
+                      primary: false,
+                      shrinkWrap: true,
+                      crossAxisCount: 3,
+                      children: gridItems,
                     ),
-                    /*;
-                                    } else if (snapshot.hasError) {
-                                      return Text('${snapshot.error}');
-                                    }
-                                    return Styles().defaultLoading;
-                                  }),*/
+                    Spacer(),
+                    SizedBox(height: 32),
                     Container(
                       margin: EdgeInsets.only(top: Dimens.marginApplication),
                       height: 52,
@@ -239,7 +166,7 @@ class _EditPassions extends State<EditPassions> {
                     ),
                     SizedBox(height: Dimens.marginApplication),
                   ],
-                ),
+                )),
               ),
             ])));
   }
