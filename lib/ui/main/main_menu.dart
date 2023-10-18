@@ -112,8 +112,7 @@ class _MainMenu extends State<MainMenu> {
     return Scaffold(
         appBar: CustomAppBar(title: "Meu Perfil", isVisibleBackButton: false),
         resizeToAvoidBottomInset: false,
-        body: SafeArea(
-            child: Container(
+        body: Container(
                 padding: EdgeInsets.all(Dimens.maxPaddingApplication),
                 child: CustomScrollView(slivers: [
                   SliverFillRemaining(
@@ -291,30 +290,8 @@ class _MainMenu extends State<MainMenu> {
                               ),
                             ),
                             onTap: () {
-                              showModalBottomSheet<dynamic>(
-                                isScrollControlled: true,
-                                context: context,
-                                shape: Styles().styleShapeBottomSheet,
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                builder: (BuildContext context) {
-                                  return GenericAlertDialog(
-                                      title: Strings.attention,
-                                      content: Strings.disable_account,
-                                      btnBack: TextButton(
-                                          child: Text(Strings.no,
-                                              style: TextStyle(
-                                                color: Colors.black54,
-                                              )),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          }),
-                                      btnConfirm: TextButton(
-                                          child: Text(Strings.yes),
-                                          onPressed: () {
-                                            disableAccount();
-                                          }));
-                                },
-                              );
+
+                              Navigator.pushNamed(context, "/ui/passions");
                             }),
                         SizedBox(height: 32),
                         InkWell(
@@ -345,30 +322,7 @@ class _MainMenu extends State<MainMenu> {
                               ),
                             ),
                             onTap: () {
-                              showModalBottomSheet<dynamic>(
-                                isScrollControlled: true,
-                                context: context,
-                                shape: Styles().styleShapeBottomSheet,
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                builder: (BuildContext context) {
-                                  return GenericAlertDialog(
-                                      title: Strings.attention,
-                                      content: Strings.disable_account,
-                                      btnBack: TextButton(
-                                          child: Text(Strings.no,
-                                              style: TextStyle(
-                                                color: Colors.black54,
-                                              )),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          }),
-                                      btnConfirm: TextButton(
-                                          child: Text(Strings.yes),
-                                          onPressed: () {
-                                            disableAccount();
-                                          }));
-                                },
-                              );
+
                             }),
                         SizedBox(height: 32),
                         Spacer(),
@@ -397,6 +351,6 @@ class _MainMenu extends State<MainMenu> {
                       ],
                     ),
                   ),
-                ]))));
+                ])));
   }
 }

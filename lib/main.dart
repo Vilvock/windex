@@ -9,6 +9,7 @@ import 'package:windex/ui/auth/register/register_owner_data.dart';
 import 'package:windex/ui/intro/onboarding.dart';
 import 'package:windex/ui/intro/splash.dart';
 import 'package:windex/ui/main/home.dart';
+import 'package:windex/ui/main/menu/edit_passions.dart';
 
 import 'config/notification_helper.dart';
 import 'config/preferences.dart';
@@ -90,7 +91,7 @@ void main() async {
       '/ui/login': (context) => Login(),
       '/ui/register': (context) => RegisterOwnerData(),
       '/ui/home': (context) => Home(),
-      // '/ui/profile': (context) => Profile(),
+      '/ui/passions': (context) => EditPassions(),
       // '/ui/pdf_viewer': (context) => PdfViewer(),
       // '/ui/success': (context) => Success(),
       // '/ui/success2': (context) => Success2(),

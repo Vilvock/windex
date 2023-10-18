@@ -313,7 +313,7 @@ class _LoginState extends State<Login> {
                               height: 52,
                               width: double.infinity,
                               child: ElevatedButton(
-                                style: Styles().styleOutlinedRedButton,
+                                style: Styles().styleOutlinedButton,
                                 onPressed: () async {
 
                                 },
@@ -324,7 +324,7 @@ class _LoginState extends State<Login> {
                                     SizedBox(width: 10),
                                     Text(
                                       "Entrar com Google",
-                                      style: Styles().styleOutlinedTextButton,
+                                      style: Styles().styleOutlinedTextButton2,
                                     ),
                                   ],
                                 ),
@@ -335,7 +335,7 @@ class _LoginState extends State<Login> {
                               height: 52,
                               width: double.infinity,
                               child: ElevatedButton(
-                                style: Styles().styleOutlinedRedButton,
+                                style: Styles().styleOutlinedButton,
                                 onPressed: () async {
 
                                 },
@@ -346,7 +346,7 @@ class _LoginState extends State<Login> {
                                     SizedBox(width: 10),
                                     Text(
                                       "Entrar com Facebook",
-                                      style: Styles().styleOutlinedTextButton,
+                                      style: Styles().styleOutlinedTextButton2,
                                     ),
                                   ],
                                 ),

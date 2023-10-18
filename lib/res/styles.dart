@@ -36,6 +36,17 @@ class Styles {
     backgroundColor: MaterialStateProperty.all(OwnerColors.colorAccent),
   );
 
+  var styleOutlinedButton = ButtonStyle(
+    padding: MaterialStateProperty.all<EdgeInsets>(
+        EdgeInsets.all(Dimens.buttonPaddingApplication)),
+    shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimens.radiusApplication))),
+    side: MaterialStateProperty.all(BorderSide(
+        color: OwnerColors.lightGrey,
+        width: 0.2,
+        style: BorderStyle.solid)),
+    backgroundColor: MaterialStateProperty.all(OwnerColors.colorAccent),
+  );
+
   var styleDefaultTextButton = TextStyle(
       fontSize: Dimens.textSize6,
       color: Colors.white,
@@ -53,6 +64,12 @@ class Styles {
       color: Colors.white,
       wordSpacing: 0.5,
       fontWeight: FontWeight.w700);
+
+  var styleOutlinedTextButton2 = TextStyle(
+      fontSize: Dimens.textSize5,
+      color: Colors.white,
+      wordSpacing: 0.5,
+      fontWeight: FontWeight.w500);
 
   var styleShapeBottomSheet = RoundedRectangleBorder(
     borderRadius: BorderRadius.vertical(
