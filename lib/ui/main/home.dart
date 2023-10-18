@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:windex/res/assets.dart';
+import 'package:windex/ui/main/plans.dart';
 
 import '../../config/application_messages.dart';
 import '../../config/preferences.dart';
@@ -53,7 +54,7 @@ class _HomeState extends State<Home> {
     var widgetItems = <Widget>[];
 
     widgetItems.add(ContainerHome());
-    widgetItems.add(QrCodeReader());
+    widgetItems.add(Plans());
     widgetItems.add(MainMenu());
 
     List<Widget> _widgetOptions = widgetItems;
@@ -465,28 +466,37 @@ class _ContainerHomeState extends State<ContainerHome>
                             child: TabBar(
                               tabs: [
                                 Container(
-                                  child: Text(
-                                    "Horário",
-                                    style: TextStyle(
-                                      fontSize: Dimens.textSize6,
-                                      fontWeight: FontWeight.w900,
+                                  child:
+                                  Row( mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Icon(Icons.calendar_month_outlined, size: 32,),
+                                    SizedBox(width: 10,),
+                                    Text(
+                                      "Horário",
+                                      style: TextStyle(
+                                        fontSize: Dimens.textSize5,
+                                        fontWeight: FontWeight.w900,
+                                      ),
                                     ),
-                                  ),
+                                  ], )
                                 ),
                                 Container(
-                                    child: Text(
+                                  child:
+                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Icon(Icons.map_outlined, size: 32,),
+                                    SizedBox(width: 10,),
+                                     Text(
                                   "Proximidade",
                                   style: TextStyle(
-                                    fontSize: Dimens.textSize6,
+                                    fontSize: Dimens.textSize5,
                                     fontWeight: FontWeight.w900,
-                                  ),
-                                ))
+
+                                ))]))
                               ],
                               unselectedLabelColor: Colors.grey,
                               indicatorColor: OwnerColors.colorPrimary,
-                              labelColor: Colors.black,
+                              labelColor: Colors.white,
                               indicatorSize: TabBarIndicatorSize.tab,
-                              indicatorWeight: 2.0,
+                              indicatorWeight: 1.8,
                               isScrollable: false,
                               controller: _tabController,
                               onTap: (value) {

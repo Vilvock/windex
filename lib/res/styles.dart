@@ -78,15 +78,15 @@ class Styles {
   );
 
   var div_horizontal = Divider(
-    color: Colors.black12,
+    color: OwnerColors.lightGrey,
     height: 2,
-    thickness: 1.5,
+    thickness: 0.4,
   );
 
   var div_vertical = VerticalDivider(
-    color: Colors.black12,
+    color: OwnerColors.lightGrey,
     width: 2,
-    thickness: 1.5,
+    thickness: 0.4,
   );
 
   var defaultLoading = Center(child: CircularProgressIndicator());

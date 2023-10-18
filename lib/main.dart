@@ -10,6 +10,8 @@ import 'package:windex/ui/intro/onboarding.dart';
 import 'package:windex/ui/intro/splash.dart';
 import 'package:windex/ui/main/home.dart';
 import 'package:windex/ui/main/menu/edit_passions.dart';
+import 'package:windex/ui/main/plans.dart';
+import 'package:windex/ui/utilities/pdf_viewer.dart';
 
 import 'config/notification_helper.dart';
 import 'config/preferences.dart';
@@ -92,18 +94,9 @@ void main() async {
       '/ui/register': (context) => RegisterOwnerData(),
       '/ui/home': (context) => Home(),
       '/ui/passions': (context) => EditPassions(),
-      // '/ui/pdf_viewer': (context) => PdfViewer(),
-      // '/ui/success': (context) => Success(),
-      // '/ui/success2': (context) => Success2(),
-      // '/ui/notifications': (context) => Notifications(),
-      // '/ui/recover_password': (context) => RecoverPassword(),
-      // '/ui/product_detail': (context) => ProductDetail(),
-      // '/ui/order_detail': (context) => OrderDetail(),
-      // '/ui/begin': (context) => Begin(),
-      // '/ui/step_2': (context) => Step2(),
-      // '/ui/step_3': (context) => Step3(),
-      // '/ui/step_4': (context) => Step4(),
-      // '/ui/cart': (context) => CartShopping(),
+      '/ui/plans': (context) => Plans(),
+      '/ui/pdf_viewer': (context) => PdfViewer(),
+
     },
   ));
 }

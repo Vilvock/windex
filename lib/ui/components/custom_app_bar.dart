@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: _returnBackIcon(this.isVisibleBackButton, context),
       backgroundColor: Colors.transparent,
       elevation: 0,
-      titleSpacing: 10,
+      titleSpacing: 0,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -67,9 +67,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           margin: EdgeInsets.only(left: 10),
           child: IconButton(
             icon: Icon(
-              Icons.arrow_back_outlined,
-              color: OwnerColors.colorPrimary,
-              size: 20,
+              Icons.arrow_back_ios_new_outlined,
+              color: Colors.white,
+              size: 24,
             ),
             onPressed: () {
               if (Navigator.of(context).canPop()) {
