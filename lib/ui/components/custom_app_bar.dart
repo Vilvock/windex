@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: _returnBackIcon(this.isVisibleBackButton, context),
       backgroundColor: Colors.transparent,
       elevation: 0,
-      titleSpacing: 0,
+      titleSpacing: 10,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -57,6 +57,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ],
+      ),
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(10),
+        child: Divider(
+          thickness: 0.3,
+          height: 0,
+          color: Colors.white,
+        ),
       ),
     );
   }
