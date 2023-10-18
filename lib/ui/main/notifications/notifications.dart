@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:windex/res/styles.dart';
 import '../../../../config/application_messages.dart';
 import '../../../../config/preferences.dart';
 import '../../../../config/validator.dart';
@@ -31,86 +32,10 @@ class _Notifications extends State<Notifications> {
 
   final postRequest = PostRequest();
 
-
-  Future<List<Map<String, dynamic>>> listCategories() async {
-    try {
-      final body = {
-        "token": ApplicationConstant.TOKEN
-      };
-
-      print('HTTP_BODY: $body');
-
-      final json = await postRequest.sendPostRequest(Links.LIST_CATEGORIES, body);
-      List<Map<String, dynamic>> _map = [];
-      _map = List<Map<String, dynamic>>.from(jsonDecode(json));
-
-      print('HTTP_RESPONSE: $_map');
-
-      final response = User.fromJson(_map[0]);
-
-      return _map;
-    } catch (e) {
-      throw Exception('HTTP_ERROR: $e');
-    }
-  }
-
-  Future<List<Map<String, dynamic>>> listProducts() async {
-    try {
-      final body = {
-        "id_usuario": await Preferences.getUserData()!.id,
-        "destaque": 6,
-        "token": ApplicationConstant.TOKEN
-      };
-
-      print('HTTP_BODY: $body');
-
-      final json = await postRequest.sendPostRequest(Links.LIST_PRODUCTS, body);
-      List<Map<String, dynamic>> _map = [];
-      _map = List<Map<String, dynamic>>.from(jsonDecode(json));
-
-      print('HTTP_RESPONSE: $_map');
-
-      final response = User.fromJson(_map[0]);
-
-      return _map;
-    } catch (e) {
-      throw Exception('HTTP_ERROR: $e');
-    }
-  }
-
-  Future<List<Map<String, dynamic>>> listProductsHighlights() async {
-    try {
-      final body = {
-        "token": ApplicationConstant.TOKEN
-      };
-
-      print('HTTP_BODY: $body');
-
-      final json = await postRequest.sendPostRequest(Links.LIST_PRODUCTS_HIGHLIGHTS, body);
-      List<Map<String, dynamic>> _map = [];
-      _map = List<Map<String, dynamic>>.from(jsonDecode(json));
-
-      print('HTTP_RESPONSE: $_map');
-
-      final response = User.fromJson(_map[0]);
-
-      return _map;
-    } catch (e) {
-      throw Exception('HTTP_ERROR: $e');
-    }
-  }
-
-  //////////////CARRINHO
-
-
-
-
-  /////////////////////////
-
   Future<List<Map<String, dynamic>>> listNotifications() async {
     try {
       final body = {
-        "id": await Preferences.getUserData()!.id,
+        "id_user": await Preferences.getUserData()!.id ,
         "token": ApplicationConstant.TOKEN
       };
 
@@ -151,49 +76,76 @@ class _Notifications extends State<Notifications> {
 
                       final response = User.fromJson(snapshot.data![index]);
 
-                      return Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              Dimens.minRadiusApplication),
-                        ),
-                        margin: EdgeInsets.all(Dimens.minMarginApplication),
-                        child: Container(
-                          padding: EdgeInsets.all(Dimens.paddingApplication),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                      return InkWell(
+                          onTap: () => {
 
-                              Text(
-                                response.titulo.toString(),
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: Dimens.textSize6,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                          },
+                          child: Container(
+                              padding: EdgeInsets.all(
+                                  Dimens.maxPaddingApplication),
+                              child: Column(children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                          right: Dimens
+                                              .minMarginApplication),
+                                      child: ClipOval(
+                                        child: SizedBox.fromSize(
+                                          size:
+                                          Size.fromRadius(28),
+                                          // Image radius
+                                          child: Image.network(
+                                              ApplicationConstant
+                                                  .URL_PRODUCT,
+                                              fit: BoxFit.cover,
+                                              errorBuilder: (context,
+                                                  exception,
+                                                  stackTrack) =>
+                                                  Image.asset(
+                                                    'images/main_icon.png',
+                                                  )),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                        child:
+                                        Text(
+                                          Strings.shortLoremIpsum,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize: Dimens
+                                                  .textSize5,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                              wordSpacing: 1.2
+                                          ),
+                                        )
+
+
+                                    ),
+                                    SizedBox(width: Dimens.minMarginApplication,),
+                                    Text(
+                                      "2 minutos atras",
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: Dimens
+                                            .textSize3,
+                                        color: Colors.white70,
+                                      ),
+                                    )
+
+                                  ],
                                 ),
-                              ),
-                              SizedBox(height: Dimens.marginApplication),
-                              Text(
-                                response.descricao.toString(),
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: Dimens.textSize5,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              SizedBox(height: Dimens.marginApplication),
-                              Text(
-                                response.data.toString()/* + " - " + response*/,
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: Dimens.textSize4,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
+
+                                SizedBox(height: Dimens.marginApplication,),
+
+                                Styles().div_horizontal,
+
+                                SizedBox(height: Dimens.marginApplication,),
+                              ],)
+
+                          ));
                     },
                   );
                 } else {
@@ -219,7 +171,7 @@ class _Notifications extends State<Notifications> {
                               style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: Dimens.textSize5,
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                             ),
                           ]));

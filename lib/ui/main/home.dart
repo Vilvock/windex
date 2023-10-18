@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:windex/res/assets.dart';
+import 'package:windex/ui/main/notifications/notifications.dart';
 import 'package:windex/ui/main/plans.dart';
 
 import '../../config/application_messages.dart';
@@ -54,7 +55,7 @@ class _HomeState extends State<Home> {
     var widgetItems = <Widget>[];
 
     widgetItems.add(ContainerHome());
-    widgetItems.add(Plans());
+    widgetItems.add(Notifications());
     widgetItems.add(MainMenu());
 
     List<Widget> _widgetOptions = widgetItems;
