@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/application_messages.dart';
+import '../../config/masks.dart';
 import '../../config/preferences.dart';
 import '../../config/validator.dart';
 import '../../global/application_constant.dart';
 import '../../model/user.dart';
+import '../../res/assets.dart';
 import '../../res/dimens.dart';
 import '../../res/owner_colors.dart';
 import '../../res/strings.dart';
@@ -29,31 +31,22 @@ class _MainMenu extends State<MainMenu> {
   final postRequest = PostRequest();
   User? _profileResponse;
 
+  late bool _isLoading = false;
+
+  final TextEditingController cellphoneController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
   }
 
-  Future<void> _launchUrl() async {
-    if (!await launchUrl(Uri.parse(launchWhatsApp(phone: 5551980426759, message: "").toString()), mode: LaunchMode.externalNonBrowserApplication)) {
-      throw Exception('Could not launch');
-    }
-  }
+  @override
+  void dispose() {
+    cellphoneController.dispose();
+    nameController.dispose();
 
-  String launchWhatsApp(
-      {required int phone,
-        required String message,
-      }) {
-    String url() {
-/*      if (Platform.isAndroid) {
-        // add the [https]
-        return "https://wa.me/$phone/?text=${Uri.parse(message)}"; // new line
-      } else {
-        // add the [https]*/
-      return "https://api.whatsapp.com/send?phone=5551980426759"; // new line
-      // }
-    }
-    return url();
+    super.dispose();
   }
 
   Future<List<Map<String, dynamic>>> loadProfileRequest() async {
@@ -117,270 +110,293 @@ class _MainMenu extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:
-            CustomAppBar(title: "Menu Principal", isVisibleBackButton: false),
+        appBar: CustomAppBar(title: "Meu Perfil", isVisibleBackButton: false),
         resizeToAvoidBottomInset: false,
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                // Expanded(
-                FutureBuilder<List<Map<String, dynamic>>>(
-                  future: loadProfileRequest(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      final response = User.fromJson(snapshot.data![0]);
-
-                      return Material(
-                          elevation: Dimens.elevationApplication,
-                          child: Container(
-                            padding: EdgeInsets.all(Dimens.paddingApplication),
-                            color: OwnerColors.lightGrey,
-                            child: Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      right: Dimens.marginApplication),
-                                  child: ClipOval(
-                                    child: SizedBox.fromSize(
-                                      size: Size.fromRadius(32), // Image radius
-                                      child: Image.network(
-                                          ApplicationConstant.URL_AVATAR +
-                                              response.avatar.toString(),
-                                          fit: BoxFit.cover,
-                                          /*fit: BoxFit.cover*/
-                                          errorBuilder: (context, exception,
-                                                  stackTrack) =>
-                                              Image.asset(
-                                                'images/main_logo_1.png',
-                                              )),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+        body: SafeArea(
+            child: Container(
+                padding: EdgeInsets.all(Dimens.maxPaddingApplication),
+                child: CustomScrollView(slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Column(
+                      children: [
+                        Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                                alignment: Alignment.center,
+                                height: 94,
+                                width: 94,
+                                margin: EdgeInsets.only(
+                                    right: Dimens.marginApplication),
+                                child: Stack(
+                                    alignment: Alignment.center,
                                     children: [
-                                      Text(
-                                        response.nome,
-                                        style: TextStyle(
-                                          fontFamily: 'Inter',
-                                          fontSize: Dimens.textSize6,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
+                                      ClipOval(
+                                        child: SizedBox.fromSize(
+                                          size: Size.fromRadius(47),
+                                          // Image radius
+                                          child: Image.asset(
+                                            Assets.default_image,
+                                          ),
                                         ),
                                       ),
-                                      SizedBox(
-                                          height: Dimens.minMarginApplication),
-                                      Text(
-                                        response.email,
-                                        style: TextStyle(
-                                          fontFamily: 'Inter',
-                                          fontSize: Dimens.textSize5,
-                                          color: Colors.black,
+                                      Align(
+                                          alignment: Alignment.bottomRight,
+                                          child: SizedBox(
+                                              width: 40,
+                                              height: 40,
+                                              child: FittedBox(
+                                                child:
+                                                    FloatingActionButton.small(
+                                                  child: Image.asset(
+                                                    Assets.edit,
+                                                    width: 18,
+                                                    height: 18,
+                                                  ),
+                                                  backgroundColor:
+                                                      OwnerColors.colorAccent,
+                                                  onPressed: () {},
+                                                ),
+                                              )))
+                                    ]))),
+                        SizedBox(height: 32),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(
+                              bottom: Dimens.minMarginApplication),
+                          child: Text(
+                            "Dados Cadastrais",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: Dimens.textSize6,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: Dimens.marginApplication),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(
+                              bottom: Dimens.minMarginApplication),
+                          child: Text(
+                            "Nome Completo",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: Dimens.textSize4,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                        TextField(
+                          controller: nameController,
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white70, width: 0.8),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 0.4),
+                            ),
+                            hintText: 'Nome Completo',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                  Dimens.radiusApplication),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: OwnerColors.colorAccent,
+                            contentPadding: EdgeInsets.all(
+                                Dimens.textFieldPaddingApplication),
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: Dimens.textSize5,
+                          ),
+                        ),
+                        SizedBox(height: 32),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(
+                              bottom: Dimens.minMarginApplication),
+                          child: Text(
+                            "Whatsapp",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: Dimens.textSize4,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                        TextField(
+                          inputFormatters: [Masks().cellphoneMask()],
+                          controller: cellphoneController,
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white70, width: 0.8),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 0.4),
+                            ),
+                            hintText: '(00) 00000-0000',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                  Dimens.radiusApplication),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: OwnerColors.colorAccent,
+                            contentPadding: EdgeInsets.all(
+                                Dimens.textFieldPaddingApplication),
+                          ),
+                          keyboardType: TextInputType.number,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: Dimens.textSize5,
+                          ),
+                        ),
+                        SizedBox(height: 32),
+                        InkWell(
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Editar Paixöes",
+                                          style: TextStyle(
+                                            fontSize: Dimens.textSize6,
+                                            color: Colors.white,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.arrow_forward_ios,
-                                      color: Colors.black38),
-                                  onPressed: () => {
-                                    Navigator.pushNamed(context, "/ui/profile")
-                                  },
-                                )
-                              ],
-                            ),
-                          ));
-                    } else if (snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    }
-                    return Center(child: CircularProgressIndicator());
-                  },
-                ),
-                Styles().div_horizontal,
-
-                InkWell(
-                    child: Container(
-                      padding: EdgeInsets.all(Dimens.maxPaddingApplication),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Suporte",
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: Dimens.textSize5,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(height: Dimens.minMarginApplication),
-                                Text(
-                                  "Suporte ao cliente, perguntas frequentes",
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: Dimens.textSize4,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    onTap: () async {
-    await _launchUrl();
-
-
-
-                    }),
-
-                Styles().div_horizontal,
-
-                InkWell(
-                    child: Container(
-                      padding: EdgeInsets.all(Dimens.maxPaddingApplication),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Desativar conta",
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: Dimens.textSize5,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(height: Dimens.minMarginApplication),
-                                Text(
-                                  "Desative completamente todas as funções da sua conta",
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: Dimens.textSize4,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      showModalBottomSheet<dynamic>(
-                        isScrollControlled: true,
-                        context: context,
-                        shape: Styles().styleShapeBottomSheet,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        builder: (BuildContext context) {
-                          return GenericAlertDialog(
-                              title: Strings.attention,
-                              content: Strings.disable_account,
-                              btnBack: TextButton(
-                                  child: Text(Strings.no,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        color: Colors.black54,
-                                      )),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  }),
-                              btnConfirm: TextButton(
-                                  child: Text(Strings.yes),
-                                  onPressed: () {
-                                    disableAccount();
-                                  }));
-                        },
-                      );
-                    }),
-
-                Styles().div_horizontal,
-
-                InkWell(
-                    child: Container(
-                      padding: EdgeInsets.all(Dimens.maxPaddingApplication),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Sair",
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: Dimens.textSize5,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(height: Dimens.minMarginApplication),
-                                Text(
-                                  "Deslogar desta conta",
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: Dimens.textSize4,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      showModalBottomSheet<dynamic>(
-                        isScrollControlled: true,
-                        context: context,
-                        shape: Styles().styleShapeBottomSheet,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        builder: (BuildContext context) {
-                          return GenericAlertDialog(
-                              title: Strings.attention,
-                              content: Strings.logout,
-                              btnBack: TextButton(
-                                  child: Text(
-                                    Strings.no,
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      color: Colors.black54,
+                                      ],
                                     ),
                                   ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  }),
-                              btnConfirm: TextButton(
-                                  child: Text(Strings.yes),
-                                  onPressed: () async {
-                                    await Preferences.init();
-                                    Preferences.clearUserData();
-
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Login()),
-                                        ModalRoute.withName("/ui/login"));
-                                  }));
-                        },
-                      );
-                    }),
-
-                Styles().div_horizontal,
-              ],
-            ),
-          ),
-        ));
+                                  Icon(
+                                    size: 20,
+                                    Icons.arrow_forward_ios,
+                                    color: OwnerColors.lightGrey,
+                                  )
+                                ],
+                              ),
+                            ),
+                            onTap: () {
+                              showModalBottomSheet<dynamic>(
+                                isScrollControlled: true,
+                                context: context,
+                                shape: Styles().styleShapeBottomSheet,
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                builder: (BuildContext context) {
+                                  return GenericAlertDialog(
+                                      title: Strings.attention,
+                                      content: Strings.disable_account,
+                                      btnBack: TextButton(
+                                          child: Text(Strings.no,
+                                              style: TextStyle(
+                                                color: Colors.black54,
+                                              )),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          }),
+                                      btnConfirm: TextButton(
+                                          child: Text(Strings.yes),
+                                          onPressed: () {
+                                            disableAccount();
+                                          }));
+                                },
+                              );
+                            }),
+                        SizedBox(height: 32),
+                        InkWell(
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Alterar senha",
+                                          style: TextStyle(
+                                            fontSize: Dimens.textSize6,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Icon(
+                                    size: 20,
+                                    Icons.arrow_forward_ios,
+                                    color: OwnerColors.lightGrey,
+                                  )
+                                ],
+                              ),
+                            ),
+                            onTap: () {
+                              showModalBottomSheet<dynamic>(
+                                isScrollControlled: true,
+                                context: context,
+                                shape: Styles().styleShapeBottomSheet,
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                builder: (BuildContext context) {
+                                  return GenericAlertDialog(
+                                      title: Strings.attention,
+                                      content: Strings.disable_account,
+                                      btnBack: TextButton(
+                                          child: Text(Strings.no,
+                                              style: TextStyle(
+                                                color: Colors.black54,
+                                              )),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          }),
+                                      btnConfirm: TextButton(
+                                          child: Text(Strings.yes),
+                                          onPressed: () {
+                                            disableAccount();
+                                          }));
+                                },
+                              );
+                            }),
+                        SizedBox(height: 32),
+                        Spacer(),
+                        Container(
+                          margin:
+                              EdgeInsets.only(top: Dimens.marginApplication),
+                          height: 52,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: Styles().styleDefaultButton,
+                            onPressed: () async {},
+                            child: (_isLoading)
+                                ? const SizedBox(
+                                    width: Dimens.buttonIndicatorWidth,
+                                    height: Dimens.buttonIndicatorHeight,
+                                    child: CircularProgressIndicator(
+                                      color: OwnerColors.colorAccent,
+                                      strokeWidth:
+                                          Dimens.buttonIndicatorStrokes,
+                                    ))
+                                : Text("Alterar",
+                                    style: Styles().styleDefaultTextButton),
+                          ),
+                        ),
+                        SizedBox(height: Dimens.marginApplication),
+                      ],
+                    ),
+                  ),
+                ]))));
   }
 }
