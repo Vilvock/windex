@@ -818,6 +818,7 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                                   ]),
                                 ))
                               ]),
+                              SizedBox(height: 4),
                               Text(
                                 "Quais são seus interesses?",
                                 style: TextStyle(
@@ -903,12 +904,23 @@ class _RegisterOwnerDataState extends State<RegisterOwnerData> {
                                   crossAxisCount: 3,
                                   children: gridItems,
                                 ),
-                              ) /*;
+                              ), /*;
                                     } else if (snapshot.hasError) {
                                       return Text('${snapshot.error}');
                                     }
                                     return Styles().defaultLoading;
                                   }),*/
+                              SizedBox(height: 32),
+                              Container(width: double.infinity, child:
+                              Text(
+                                "01 de 08 selecionados",
+                                style: TextStyle(
+                                    fontSize: Dimens.textSize6,
+                                    color: Colors.white70,
+                                    letterSpacing: 0.5,
+                                    height: 1.5),
+                                textAlign: TextAlign.center,
+                              )),
                             ],
                           ));
                     }
