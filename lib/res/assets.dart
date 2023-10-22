@@ -23,5 +23,6 @@ abstract class Assets {
   static const String logout = "images/logout.png";
   static const String attention = "images/attention.png";
   static const String star = "images/star.png";
+  static const String generic_party = "images/generic_party.png";
 
 }

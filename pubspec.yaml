@@ -61,6 +61,7 @@ dependencies:
   url_launcher: ^6.1.11
   flutter_rating_bar: ^4.0.1
   qr_flutter: ^4.1.0
+  fluttertoast: ^8.2.2
 
 
 dev_dependencies:
@@ -90,29 +91,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - images/main_icon.png
-    - images/splash.png
-    - images/onboarding_background.png
-    - images/maps.png
-    - images/notifications.png
-    - images/generic.png
-    - images/facebook.png
-    - images/google.png
-    - images/default_image.png
-    - images/edit.png
-    - images/security.png
-    - images/home.png
-    - images/scan.png
-    - images/profile.png
-    - images/filter.png
-    - images/bell.png
-    - images/menu.png
-    - images/gold_scan.png
-    - images/ticket.png
-    - images/attention.png
-    - images/wallet.png
-    - images/logout.png
-    - images/star.png
+    - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

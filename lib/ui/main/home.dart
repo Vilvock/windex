@@ -30,6 +30,7 @@ import '../../web_service/service_response.dart';
 import '../components/alert_dialog_generic.dart';
 import '../components/custom_app_bar.dart';
 import '../components/dot_indicator.dart';
+import '../components/gradient_text.dart';
 import 'main_menu.dart';
 import 'qr_code_reader.dart';
 
@@ -166,6 +167,9 @@ class _ContainerHomeState extends State<ContainerHome>
   late Validator validator;
   final postRequest = PostRequest();
 
+
+  List<Widget> gridItems = [];
+
   late TabController _tabController;
 
   @override
@@ -180,6 +184,134 @@ class _ContainerHomeState extends State<ContainerHome>
     saveFcm();
     openCart();
 
+    for (var i = 0; i < 4; i++) {
+      // final response =
+      // Product.fromJson(snapshot.data![i]);
+
+      var source = 'images/cow.png';
+      var source2 = 'images/cow.png';
+
+      if (i == 0) {
+        source = 'images/cow.png';
+        source2 = 'Gado';
+      } else if (i == 1) {
+        source = 'images/map.png';
+        source2 = 'Terras';
+      } else {
+        source = 'images/gavel.png';
+        source2 = 'Outros';
+      }
+
+      gridItems.add(InkWell(
+          onTap: () => {},
+          child: Container(
+              margin: EdgeInsets.all(Dimens.minMarginApplication),
+              decoration: BoxDecoration(
+                border: Border.all(width: 0.2, color: OwnerColors.lightGrey),
+                borderRadius:
+                BorderRadius.all(Radius.circular(Dimens.radiusApplication)),
+              ),
+              child: Container(
+                  child: Column(
+                    crossAxisAlignment:
+                    CrossAxisAlignment
+                        .start,
+                    children: [
+                      Stack(
+                        alignment:
+                        AlignmentDirectional
+                            .centerEnd,
+                        children: [
+                          Container(
+                              width: double
+                                  .infinity,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimens.radiusApplication), topRight: Radius.circular(Dimens.radiusApplication)),
+                                  child: Image.network(
+                                    Assets.generic_party,
+                                    fit:
+                                    BoxFit.fitWidth,
+                                    height:
+                                    140,
+                                    errorBuilder: (context, exception, stackTrack) =>
+                                        Image.asset(
+                                          fit:
+                                          BoxFit.fitWidth,
+                                          Assets.generic_party,
+                                          height: 140,
+                                          width: 140,
+                                        ),
+                                  ))),
+                        ],
+                      ),
+                      SizedBox(
+                          height: Dimens
+                              .minMarginApplication),
+                      Container(
+                        padding: EdgeInsets
+                            .all(Dimens
+                            .minPaddingApplication),
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment
+                              .start,
+                          children: [
+                            Text(
+                              "teste",
+                              maxLines:
+                              1,
+                              overflow:
+                              TextOverflow
+                                  .ellipsis,
+                              style:
+                              TextStyle(
+                                fontFamily:
+                                'Inter',
+                                fontSize:
+                                Dimens.textSize6,
+                                fontWeight:
+                                FontWeight.bold,
+                                color: Colors
+                                    .black,
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                Dimens.minMarginApplication),
+                            Text(
+                              "teste",
+                              style:
+                              TextStyle(
+                                fontFamily:
+                                'Inter',
+                                fontSize:
+                                Dimens.textSize5,
+                                color: Colors
+                                    .black,
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                Dimens.marginApplication),
+                            Text(
+                              "teste",
+                              style:
+                              TextStyle(
+                                fontFamily:
+                                'Inter',
+                                fontSize:
+                                Dimens.textSize6,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+          )
+      )
+      ));
+    }
     super.initState();
   }
 
@@ -369,9 +501,9 @@ class _ContainerHomeState extends State<ContainerHome>
                             ),
                           ],
                         ),
-                        Expanded(child:
-                        SingleChildScrollView(
-                            child: Column(children: [
+                        Expanded(
+                            child: SingleChildScrollView(
+                                child: Column(children: [
                           Container(
                             margin: EdgeInsets.only(
                                 top: Dimens.minMarginApplication),
@@ -467,10 +599,16 @@ class _ContainerHomeState extends State<ContainerHome>
                             child: TabBar(
                               tabs: [
                                 Container(
-                                  child:
-                                  Row( mainAxisAlignment: MainAxisAlignment.center, children: [
-                                    Icon(Icons.calendar_month_outlined, size: 32,),
-                                    SizedBox(width: 10,),
+                                    child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_month_outlined,
+                                      size: 22,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                     Text(
                                       "Horário",
                                       style: TextStyle(
@@ -478,20 +616,26 @@ class _ContainerHomeState extends State<ContainerHome>
                                         fontWeight: FontWeight.w900,
                                       ),
                                     ),
-                                  ], )
-                                ),
+                                  ],
+                                )),
                                 Container(
-                                  child:
-                                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                                    Icon(Icons.map_outlined, size: 32,),
-                                    SizedBox(width: 10,),
-                                     Text(
-                                  "Proximidade",
-                                  style: TextStyle(
-                                    fontSize: Dimens.textSize5,
-                                    fontWeight: FontWeight.w900,
-
-                                ))]))
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                      Icon(
+                                        Icons.map_outlined,
+                                        size: 22,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text("Proximidade",
+                                          style: TextStyle(
+                                            fontSize: Dimens.textSize5,
+                                            fontWeight: FontWeight.w900,
+                                          ))
+                                    ]))
                               ],
                               unselectedLabelColor: Colors.grey,
                               indicatorColor: OwnerColors.colorPrimary,
@@ -518,11 +662,142 @@ class _ContainerHomeState extends State<ContainerHome>
                                 controller: _tabController,
                                 children: <Widget>[
                                   Container(
-                                      padding: EdgeInsets.all(
-                                          Dimens.paddingApplication),
                                       height: 900,
                                       child: Column(
-                                        children: [],
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          /*    FutureBuilder<List<Map<String, dynamic>>>(
+                                            future: getSpecies(widget.idAuction!),
+                                            builder: (context, snapshot) {
+                                              if (snapshot.hasData) {
+                                                final responseItem = GraphicModel.fromJson(snapshot.data![0]);
+
+                                                if (responseItem.rows != 0) {
+                                                  return*/
+                                        SizedBox(
+                                        height: Dimens.marginApplication,),
+                                          SizedBox(
+                                            height: Dimens.marginApplication,),
+                                          SizedBox(
+                                              height: 48,
+                                              child: ListView.builder(
+                                                physics:
+                                                    ClampingScrollPhysics(),
+                                                shrinkWrap: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount: /*snapshot.data!.length*/
+                                                    8,
+                                                itemBuilder:
+                                                    (BuildContext context,
+                                                        int index) {
+                                                  // final response =
+                                                  // GraphicModel.fromJson(snapshot.data![index]);
+
+                                                  return InkWell(
+                                                    onTap: () {},
+                                                    child: Container(
+                                                      // width:
+                                                      //     MediaQuery.of(context)
+                                                      //             .size
+                                                      //             .width *
+                                                      //         0.40,
+                                                      margin: EdgeInsets.only(left: Dimens.minMarginApplication, right: Dimens.minMarginApplication),
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 0.2,
+                                                            color: OwnerColors
+                                                                .lightGrey),
+                                                        borderRadius: BorderRadius
+                                                            .circular(Dimens
+                                                                .radiusApplication),
+                                                        // color: CustomColors.greyClean,
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.all(6),
+                                                        child: Row(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            SizedBox(
+                                                                width: Dimens
+                                                                    .minMarginApplication),
+                                                            Icon(
+                                                                Icons
+                                                                    .music_note,
+                                                                color: OwnerColors
+                                                                    .colorPrimary),
+                                                            SizedBox(
+                                                                width: Dimens
+                                                                    .marginApplication),
+                                                            Text(
+                                                              "Categoria " +
+                                                                  index
+                                                                      .toString(),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: Dimens
+                                                                      .textSize4),
+                                                            ),
+                                                            SizedBox(
+                                                                width: Dimens
+                                                                    .minMarginApplication),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              )),
+
+                                          /* } else {
+                                                  //
+                                                }
+                                              } else if (snapshot.hasError) {
+                                                return Styles().defaultErrorRequest;
+                                              }
+                                              return Styles().defaultLoading;
+                                            },
+                                          ),*/
+
+                                          SizedBox(height: Dimens.marginApplication,),
+                                          Container(
+                                              margin: EdgeInsets.all(Dimens.maxMarginApplication),
+                                              width: double.infinity,
+                                              child: GradientText(
+                                                align: TextAlign.start,
+                                                "Lista de Eventos",
+                                                style: TextStyle(
+                                                    fontSize: Dimens.textSize6,
+                                                    color: OwnerColors.colorPrimaryDark,
+                                                    fontWeight: FontWeight.w900),
+                                                gradient: LinearGradient(colors: [
+                                                  OwnerColors.gradientFirstColor,
+                                                  OwnerColors.gradientSecondaryColor,
+                                                  OwnerColors.gradientThirdColor
+                                                ]),
+                                              )),
+
+                                          Container(
+                                            // margin: EdgeInsets.only(left: 10, right: 10),
+                                            child: GridView.count(
+                                              childAspectRatio: 0.70,
+                                              primary: false,
+                                              shrinkWrap: true,
+                                              crossAxisCount: 2,
+                                              children: gridItems,
+                                            ),
+                                          ),
+                                        ],
                                       )),
                                   Container(
                                     padding: EdgeInsets.all(
