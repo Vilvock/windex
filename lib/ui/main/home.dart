@@ -11,6 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:lottie/lottie.dart';
 import 'package:windex/res/assets.dart';
+import 'package:windex/ui/components/alert_dialog_disable_account.dart';
+import 'package:windex/ui/components/alert_dialog_logout.dart';
 import 'package:windex/ui/main/notifications/notifications.dart';
 import 'package:windex/ui/main/plans.dart';
 
@@ -523,7 +525,10 @@ class _ContainerHomeState extends State<ContainerHome>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                var navigationBar = globalKey.currentWidget as BottomNavigationBar;
+                                navigationBar.onTap!(2);
+                              },
                               child: Row(
                                 children: [
                                   Image.asset(
@@ -579,7 +584,9 @@ class _ContainerHomeState extends State<ContainerHome>
                             height: 36,
                           ),
                           InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, "/ui/plans");
+                              },
                               child: Row(
                                 children: [
                                   Image.asset(
@@ -663,7 +670,16 @@ class _ContainerHomeState extends State<ContainerHome>
                             height: 36,
                           ),
                           InkWell(
-                              onTap: () {},
+                              onTap: () async {
+                                showModalBottomSheet<dynamic>(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    shape: Styles().styleShapeBottomSheet,
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    builder: (BuildContext context) {
+                                      return DisableAccountAlertDialog();
+                                    });
+                              },
                               child: Row(
                                 children: [
                                   Image.asset(
@@ -691,7 +707,16 @@ class _ContainerHomeState extends State<ContainerHome>
                             height: 36,
                           ),
                           InkWell(
-                              onTap: () {},
+                              onTap: () async {
+                                showModalBottomSheet<dynamic>(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    shape: Styles().styleShapeBottomSheet,
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    builder: (BuildContext context) {
+                                      return LogoutAlertDialog();
+                                    });
+                              },
                               child: Row(
                                 children: [
                                   Image.asset(

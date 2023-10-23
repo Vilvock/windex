@@ -79,13 +79,13 @@ class Styles {
 
   var div_horizontal = Divider(
     color: OwnerColors.lightGrey,
-    height: 2,
-    thickness: 0.4,
+    height: 0.2,
+    thickness: 0.1,
   );
 
   var div_vertical = VerticalDivider(
     color: OwnerColors.lightGrey,
-    width: 2,
+    width: 1,
     thickness: 0.4,
   );
 

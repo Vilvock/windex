@@ -177,9 +177,9 @@ class _Payments extends State<Payments> {
                           ]));
                 }
               } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
+                return Styles().defaultErrorRequest;
               }
-              return Center(child: CircularProgressIndicator());
+              return Styles().defaultLoading;
             },
           ),
         ),
