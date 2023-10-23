@@ -207,9 +207,9 @@ class _ContainerHomeState extends State<ContainerHome>
           child: Container(
               margin: EdgeInsets.all(Dimens.minMarginApplication),
               decoration: BoxDecoration(
-                border: Border.all(width: 0.2, color: OwnerColors.lightGrey),
-                borderRadius:
-                    BorderRadius.all(Radius.circular(Dimens.radiusApplication)),
+                border: Border.all(width: 0.2, color: Colors.white70),
+                borderRadius: BorderRadius.all(
+                    Radius.circular(Dimens.minRadiusApplication)),
               ),
               child: Container(
                   child: Column(
@@ -477,13 +477,261 @@ class _ContainerHomeState extends State<ContainerHome>
         child: SliderDrawer(
             key: _sliderDrawerKey,
             appBar: null,
-            sliderOpenSize: MediaQuery.of(context).size.width * 0.80,
+            sliderOpenSize: MediaQuery.of(context).size.width * 0.74,
             slider: Container(
               height: double.infinity,
-              color: Colors.red,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(Dimens.radiusApplication),
+                    bottomRight: Radius.circular(Dimens.radiusApplication)),
+              ),
               child: SingleChildScrollView(
                   child: Column(
-                children: [],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      height: 54,
+                      width: 54,
+                      margin: EdgeInsets.all(Dimens.marginApplication),
+                      child: ClipOval(
+                          child: SizedBox.fromSize(
+                        size: Size.fromRadius(27),
+                        // Image radius
+                        child: Image.asset(
+                          Assets.person,
+                        ),
+                      ))),
+                  Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.only(left: Dimens.marginApplication),
+                    child: Text(
+                      "Olá, Guilherme!",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontSize: Dimens.textSize8,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    height: Dimens.marginApplication,
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(Dimens.maxMarginApplication),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          InkWell(
+                              onTap: () {},
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    Assets.profile,
+                                    height: 24,
+                                    width: 24,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Meu Perfil",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontSize: Dimens.textSize6,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 36,
+                          ),
+                          InkWell(
+                              onTap: () {},
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    Assets.menu_wallet,
+                                    height: 24,
+                                    width: 24,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Meus Cartões",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontSize: Dimens.textSize6,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 36,
+                          ),
+                          InkWell(
+                              onTap: () {},
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    Assets.chart,
+                                    height: 24,
+                                    width: 24,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Meu Plano",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontSize: Dimens.textSize6,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 36,
+                          ),
+                          InkWell(
+                              onTap: () {},
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    Assets.group,
+                                    height: 24,
+                                    width: 24,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Parceiros",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontSize: Dimens.textSize6,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 36,
+                          ),
+                          InkWell(
+                              onTap: () {},
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    Assets.chat,
+                                    height: 24,
+                                    width: 24,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Suporte",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontSize: Dimens.textSize6,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 36,
+                          ),
+                          InkWell(
+                              onTap: () {},
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    Assets.danger,
+                                    height: 24,
+                                    width: 24,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Desativar Conta",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontSize: Dimens.textSize6,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 36,
+                          ),
+                          InkWell(
+                              onTap: () {},
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    Assets.exit,
+                                    height: 24,
+                                    width: 24,
+                                    color: Colors.black,
+                                  ),
+                                  SizedBox(
+                                    width: 14,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Sair",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontSize: Dimens.textSize6,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 36,
+                          ),
+                          Image.asset(
+                            Assets.insta,
+                            scale: 1.4,
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Image.asset(
+                            Assets.upgrade,
+                            scale: 1.4,
+                          ),
+                        ]),
+                  )
+                ],
               )),
             ),
             child: Container(

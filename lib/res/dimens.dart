@@ -20,7 +20,7 @@ class Dimens {
   static const double minElevationApplication = 1.0;
   static const double minPaddingApplication = 8.0;
   static const double minMarginApplication = 8.0;
-  static const double minRadiusApplication = 8.0;
+  static const double minRadiusApplication = 10.0;
 
   static const double elevationApplication = 2.0;
   static const double paddingApplication = 16.0;
