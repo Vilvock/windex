@@ -91,5 +91,7 @@ class Styles {
 
   var defaultLoading = Center(child: CircularProgressIndicator());
 
-  var defaultErrorRequest = Text(Strings.no_connection_description);
+  var defaultErrorRequest = Container(margin: EdgeInsets.all(Dimens.marginApplication) ,child: Text(
+      style: TextStyle(color: Colors.white),
+      Strings.no_connection_description));
 }

@@ -8,8 +8,10 @@ import 'package:windex/ui/auth/login/login.dart';
 import 'package:windex/ui/auth/register/register_owner_data.dart';
 import 'package:windex/ui/intro/onboarding.dart';
 import 'package:windex/ui/intro/splash.dart';
+import 'package:windex/ui/main/event/event_details.dart';
 import 'package:windex/ui/main/home.dart';
 import 'package:windex/ui/main/menu/edit_passions.dart';
+import 'package:windex/ui/main/notifications/notifications.dart';
 import 'package:windex/ui/main/plans.dart';
 import 'package:windex/ui/utilities/pdf_viewer.dart';
 
@@ -75,8 +77,8 @@ void main() async {
 
   runApp(MaterialApp(
     theme: ThemeData(
+      //background whole app here
         scaffoldBackgroundColor: OwnerColors.colorAccent,
-        //fundo de todo app
         primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary),
         colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Useful().getMaterialColor(OwnerColors.colorPrimary)),
@@ -96,6 +98,9 @@ void main() async {
       '/ui/passions': (context) => EditPassions(),
       '/ui/plans': (context) => Plans(),
       '/ui/pdf_viewer': (context) => PdfViewer(),
+      '/ui/notifications': (context) => Notifications(),
+      '/ui/event_details': (context) => EventDetails(),
+
 
     },
   ));

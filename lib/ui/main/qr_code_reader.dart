@@ -59,6 +59,7 @@ class _QrCodeReaderState extends State<QrCodeReader> {
       _isLoading = false;
     });
   }
+
   //
   // Future<List<Map<String, dynamic>>> listOrders() async {
   //   try {
@@ -85,49 +86,35 @@ class _QrCodeReaderState extends State<QrCodeReader> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: CustomAppBar(isVisibleIcon: true),
-        resizeToAvoidBottomInset: false,
-        body: Container(
-            child: RefreshIndicator(
-                onRefresh: _pullRefresh,
-                child: SingleChildScrollView(
-                    child: Container(
-                        height: MediaQuery.of(context).size.height, child: Column(children: [
-
-                      Container(
-                        margin: EdgeInsets.only(top: Dimens.marginApplication),
-                        height: 52,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: Styles().styleDefaultButton,
-                          onPressed: () async {
-                            showModalBottomSheet<dynamic>(
-                                isScrollControlled: true,
-                                context: context,
-                                shape: Styles().styleShapeBottomSheet,
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                builder: (BuildContext context) {
-                                  return PixAlertDialog();
-                                });
-
-                          },
-                          child: (_isLoading)
-                              ? const SizedBox(
-                              width: Dimens.buttonIndicatorWidth,
-                              height: Dimens.buttonIndicatorHeight,
-                              child: CircularProgressIndicator(
-                                color: OwnerColors.colorAccent,
-                                strokeWidth: Dimens.buttonIndicatorStrokes,
-                              ))
-                              :  Text("Ok",
-                              style: Styles().styleDefaultTextButton),
-                        ),
-                      ),
-                    ]),)
-                )
-            )
-        )
-    );
+    return SafeArea(
+        child: Container(
+            child: Column(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.end,children: [
+      Container(
+          margin: EdgeInsets.all(Dimens.marginApplication),
+          height: 52,
+          width: double.infinity,
+          child: ElevatedButton(
+            style: Styles().styleDefaultButton,
+            onPressed: () async {
+              showModalBottomSheet<dynamic>(
+                  isScrollControlled: true,
+                  context: context,
+                  shape: Styles().styleShapeBottomSheet,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  builder: (BuildContext context) {
+                    return EventNotYetAlertDialog();
+                  });
+            },
+            child: (_isLoading)
+                ? const SizedBox(
+                    width: Dimens.buttonIndicatorWidth,
+                    height: Dimens.buttonIndicatorHeight,
+                    child: CircularProgressIndicator(
+                      color: OwnerColors.colorAccent,
+                      strokeWidth: Dimens.buttonIndicatorStrokes,
+                    ))
+                : Text("Ler QR CODE", style: Styles().styleDefaultTextButton),
+          )),
+    ])));
   }
 }

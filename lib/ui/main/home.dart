@@ -8,6 +8,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:lottie/lottie.dart';
 import 'package:windex/res/assets.dart';
 import 'package:windex/ui/main/notifications/notifications.dart';
@@ -56,7 +57,7 @@ class _HomeState extends State<Home> {
     var widgetItems = <Widget>[];
 
     widgetItems.add(ContainerHome());
-    widgetItems.add(Notifications());
+    widgetItems.add(QrCodeReader());
     widgetItems.add(MainMenu());
 
     List<Widget> _widgetOptions = widgetItems;
@@ -167,7 +168,6 @@ class _ContainerHomeState extends State<ContainerHome>
   late Validator validator;
   final postRequest = PostRequest();
 
-
   List<Widget> gridItems = [];
 
   late TabController _tabController;
@@ -203,114 +203,119 @@ class _ContainerHomeState extends State<ContainerHome>
       }
 
       gridItems.add(InkWell(
-          onTap: () => {},
+          onTap: () => {Navigator.pushNamed(context, "/ui/event_details")},
           child: Container(
               margin: EdgeInsets.all(Dimens.minMarginApplication),
               decoration: BoxDecoration(
                 border: Border.all(width: 0.2, color: OwnerColors.lightGrey),
                 borderRadius:
-                BorderRadius.all(Radius.circular(Dimens.radiusApplication)),
+                    BorderRadius.all(Radius.circular(Dimens.radiusApplication)),
               ),
               child: Container(
                   child: Column(
-                    crossAxisAlignment:
-                    CrossAxisAlignment
-                        .start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    alignment: AlignmentDirectional.centerEnd,
                     children: [
-                      Stack(
-                        alignment:
-                        AlignmentDirectional
-                            .centerEnd,
-                        children: [
-                          Container(
-                              width: double
-                                  .infinity,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimens.radiusApplication), topRight: Radius.circular(Dimens.radiusApplication)),
-                                  child: Image.network(
-                                    Assets.generic_party,
-                                    fit:
-                                    BoxFit.fitWidth,
-                                    height:
-                                    140,
-                                    errorBuilder: (context, exception, stackTrack) =>
-                                        Image.asset(
-                                          fit:
-                                          BoxFit.fitWidth,
-                                          Assets.generic_party,
-                                          height: 140,
-                                          width: 140,
-                                        ),
-                                  ))),
-                        ],
-                      ),
-                      SizedBox(
-                          height: Dimens
-                              .minMarginApplication),
                       Container(
-                        padding: EdgeInsets
-                            .all(Dimens
-                            .minPaddingApplication),
-                        child: Column(
-                          crossAxisAlignment:
-                          CrossAxisAlignment
-                              .start,
-                          children: [
-                            Text(
-                              "teste",
-                              maxLines:
-                              1,
-                              overflow:
-                              TextOverflow
-                                  .ellipsis,
-                              style:
-                              TextStyle(
-                                fontFamily:
-                                'Inter',
-                                fontSize:
-                                Dimens.textSize6,
-                                fontWeight:
-                                FontWeight.bold,
-                                color: Colors
-                                    .black,
-                              ),
-                            ),
-                            SizedBox(
-                                height:
-                                Dimens.minMarginApplication),
-                            Text(
-                              "teste",
-                              style:
-                              TextStyle(
-                                fontFamily:
-                                'Inter',
-                                fontSize:
-                                Dimens.textSize5,
-                                color: Colors
-                                    .black,
-                              ),
-                            ),
-                            SizedBox(
-                                height:
-                                Dimens.marginApplication),
-                            Text(
-                              "teste",
-                              style:
-                              TextStyle(
-                                fontFamily:
-                                'Inter',
-                                fontSize:
-                                Dimens.textSize6,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
+                          width: double.infinity,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft:
+                                      Radius.circular(Dimens.radiusApplication),
+                                  topRight: Radius.circular(
+                                      Dimens.radiusApplication)),
+                              child: Image.network(
+                                Assets.generic_party,
+                                fit: BoxFit.fitWidth,
+                                height: 160,
+                                errorBuilder:
+                                    (context, exception, stackTrack) =>
+                                        Image.asset(
+                                  fit: BoxFit.fitWidth,
+                                  Assets.generic_party,
+                                  height: 160,
+                                  width: 140,
+                                ),
+                              ))),
                     ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(Dimens.minPaddingApplication),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "Quarta, 24 de abril ",
+                                style: TextStyle(
+                                    fontSize: Dimens.textSize4,
+                                    fontWeight: FontWeight.w700,
+                                    color: OwnerColors.colorPrimaryDark,
+                                    wordSpacing: 0.5),
+                              ),
+                              TextSpan(
+                                text: '19:30',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: Dimens.textSize4,
+                                    fontWeight: FontWeight.w700,
+                                    wordSpacing: 0.5),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Dimens.marginApplication),
+                        Text(
+                          "Computaria unificada",
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: Dimens.textSize7,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: Dimens.marginApplication),
+                        Text(
+                          "Moc hall Festas",
+                          style: TextStyle(
+                              fontSize: Dimens.textSize5,
+                              color: Colors.white70,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.w100),
+                        ),
+                        SizedBox(
+                          height: Dimens.minMarginApplication,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "Distância: ",
+                                style: TextStyle(
+                                    fontSize: Dimens.textSize4,
+                                    fontWeight: FontWeight.w400,
+                                    color: OwnerColors.colorPrimaryDark,
+                                    wordSpacing: 0.5),
+                              ),
+                              TextSpan(
+                                text: '2 km',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: Dimens.textSize4,
+                                    fontWeight: FontWeight.w400,
+                                    wordSpacing: 0.5),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   )
-          )
-      )
-      ));
+                ],
+              )))));
     }
     super.initState();
   }
@@ -463,16 +468,33 @@ class _ContainerHomeState extends State<ContainerHome>
     });
   }
 
+  final GlobalKey<SliderDrawerState> _sliderDrawerKey =
+      GlobalKey<SliderDrawerState>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
+    return SafeArea(
+        child: SliderDrawer(
+            key: _sliderDrawerKey,
+            appBar: null,
+            sliderOpenSize: MediaQuery.of(context).size.width * 0.80,
+            slider: Container(
+              height: double.infinity,
+              color: Colors.red,
+              child: SingleChildScrollView(
+                  child: Column(
+                children: [],
+              )),
+            ),
             child: Container(
+                color: OwnerColors.colorAccent,
                 child: RefreshIndicator(
                     onRefresh: _pullRefresh,
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: 6,
+                        ),
                         Row(
                           children: [
                             Container(
@@ -480,7 +502,16 @@ class _ContainerHomeState extends State<ContainerHome>
                                 child: IconButton(
                                   icon: Image.asset(Assets.menu,
                                       height: 24, width: 24),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    if (_sliderDrawerKey
+                                        .currentState!.isDrawerOpen) {
+                                      _sliderDrawerKey.currentState!
+                                          .closeSlider();
+                                    } else {
+                                      _sliderDrawerKey.currentState!
+                                          .openSlider();
+                                    }
+                                  },
                                 )),
                             Expanded(
                               flex: 5,
@@ -499,6 +530,27 @@ class _ContainerHomeState extends State<ContainerHome>
                                 ),
                               ),
                             ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, "/ui/notifications");
+                                },
+                                child: Container(
+                                  width: 42,
+                                  height: 42,
+                                  padding: EdgeInsets.all(8),
+                                  margin: EdgeInsets.only(right: 18),
+                                  child: Image.asset(Assets.bell, scale: 1.8),
+                                  decoration: BoxDecoration(
+                                    color: OwnerColors.colorAccent,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    border: Border.all(
+                                      color: Colors.white70,
+                                      width: 1,
+                                    ),
+                                  ),
+                                )),
                           ],
                         ),
                         Expanded(
@@ -674,10 +726,12 @@ class _ContainerHomeState extends State<ContainerHome>
 
                                                 if (responseItem.rows != 0) {
                                                   return*/
-                                        SizedBox(
-                                        height: Dimens.marginApplication,),
                                           SizedBox(
-                                            height: Dimens.marginApplication,),
+                                            height: Dimens.marginApplication,
+                                          ),
+                                          SizedBox(
+                                            height: Dimens.marginApplication,
+                                          ),
                                           SizedBox(
                                               height: 48,
                                               child: ListView.builder(
@@ -702,7 +756,11 @@ class _ContainerHomeState extends State<ContainerHome>
                                                       //             .size
                                                       //             .width *
                                                       //         0.40,
-                                                      margin: EdgeInsets.only(left: Dimens.minMarginApplication, right: Dimens.minMarginApplication),
+                                                      margin: EdgeInsets.only(
+                                                          left: Dimens
+                                                              .minMarginApplication,
+                                                          right: Dimens
+                                                              .minMarginApplication),
                                                       decoration: BoxDecoration(
                                                         border: Border.all(
                                                             width: 0.2,
@@ -769,28 +827,35 @@ class _ContainerHomeState extends State<ContainerHome>
                                             },
                                           ),*/
 
-                                          SizedBox(height: Dimens.marginApplication,),
+                                          SizedBox(
+                                            height: Dimens.marginApplication,
+                                          ),
                                           Container(
-                                              margin: EdgeInsets.all(Dimens.maxMarginApplication),
+                                              margin: EdgeInsets.all(
+                                                  Dimens.maxMarginApplication),
                                               width: double.infinity,
                                               child: GradientText(
                                                 align: TextAlign.start,
                                                 "Lista de Eventos",
                                                 style: TextStyle(
                                                     fontSize: Dimens.textSize6,
-                                                    color: OwnerColors.colorPrimaryDark,
-                                                    fontWeight: FontWeight.w900),
-                                                gradient: LinearGradient(colors: [
-                                                  OwnerColors.gradientFirstColor,
-                                                  OwnerColors.gradientSecondaryColor,
+                                                    color: OwnerColors
+                                                        .colorPrimaryDark,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                                gradient:
+                                                    LinearGradient(colors: [
+                                                  OwnerColors
+                                                      .gradientFirstColor,
+                                                  OwnerColors
+                                                      .gradientSecondaryColor,
                                                   OwnerColors.gradientThirdColor
                                                 ]),
                                               )),
-
                                           Container(
                                             // margin: EdgeInsets.only(left: 10, right: 10),
                                             child: GridView.count(
-                                              childAspectRatio: 0.70,
+                                              childAspectRatio: 0.60,
                                               primary: false,
                                               shrinkWrap: true,
                                               crossAxisCount: 2,
@@ -802,7 +867,8 @@ class _ContainerHomeState extends State<ContainerHome>
                                   Container(
                                     padding: EdgeInsets.all(
                                         Dimens.paddingApplication),
-                                    height: /*_hasSchedule ? */ 700 /*: 236*/,
+                                    height: /*_hasSchedule ? */
+                                        700 /*: 236*/,
                                     child: Column(children: []),
                                   )
                                 ]),

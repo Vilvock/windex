@@ -177,9 +177,10 @@ class _Notifications extends State<Notifications> {
                           ]));
                 }
               } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
+                print("**************************************************************\n*******************************************" + snapshot.error.toString());
+                return Styles().defaultErrorRequest;
               }
-              return Center(child: CircularProgressIndicator());
+              return Styles().defaultLoading;
             },
           ),
         ),
