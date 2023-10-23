@@ -274,7 +274,6 @@ class _ContainerHomeState extends State<ContainerHome>
                         Text(
                           "Computaria unificada",
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             fontSize: Dimens.textSize7,
                             color: Colors.white,
                           ),

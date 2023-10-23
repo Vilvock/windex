@@ -62,28 +62,29 @@ class _Notifications extends State<Notifications> {
       appBar: CustomAppBar(title: "Notificações", isVisibleBackButton: true),
       body: RefreshIndicator(
           onRefresh: _pullRefresh,
-          child: FutureBuilder<List<Map<String, dynamic>>>(
+          child:/* FutureBuilder<List<Map<String, dynamic>>>(
             future: listNotifications(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final responseItem = User.fromJson(snapshot.data![0]);
 
                 if (responseItem.rows != 0) {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.length,
+                  return */ListView.builder(
+                    itemCount: /*snapshot.data!.length*/ 3,
                     itemBuilder: (context, index) {
 
 
-                      final response = User.fromJson(snapshot.data![index]);
+                      // final response = User.fromJson(snapshot.data![index]);
 
                       return InkWell(
                           onTap: () => {
 
                           },
                           child: Container(
-                              padding: EdgeInsets.all(
-                                  Dimens.maxPaddingApplication),
+                              padding: EdgeInsets.only(right:
+                                  Dimens.maxPaddingApplication, left: Dimens.maxPaddingApplication),
                               child: Column(children: [
+                                SizedBox(height: Dimens.marginApplication,),
                                 Row(
                                   children: [
                                     Container(
@@ -142,47 +143,46 @@ class _Notifications extends State<Notifications> {
 
                                 Styles().div_horizontal,
 
-                                SizedBox(height: Dimens.marginApplication,),
                               ],)
 
                           ));
                     },
-                  );
-                } else {
-                  return Container(
-                      padding: EdgeInsets.only(
-                          top: MediaQuery.of(context)
-                              .size
-                              .height /
-                              20),
-                      child: Column(
-                          mainAxisAlignment:
-                          MainAxisAlignment.center,
-                          children: [
-                            Center(
-                                child: Lottie.network(
-                                    height: 160,
-                                    'https://assets10.lottiefiles.com/packages/lf20_KZ1htY.json')),
-                            SizedBox(
-                                height: Dimens
-                                    .marginApplication),
-                            Text(
-                              Strings.empty_list,
-                              style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: Dimens.textSize5,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ]));
-                }
-              } else if (snapshot.hasError) {
-                print("**************************************************************\n*******************************************" + snapshot.error.toString());
-                return Styles().defaultErrorRequest;
-              }
-              return Styles().defaultLoading;
-            },
-          ),
+                  )
+          //       } else {
+          //         return Container(
+          //             padding: EdgeInsets.only(
+          //                 top: MediaQuery.of(context)
+          //                     .size
+          //                     .height /
+          //                     20),
+          //             child: Column(
+          //                 mainAxisAlignment:
+          //                 MainAxisAlignment.center,
+          //                 children: [
+          //                   Center(
+          //                       child: Lottie.network(
+          //                           height: 160,
+          //                           'https://assets10.lottiefiles.com/packages/lf20_KZ1htY.json')),
+          //                   SizedBox(
+          //                       height: Dimens
+          //                           .marginApplication),
+          //                   Text(
+          //                     Strings.empty_list,
+          //                     style: TextStyle(
+          //                       fontFamily: 'Inter',
+          //                       fontSize: Dimens.textSize5,
+          //                       color: Colors.white,
+          //                     ),
+          //                   ),
+          //                 ]));
+          //       }
+          //     } else if (snapshot.hasError) {
+          //       print("**************************************************************\n*******************************************" + snapshot.error.toString());
+          //       return Styles().defaultErrorRequest;
+          //     }
+          //     return Styles().defaultLoading;
+          //   },
+          // ),
         ),
     );
   }

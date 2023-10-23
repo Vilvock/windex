@@ -12,6 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   String title;
   bool isVisibleBackButton;
   bool isVisibleNotificationsButton;
+  bool isNotVisibleLine;
   bool isVisibleIcon;
   String counter;
 
@@ -19,6 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       {this.title = "",this.counter = "",
       this.isVisibleBackButton = false,
       this.isVisibleNotificationsButton = false,
+        this.isNotVisibleLine = false,
       this.isVisibleIcon = false});
 
   @override
@@ -58,14 +60,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      bottom: PreferredSize(
+      bottom: !this.isNotVisibleLine ? PreferredSize(
         preferredSize: Size.fromHeight(10),
         child: Divider(
           thickness: 0.3,
           height: 0,
           color: Colors.white,
         ),
-      ),
+      ) : null,
     );
   }
 

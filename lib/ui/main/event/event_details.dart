@@ -9,6 +9,7 @@ import '../../../model/user.dart';
 import '../../../res/assets.dart';
 import '../../../res/dimens.dart';
 import '../../../res/owner_colors.dart';
+import '../../../res/strings.dart';
 import '../../../res/styles.dart';
 import '../../../web_service/links.dart';
 import '../../../web_service/service_response.dart';
@@ -43,7 +44,7 @@ class _EventDetails extends State<EventDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar(title: "Detalhes do Evento", isVisibleBackButton: true),
+        appBar: CustomAppBar(title: "Detalhes do Evento", isVisibleBackButton: true, isNotVisibleLine: true),
         body: Container(
             child: CustomScrollView(slivers: [
               SliverFillRemaining(
@@ -67,6 +68,96 @@ class _EventDetails extends State<EventDetails> {
                                     height: 220,
                                   ),
                             ))),
+                    Container(padding: EdgeInsets.all(Dimens.paddingApplication), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(
+                        "Computaria unificada",
+                        style: TextStyle(
+                          fontSize: Dimens.textSize9,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w900
+                        ),
+                      ),
+
+                      SizedBox(height: Dimens.marginApplication,),
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(
+                            bottom: Dimens.minMarginApplication),
+                        child: Text(
+                          "O que o lugar oferece",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: Dimens.textSize5,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: Dimens.marginApplication,),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.car_crash_outlined,
+                            color: Colors.white70,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8,),
+                          Expanded(
+                            child: Text(
+                              Strings.littleLoremIpsum,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: Dimens.textSize4,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                      SizedBox(height: Dimens.marginApplication,),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.private_connectivity_outlined,
+                            color: Colors.white70,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8,),
+                          Expanded(
+                            child: Text(
+                              Strings.littleLoremIpsum,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: Dimens.textSize4,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                      SizedBox(height: Dimens.marginApplication,),
+                      SizedBox(height: Dimens.marginApplication,),
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(
+                            bottom: Dimens.minMarginApplication),
+                        child: Text(
+                          "Eventos similares",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: Dimens.textSize5,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1,
+                          ),
+                        ),
+                      ),
+                    ]),),
+
 
                   ],
                 )),
