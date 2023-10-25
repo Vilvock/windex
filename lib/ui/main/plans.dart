@@ -215,6 +215,8 @@ class _Plans extends State<Plans> {
                           child: ElevatedButton(
                             style: Styles().styleDefaultButton,
                             onPressed: () async {
+
+                              Navigator.pushNamed(context, "/ui/payments");
                             },
                             child: (_isLoading)
                                 ? const SizedBox(

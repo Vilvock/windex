@@ -98,6 +98,8 @@ class _WindexPremiumAlertDialog  extends State<WindexPremiumAlertDialog> {
                   child: ElevatedButton(
                     style: Styles().styleDefaultButton,
                     onPressed: () async {
+
+                      Navigator.pushNamed(context, "/ui/plans");
                     },
                     child: (_isLoading)
                         ? const SizedBox(

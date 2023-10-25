@@ -37,5 +37,7 @@ abstract class Assets {
   static const String card = "images/credit_card.png";
   static const String company = "images/generic_company.png";
   static const String generic_maps = "images/generic_maps.png";
+  static const String location_gold = "images/location_gold.png";
+  static const String calendar_gold = "images/calendar_gold.png";
 
 }

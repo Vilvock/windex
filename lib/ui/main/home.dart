@@ -820,8 +820,9 @@ class _ContainerHomeState extends State<ContainerHome>
                                   child: Image.asset(Assets.bell, scale: 1.8),
                                   decoration: BoxDecoration(
                                     color: OwnerColors.colorAccent,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                            Dimens.minRadiusApplication)),
                                     border: Border.all(
                                       color: Colors.white70,
                                       width: 1,
@@ -1269,7 +1270,6 @@ class _ContainerHomeState extends State<ContainerHome>
                                                               Assets
                                                                   .generic_maps,
                                                               height: 160,
-                                                              width: 140,
                                                             ),
                                                           ))),
                                                   SizedBox(
@@ -1346,13 +1346,15 @@ class _ContainerHomeState extends State<ContainerHome>
                                                                         .minMarginApplication),
                                                                 Text(
                                                                   "Computaria unificada",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize: Dimens
-                                                                        .textSize7,
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          Dimens
+                                                                              .textSize7,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700),
                                                                 ),
                                                                 Text(
                                                                   "Moc hall Festas",
@@ -1374,7 +1376,10 @@ class _ContainerHomeState extends State<ContainerHome>
                                                                 ),
                                                                 Row(
                                                                   children: [
-                                                                    SizedBox(width: 100,),
+                                                                    SizedBox(
+                                                                      width:
+                                                                          100,
+                                                                    ),
                                                                     Text(
                                                                       "Distância: ",
                                                                       style: TextStyle(

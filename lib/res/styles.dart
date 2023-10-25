@@ -53,6 +53,12 @@ class Styles {
       wordSpacing: 0.5,
       fontWeight: FontWeight.w700);
 
+  var styleDefaultTextButton2 = TextStyle(
+      fontSize: Dimens.textSize4,
+      color: Colors.white,
+      wordSpacing: 0.5,
+      fontWeight: FontWeight.w700);
+
   var styleAlternativeTextButton = TextStyle(
       fontSize: Dimens.textSize6,
       color: Colors.white,
