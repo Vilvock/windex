@@ -167,7 +167,7 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                     child: IconButton(
                       icon: Icon(
                         Icons.close,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -186,40 +186,43 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                   onCreditCardWidgetChange:
                       (CreditCardBrand) {}, //true when you want to show cvv(back) view
                 ),
+                SizedBox(height: Dimens.marginApplication),
                 Container(
                   width: double.infinity,
+                  margin: EdgeInsets.only(
+                      bottom: Dimens.minMarginApplication),
                   child: Text(
-                    "Preencha os dados do cartão:",
+                    "Nome do títular",
+                    textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: Dimens.textSize6,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      fontSize: Dimens.textSize4,
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                SizedBox(height: Dimens.marginApplication),
+                SizedBox(height: 2),
                 TextField(
                   controller: nameController,
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: OwnerColors.colorPrimary, width: 1.5),
+                          color: Colors.white70, width: 0.8),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                      borderSide:
+                      BorderSide(color: Colors.grey, width: 0.4),
                     ),
-                    hintText: 'Nome completo',
+                    hintText: '',
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                       borderRadius:
-                          BorderRadius.circular(Dimens.radiusApplication),
+                      BorderRadius.circular(Dimens.radiusApplication),
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: OwnerColors.colorAccent,
                     contentPadding:
-                        EdgeInsets.all(Dimens.textFieldPaddingApplication),
+                    EdgeInsets.all(Dimens.textFieldPaddingApplication),
                   ),
                   keyboardType: TextInputType.text,
                   style: TextStyle(
@@ -228,28 +231,43 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                   ),
                 ),
                 SizedBox(height: Dimens.marginApplication),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.only(
+                      bottom: Dimens.minMarginApplication),
+                  child: Text(
+                    "CPF",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: Dimens.textSize4,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 2),
                 TextField(
                   controller: cpfController,
                   inputFormatters: [Masks().cpfMask()],
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: OwnerColors.colorPrimary, width: 1.5),
+                          color: Colors.white70, width: 0.8),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                      borderSide:
+                      BorderSide(color: Colors.grey, width: 0.4),
                     ),
-                    hintText: 'CPF',
+                    hintText: '',
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                       borderRadius:
-                          BorderRadius.circular(Dimens.radiusApplication),
+                      BorderRadius.circular(Dimens.radiusApplication),
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: OwnerColors.colorAccent,
                     contentPadding:
-                        EdgeInsets.all(Dimens.textFieldPaddingApplication),
+                    EdgeInsets.all(Dimens.textFieldPaddingApplication),
                   ),
                   keyboardType: TextInputType.number,
                   style: TextStyle(
@@ -260,6 +278,20 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                 SizedBox(height: Dimens.marginApplication),
                 Styles().div_horizontal,
                 SizedBox(height: Dimens.marginApplication),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.only(
+                      bottom: Dimens.minMarginApplication),
+                  child: Text(
+                    "Número do cartão",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: Dimens.textSize4,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 2),
                 TextField(
                   maxLength: 19,
                   controller: cardNumberController,
@@ -270,22 +302,23 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: OwnerColors.colorPrimary, width: 1.5),
+                          color: Colors.white70, width: 0.8),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                      borderSide:
+                      BorderSide(color: Colors.grey, width: 0.4),
                     ),
-                    hintText: 'Número do cartão',
+                    hintText: '',
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                       borderRadius:
-                          BorderRadius.circular(Dimens.radiusApplication),
+                      BorderRadius.circular(Dimens.radiusApplication),
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: OwnerColors.colorAccent,
                     contentPadding:
-                        EdgeInsets.all(Dimens.textFieldPaddingApplication),
+                    EdgeInsets.all(Dimens.textFieldPaddingApplication),
                   ),
                   keyboardType: TextInputType.number,
                   style: TextStyle(
@@ -297,19 +330,91 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                 Row(
                   children: [
                     Expanded(
-                      child: TextField(
-                        maxLength: 2,
-                        controller: monthController,
+                      child: Column(children: [
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(
+                              bottom: Dimens.minMarginApplication),
+                          child: Text(
+                            "Mês",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: Dimens.textSize4,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                        TextField(
+                          maxLength: 2,
+                          controller: monthController,
+                          decoration: InputDecoration(
+                            counter: SizedBox(
+                              width: 0,
+                              height: 0,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.white70, width: 0.8),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.grey, width: 0.4),
+                            ),
+                            hintText: '',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.circular(Dimens.radiusApplication),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: OwnerColors.colorAccent,
+                            contentPadding:
+                            EdgeInsets.all(Dimens.textFieldPaddingApplication),
+                          ),
+                          keyboardType: TextInputType.number,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: Dimens.textSize5,
+                          ),
+                        ),
+                      ],)
+                    ),
+                    SizedBox(width: Dimens.marginApplication),
+                    Expanded(
+                      child: Column(children: [
+                        Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(
+                            bottom: Dimens.minMarginApplication),
+                        child: Text(
+                          "Ano",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: Dimens.textSize4,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                        SizedBox(height: 2),
+                      TextField(
+                        maxLength: 4,
+                        controller: yearController,
                         decoration: InputDecoration(
+                          counter: SizedBox(
+                            width: 0,
+                            height: 0,
+                          ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                                color: OwnerColors.colorPrimary, width: 1.5),
+                                color: Colors.white70, width: 0.8),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide:
-                            BorderSide(color: Colors.grey, width: 1.0),
+                            BorderSide(color: Colors.grey, width: 0.4),
                           ),
-                          hintText: 'Mês de expiração',
+                          hintText: '',
                           hintStyle: TextStyle(color: Colors.grey),
                           border: OutlineInputBorder(
                             borderRadius:
@@ -317,79 +422,61 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                             borderSide: BorderSide.none,
                           ),
                           filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(
-                              Dimens.textFieldPaddingApplication),
+                          fillColor: OwnerColors.colorAccent,
+                          contentPadding:
+                          EdgeInsets.all(Dimens.textFieldPaddingApplication),
                         ),
                         keyboardType: TextInputType.number,
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: Dimens.textSize5,
                         ),
-                      ),
-                    ),
-                    SizedBox(width: Dimens.marginApplication),
-                    Expanded(
-                      child: TextField(
-                        maxLength: 4,
-                        controller: yearController,
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: OwnerColors.colorPrimary, width: 1.5),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0),
-                          ),
-                          hintText: 'Ano de expiração',
-                          hintStyle: TextStyle(color: Colors.grey),
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(Dimens.radiusApplication),
-                            borderSide: BorderSide.none,
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(
-                              Dimens.textFieldPaddingApplication),
-                        ),
-                        keyboardType: TextInputType.number,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: Dimens.textSize5,
-                        ),
-                      ),
+                      )]),
                     ),
                   ],
                 ),
                 SizedBox(height: Dimens.marginApplication),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.only(
+                      bottom: Dimens.minMarginApplication),
+                  child: Text(
+                    "Código de segurança",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: Dimens.textSize4,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 2),
                 TextField(
                   maxLength: 4,
                   controller: securityCodeController,
                   decoration: InputDecoration(
-                      counter: SizedBox(
-                        width: 0,
-                        height: 0,
-                      ),
+                    counter: SizedBox(
+                      width: 0,
+                      height: 0,
+                    ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: OwnerColors.colorPrimary, width: 1.5),
+                          color: Colors.white70, width: 0.8),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                      borderSide:
+                      BorderSide(color: Colors.grey, width: 0.4),
                     ),
-                    hintText: 'Código de segurança',
+                    hintText: '',
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                       borderRadius:
-                          BorderRadius.circular(Dimens.radiusApplication),
+                      BorderRadius.circular(Dimens.radiusApplication),
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: OwnerColors.colorAccent,
                     contentPadding:
-                        EdgeInsets.all(Dimens.textFieldPaddingApplication),
+                    EdgeInsets.all(Dimens.textFieldPaddingApplication),
                   ),
                   keyboardType: TextInputType.number,
                   style: TextStyle(
@@ -403,6 +490,7 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                       top:
                       Dimens.marginApplication),
                   width: double.infinity,
+                  height: 52,
                   child: ElevatedButton(
                     style:
                     Styles().styleDefaultButton,
@@ -459,20 +547,14 @@ class _CreditCardAlertDialog extends State<CreditCardAlertDialog> {
                     },
                     child: (_isLoading)
                         ? const SizedBox(
-                        width: Dimens
-                            .buttonIndicatorWidth,
-                        height: Dimens
-                            .buttonIndicatorHeight,
-                        child:
-                        CircularProgressIndicator(
-                          color: OwnerColors
-                              .colorAccent,
-                          strokeWidth: Dimens
-                              .buttonIndicatorStrokes,
+                        width: Dimens.buttonIndicatorWidth,
+                        height: Dimens.buttonIndicatorHeight,
+                        child: CircularProgressIndicator(
+                          color: OwnerColors.colorAccent,
+                          strokeWidth: Dimens.buttonIndicatorStrokes,
                         ))
-                        : Text("Adicionar",
-                        style: Styles()
-                            .styleDefaultTextButton),
+                        :  Text("Adicionar",
+                        style: Styles().styleDefaultTextButton),
                   ),
                 ),
               ],

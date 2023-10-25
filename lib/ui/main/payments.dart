@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:windex/res/assets.dart';
 import 'package:windex/res/styles.dart';
+import 'package:windex/ui/components/alert_dialog_credit_card_form.dart';
 import 'package:windex/ui/components/alert_dialog_wallet.dart';
 import '../../../../config/application_messages.dart';
 import '../../../../config/preferences.dart';
@@ -74,13 +75,15 @@ class _Payments extends State<Payments> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(title: "Meus cartões", isVisibleBackButton: true),
-        body: RefreshIndicator(
-            onRefresh: _pullRefresh,
-            child: SingleChildScrollView(
-                child: Column(
+        body: Container(
+            height: double.infinity,
+            child: RefreshIndicator(
+              onRefresh: _pullRefresh,
+              child: Stack(children: [
+                Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                  /*FutureBuilder<List<Map<String, dynamic>>>(
+                      /*FutureBuilder<List<Map<String, dynamic>>>(
             future: listNotifications(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -88,70 +91,70 @@ class _Payments extends State<Payments> {
 
                 if (responseItem.rows != 0) {
                   return*/
-                  ListView.builder(
-                    shrinkWrap: true,
-                    primary: false,
-                    itemCount: /*snapshot.data!.length*/ 3,
-                    itemBuilder: (context, index) {
-                      // final response = User.fromJson(snapshot.data![index]);
+                      ListView.builder(
+                        shrinkWrap: true,
+                        primary: false,
+                        itemCount: /*snapshot.data!.length*/ 3,
+                        itemBuilder: (context, index) {
+                          // final response = User.fromJson(snapshot.data![index]);
 
-                      bool isChecked = index == 1 ? true : false;
+                          bool isChecked = index == 1 ? true : false;
 
-                      return InkWell(
-                          onTap: () => {},
-                          child: Container(
-                              padding:
+                          return InkWell(
+                              onTap: () => {},
+                              child: Container(
+                                  padding:
                                   EdgeInsets.all(Dimens.maxPaddingApplication),
-                              child: Column(
-                                children: [
-                                  Row(
+                                  child: Column(
                                     children: [
-                                      Container(
-                                        margin: EdgeInsets.only(
-                                            right: Dimens.minMarginApplication),
-                                        child: Image.network(
-                                          ApplicationConstant.URL_PRODUCT,
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (context, exception,
+                                      Row(
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                right: Dimens.minMarginApplication),
+                                            child: Image.network(
+                                              ApplicationConstant.URL_PRODUCT,
+                                              fit: BoxFit.cover,
+                                              errorBuilder: (context, exception,
                                                   stackTrack) =>
-                                              Image.asset(
-                                            Assets.card,
-                                            width: 50,
+                                                  Image.asset(
+                                                    Assets.card,
+                                                    width: 50,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                          child: Text(
-                                        "•••• •••• •••• 4747 (Crédito)",
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontSize: Dimens.textSize5,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w300,
-                                            wordSpacing: 1.2),
-                                      )),
-                                      SizedBox(
-                                        width: Dimens.minMarginApplication,
-                                      ),
-                                      Checkbox(
-                                        checkColor: OwnerColors.colorAccent,
-                                        activeColor:
+                                          Expanded(
+                                              child: Text(
+                                                "•••• •••• •••• 4747 (Crédito)",
+                                                style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: Dimens.textSize5,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w300,
+                                                    wordSpacing: 1.2),
+                                              )),
+                                          SizedBox(
+                                            width: Dimens.minMarginApplication,
+                                          ),
+                                          Checkbox(
+                                            checkColor: OwnerColors.colorAccent,
+                                            activeColor:
                                             OwnerColors.colorPrimaryDark,
-                                        value: isChecked,
-                                        onChanged: (bool? value) {
-                                          setState(() {});
-                                        },
+                                            value: isChecked,
+                                            onChanged: (bool? value) {
+                                              setState(() {});
+                                            },
+                                          ),
+                                        ],
                                       ),
+                                      SizedBox(
+                                        height: Dimens.marginApplication,
+                                      ),
+                                      Styles().div_horizontal,
                                     ],
-                                  ),
-                                  SizedBox(
-                                    height: Dimens.marginApplication,
-                                  ),
-                                  Styles().div_horizontal,
-                                ],
-                              )));
-                    },
-                  ),
+                                  )));
+                        },
+                      ),
                       Container(padding: EdgeInsets.all(Dimens.paddingApplication) ,child:
                       Row(
                         children: [
@@ -163,7 +166,7 @@ class _Payments extends State<Payments> {
                                     shape: Styles().styleShapeBottomSheet,
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     builder: (BuildContext context) {
-                                      return WalletAlertDialog();
+                                      return CreditCardAlertDialog();
                                     });
                               },
                               child: Container(
@@ -194,6 +197,7 @@ class _Payments extends State<Payments> {
                           ),
                         ],
                       )),
+                      SizedBox(height: 100,)
                       /*;
                 } else {
                   return Container(
@@ -229,10 +233,49 @@ class _Payments extends State<Payments> {
               return Styles().defaultLoading;
             },
           ),*/
-                ])
-            )
-        )
-    );
+                    ]),
+
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+
+                      Container(
+                        margin: EdgeInsets.all(Dimens.marginApplication),
+                        height: 52,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: Styles().styleOutlinedRedButton,
+                          onPressed: () async {
+                            showModalBottomSheet<dynamic>(
+                                isScrollControlled: true,
+                                context: context,
+                                shape: Styles().styleShapeBottomSheet,
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                builder: (BuildContext context) {
+                                  return WalletAlertDialog();
+                                });
+                          },
+                          child: (_isLoading)
+                              ? const SizedBox(
+                              width: Dimens.buttonIndicatorWidth,
+                              height: Dimens.buttonIndicatorHeight,
+                              child: CircularProgressIndicator(
+                                color: OwnerColors.colorAccent,
+                                strokeWidth: Dimens.buttonIndicatorStrokes,
+                              ))
+                              :  Text("Excluir Cartão",
+                              style: Styles().styleOutlinedTextButton),
+                        ),
+                      ),
+
+                    ])
+                    ])
+
+              ),
+            ));
+
   }
 
   Future<void> _pullRefresh() async {
