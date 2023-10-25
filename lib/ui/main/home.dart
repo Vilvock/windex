@@ -555,7 +555,9 @@ class _ContainerHomeState extends State<ContainerHome>
                             height: 36,
                           ),
                           InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, "/ui/payments");
+                              },
                               child: Row(
                                 children: [
                                   Image.asset(
@@ -1127,7 +1129,7 @@ class _ContainerHomeState extends State<ContainerHome>
                                           Container(
                                             // margin: EdgeInsets.only(left: 10, right: 10),
                                             child: GridView.count(
-                                              childAspectRatio: 0.60,
+                                              childAspectRatio: 0.57,
                                               primary: false,
                                               shrinkWrap: true,
                                               crossAxisCount: 2,

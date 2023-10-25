@@ -33,5 +33,6 @@ abstract class Assets {
   static const String group = "images/group.png";
   static const String upgrade = "images/upgrade.png";
   static const String insta = "images/insta.png";
+  static const String card = "images/credit_card.png";
 
 }
