@@ -265,9 +265,13 @@ class _Payments extends State<Payments> {
                                 color: OwnerColors.colorAccent,
                                 strokeWidth: Dimens.buttonIndicatorStrokes,
                               ))
-                              :  Text("Excluir Cartão",
-                              style: Styles().styleOutlinedTextButton),
-                        ),
+                              :  Text("Excluir",
+                              style: TextStyle(
+                                  fontSize: Dimens.textSize6,
+                                  color: OwnerColors.colorPrimary,
+                                  wordSpacing: 0.5,
+                                  fontWeight: FontWeight.w700),
+                        )),
                       ),
 
                     ])

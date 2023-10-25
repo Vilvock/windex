@@ -24,6 +24,7 @@ abstract class Assets {
   static const String attention = "images/attention.png";
   static const String star = "images/star.png";
   static const String generic_party = "images/generic_party.png";
+  static const String generic_party2 = "images/generic_party_2.png";
   static const String person = "images/person.png";
   static const String menu_wallet = "images/menu_wallet.png";
   static const String chart = "images/chart.png";
@@ -35,5 +36,6 @@ abstract class Assets {
   static const String insta = "images/insta.png";
   static const String card = "images/credit_card.png";
   static const String company = "images/generic_company.png";
+  static const String generic_maps = "images/generic_maps.png";
 
 }

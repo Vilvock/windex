@@ -525,7 +525,8 @@ class _ContainerHomeState extends State<ContainerHome>
                         children: [
                           InkWell(
                               onTap: () {
-                                var navigationBar = globalKey.currentWidget as BottomNavigationBar;
+                                var navigationBar = globalKey.currentWidget
+                                    as BottomNavigationBar;
                                 navigationBar.onTap!(2);
                               },
                               child: Row(
@@ -616,9 +617,7 @@ class _ContainerHomeState extends State<ContainerHome>
                           ),
                           InkWell(
                               onTap: () {
-
                                 Navigator.pushNamed(context, "/ui/partners");
-
                               },
                               child: Row(
                                 children: [
@@ -992,7 +991,9 @@ class _ContainerHomeState extends State<ContainerHome>
                                 controller: _tabController,
                                 children: <Widget>[
                                   Container(
-                                      height: 900,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              1.5,
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -1004,9 +1005,6 @@ class _ContainerHomeState extends State<ContainerHome>
 
                                                 if (responseItem.rows != 0) {
                                                   return*/
-                                          SizedBox(
-                                            height: Dimens.marginApplication,
-                                          ),
                                           SizedBox(
                                             height: Dimens.marginApplication,
                                           ),
@@ -1094,23 +1092,12 @@ class _ContainerHomeState extends State<ContainerHome>
                                                   );
                                                 },
                                               )),
-
-                                          /* } else {
-                                                  //
-                                                }
-                                              } else if (snapshot.hasError) {
-                                                return Styles().defaultErrorRequest;
-                                              }
-                                              return Styles().defaultLoading;
-                                            },
-                                          ),*/
-
                                           SizedBox(
                                             height: Dimens.marginApplication,
                                           ),
                                           Container(
                                               margin: EdgeInsets.all(
-                                                  Dimens.maxMarginApplication),
+                                                  Dimens.marginApplication),
                                               width: double.infinity,
                                               child: GradientText(
                                                 align: TextAlign.start,
@@ -1131,7 +1118,8 @@ class _ContainerHomeState extends State<ContainerHome>
                                                 ]),
                                               )),
                                           Container(
-                                            // margin: EdgeInsets.only(left: 10, right: 10),
+                                            margin: EdgeInsets.only(
+                                                left: 10, right: 10),
                                             child: GridView.count(
                                               childAspectRatio: 0.57,
                                               primary: false,
@@ -1143,11 +1131,324 @@ class _ContainerHomeState extends State<ContainerHome>
                                         ],
                                       )),
                                   Container(
-                                    padding: EdgeInsets.all(
-                                        Dimens.paddingApplication),
-                                    height: /*_hasSchedule ? */
-                                        700 /*: 236*/,
-                                    child: Column(children: []),
+                                    height: MediaQuery.of(context).size.height *
+                                        1.5,
+                                    child: Column(children: [
+                                      /*    FutureBuilder<List<Map<String, dynamic>>>(
+                                            future: getSpecies(widget.idAuction!),
+                                            builder: (context, snapshot) {
+                                              if (snapshot.hasData) {
+                                                final responseItem = GraphicModel.fromJson(snapshot.data![0]);
+
+                                                if (responseItem.rows != 0) {
+                                                  return*/
+
+                                      SizedBox(
+                                        height: Dimens.marginApplication,
+                                      ),
+                                      SizedBox(
+                                          height: 48,
+                                          child: ListView.builder(
+                                            physics: ClampingScrollPhysics(),
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: /*snapshot.data!.length*/
+                                                8,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              // final response =
+                                              // GraphicModel.fromJson(snapshot.data![index]);
+
+                                              return InkWell(
+                                                onTap: () {},
+                                                child: Container(
+                                                  // width:
+                                                  //     MediaQuery.of(context)
+                                                  //             .size
+                                                  //             .width *
+                                                  //         0.40,
+                                                  margin: EdgeInsets.only(
+                                                      left: Dimens
+                                                          .minMarginApplication,
+                                                      right: Dimens
+                                                          .minMarginApplication),
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        width: 0.2,
+                                                        color: OwnerColors
+                                                            .lightGrey),
+                                                    borderRadius: BorderRadius
+                                                        .circular(Dimens
+                                                            .radiusApplication),
+                                                    // color: CustomColors.greyClean,
+                                                  ),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.all(6),
+                                                    child: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        SizedBox(
+                                                            width: Dimens
+                                                                .minMarginApplication),
+                                                        Icon(Icons.music_note,
+                                                            color: OwnerColors
+                                                                .colorPrimary),
+                                                        SizedBox(
+                                                            width: Dimens
+                                                                .marginApplication),
+                                                        Text(
+                                                          "Categoria " +
+                                                              index.toString(),
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: Dimens
+                                                                  .textSize4),
+                                                        ),
+                                                        SizedBox(
+                                                            width: Dimens
+                                                                .minMarginApplication),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          )),
+                                      SizedBox(
+                                        height: Dimens.marginApplication,
+                                      ),
+                                      InkWell(
+                                          onTap: () => {
+                                                Navigator.pushNamed(context,
+                                                    "/ui/event_details")
+                                              },
+                                          child: Container(
+                                              margin: EdgeInsets.all(18),
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    width: 0.2,
+                                                    color: Colors.white70),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(Dimens
+                                                        .radiusApplication)),
+                                              ),
+                                              child: Container(
+                                                  child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                      width: double.infinity,
+                                                      child: ClipRRect(
+                                                          borderRadius: BorderRadius.only(
+                                                              topLeft: Radius
+                                                                  .circular(Dimens
+                                                                      .radiusApplication),
+                                                              topRight: Radius
+                                                                  .circular(Dimens
+                                                                      .radiusApplication)),
+                                                          child: Image.network(
+                                                            Assets.generic_maps,
+                                                            fit:
+                                                                BoxFit.fitWidth,
+                                                            height: 160,
+                                                            errorBuilder: (context,
+                                                                    exception,
+                                                                    stackTrack) =>
+                                                                Image.asset(
+                                                              fit: BoxFit
+                                                                  .fitWidth,
+                                                              Assets
+                                                                  .generic_maps,
+                                                              height: 160,
+                                                              width: 140,
+                                                            ),
+                                                          ))),
+                                                  SizedBox(
+                                                      height: 120,
+                                                      child: Row(
+                                                        children: [
+                                                          Container(
+                                                              child: ClipRRect(
+                                                                  borderRadius: BorderRadius.only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(Dimens
+                                                                              .radiusApplication)),
+                                                                  child: Image
+                                                                      .network(
+                                                                    Assets
+                                                                        .generic_party2,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    height: 120,
+                                                                    width: 120,
+                                                                    errorBuilder: (context,
+                                                                            exception,
+                                                                            stackTrack) =>
+                                                                        Image
+                                                                            .asset(
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                      Assets
+                                                                          .generic_party2,
+                                                                      height:
+                                                                          120,
+                                                                      width:
+                                                                          120,
+                                                                    ),
+                                                                  ))),
+                                                          Container(
+                                                            padding: EdgeInsets
+                                                                .all(Dimens
+                                                                    .minPaddingApplication),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                RichText(
+                                                                  text:
+                                                                      TextSpan(
+                                                                    children: <TextSpan>[
+                                                                      TextSpan(
+                                                                        text:
+                                                                            "Quarta, 24 de abril ",
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                Dimens.textSize4,
+                                                                            fontWeight: FontWeight.w700,
+                                                                            color: OwnerColors.colorPrimaryDark,
+                                                                            wordSpacing: 0.5),
+                                                                      ),
+                                                                      TextSpan(
+                                                                        text:
+                                                                            '19:30',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize: Dimens.textSize4,
+                                                                            fontWeight: FontWeight.w700,
+                                                                            wordSpacing: 0.5),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                    height: Dimens
+                                                                        .minMarginApplication),
+                                                                Text(
+                                                                  "Computaria unificada",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize: Dimens
+                                                                        .textSize7,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  "Moc hall Festas",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          Dimens
+                                                                              .textSize5,
+                                                                      color: Colors
+                                                                          .white70,
+                                                                      letterSpacing:
+                                                                          1,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w100),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: Dimens
+                                                                      .marginApplication,
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    SizedBox(width: 100,),
+                                                                    Text(
+                                                                      "Distância: ",
+                                                                      style: TextStyle(
+                                                                          fontSize: Dimens
+                                                                              .textSize4,
+                                                                          fontWeight: FontWeight
+                                                                              .w400,
+                                                                          color: OwnerColors
+                                                                              .colorPrimaryDark,
+                                                                          wordSpacing:
+                                                                              0.5),
+                                                                    ),
+                                                                    Text(
+                                                                      '2 km',
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          fontSize: Dimens
+                                                                              .textSize4,
+                                                                          fontWeight: FontWeight
+                                                                              .w400,
+                                                                          wordSpacing:
+                                                                              0.5),
+                                                                    ),
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ))
+                                                ],
+                                              )))),
+                                      /* } else {
+                                                  //
+                                                }
+                                              } else if (snapshot.hasError) {
+                                                return Styles().defaultErrorRequest;
+                                              }
+                                              return Styles().defaultLoading;
+                                            },
+                                          ),*/
+
+                                      Container(
+                                          margin: EdgeInsets.all(
+                                              Dimens.marginApplication),
+                                          width: double.infinity,
+                                          child: GradientText(
+                                            align: TextAlign.start,
+                                            "Eventos próximos",
+                                            style: TextStyle(
+                                                fontSize: Dimens.textSize6,
+                                                color: OwnerColors
+                                                    .colorPrimaryDark,
+                                                fontWeight: FontWeight.w900),
+                                            gradient: LinearGradient(colors: [
+                                              OwnerColors.gradientFirstColor,
+                                              OwnerColors
+                                                  .gradientSecondaryColor,
+                                              OwnerColors.gradientThirdColor
+                                            ]),
+                                          )),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        child: GridView.count(
+                                          childAspectRatio: 0.57,
+                                          primary: false,
+                                          shrinkWrap: true,
+                                          crossAxisCount: 2,
+                                          children: gridItems,
+                                        ),
+                                      ),
+                                    ]),
                                   )
                                 ]),
                           ),
