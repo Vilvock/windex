@@ -12,6 +12,7 @@ import 'package:windex/ui/main/event/event_details.dart';
 import 'package:windex/ui/main/home.dart';
 import 'package:windex/ui/main/menu/edit_passions.dart';
 import 'package:windex/ui/main/notifications/notifications.dart';
+import 'package:windex/ui/main/partners.dart';
 import 'package:windex/ui/main/payments.dart';
 import 'package:windex/ui/main/plans.dart';
 import 'package:windex/ui/utilities/pdf_viewer.dart';
@@ -102,6 +103,7 @@ void main() async {
       '/ui/notifications': (context) => Notifications(),
       '/ui/event_details': (context) => EventDetails(),
       '/ui/payments': (context) => Payments(),
+      '/ui/partners': (context) => Partners(),
 
 
     },

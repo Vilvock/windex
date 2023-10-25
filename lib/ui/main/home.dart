@@ -615,7 +615,11 @@ class _ContainerHomeState extends State<ContainerHome>
                             height: 36,
                           ),
                           InkWell(
-                              onTap: () {},
+                              onTap: () {
+
+                                Navigator.pushNamed(context, "/ui/partners");
+
+                              },
                               child: Row(
                                 children: [
                                   Image.asset(
