@@ -36,6 +36,7 @@ class _EventDetails extends State<EventDetails> {
 
   @override
   void initState() {
+    _pageController = PageController(initialPage: 0);
     super.initState();
   }
 
@@ -449,7 +450,11 @@ class _EventDetails extends State<EventDetails> {
                                                           style: Styles()
                                                               .styleDefaultButton,
                                                           onPressed:
-                                                              () async {},
+                                                              () async {
+                                                                Navigator.pushNamed(
+                                                                    context, "/ui/virtual_room");
+
+                                                              },
                                                           child: (_isLoading)
                                                               ? const SizedBox(
                                                                   width: Dimens
@@ -743,7 +748,10 @@ class _EventDetails extends State<EventDetails> {
                                                           style: Styles()
                                                               .styleDefaultButton,
                                                           onPressed:
-                                                              () async {},
+                                                              () async {
+
+
+                                                              },
                                                           child: (_isLoading)
                                                               ? const SizedBox(
                                                                   width: Dimens

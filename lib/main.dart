@@ -9,6 +9,7 @@ import 'package:windex/ui/auth/register/register_owner_data.dart';
 import 'package:windex/ui/intro/onboarding.dart';
 import 'package:windex/ui/intro/splash.dart';
 import 'package:windex/ui/main/event/event_details.dart';
+import 'package:windex/ui/main/event/virtual_room.dart';
 import 'package:windex/ui/main/home.dart';
 import 'package:windex/ui/main/menu/edit_passions.dart';
 import 'package:windex/ui/main/notifications/notifications.dart';
@@ -104,6 +105,7 @@ void main() async {
       '/ui/event_details': (context) => EventDetails(),
       '/ui/payments': (context) => Payments(),
       '/ui/partners': (context) => Partners(),
+      '/ui/virtual_room': (context) => VirtualRoom(),
 
 
     },
