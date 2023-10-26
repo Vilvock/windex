@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:windex/res/assets.dart';
 import 'package:windex/res/styles.dart';
 import '../../../../config/application_messages.dart';
 import '../../../../config/preferences.dart';
@@ -35,14 +36,14 @@ class _Chat extends State<Chat> {
   Future<List<Map<String, dynamic>>> listNotifications() async {
     try {
       final body = {
-        "id_user": await Preferences.getUserData()!.id ,
+        "id_user": await Preferences.getUserData()!.id,
         "token": ApplicationConstant.TOKEN
       };
 
       print('HTTP_BODY: $body');
 
       final json =
-      await postRequest.sendPostRequest(Links.LIST_NOTIFICATIONS, body);
+          await postRequest.sendPostRequest(Links.LIST_NOTIFICATIONS, body);
 
       List<Map<String, dynamic>> _map = [];
       _map = List<Map<String, dynamic>>.from(jsonDecode(json));
@@ -58,79 +59,240 @@ class _Chat extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(title: "Chat", isVisibleBackButton: true),
-      body: RefreshIndicator(
-          onRefresh: _pullRefresh,
-          child:/* FutureBuilder<List<Map<String, dynamic>>>(
+        resizeToAvoidBottomInset: false,
+        appBar: CustomAppBar(title: "Chat", isVisibleBackButton: true),
+        body: /* FutureBuilder<List<Map<String, dynamic>>>(
             future: listNotifications(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final responseItem = User.fromJson(snapshot.data![0]);
 
                 if (responseItem.rows != 0) {
-                  return */ListView.builder(
-                    itemCount: /*snapshot.data!.length*/ 3,
-                    itemBuilder: (context, index) {
+                  return */
+            Column(
+          children: [
+            Expanded(
+                child: ListView.builder(
+              itemCount: /*snapshot.data!.length*/ 10,
+              itemBuilder: (context, index) {
+                // final response = User.fromJson(snapshot.data![index]);
 
+                if (index == 0 || index == 5 || index == 6) {
+                  return InkWell(
+                      onTap: () => {},
+                      child: Column (children: [
 
-                      // final response = User.fromJson(snapshot.data![index]);
+                        SizedBox(height: Dimens.marginApplication,),
+                        Row(
+                        children: [
+                          SizedBox(width: 2,),
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: Dimens.minMarginApplication,
+                                right: Dimens.minMarginApplication),
+                            child: ClipOval(
+                              child: SizedBox.fromSize(
+                                size: Size.fromRadius(24),
+                                // Image radius
+                                child: Image.network(
+                                    ApplicationConstant.URL_PRODUCT,
+                                    fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, exception, stackTrack) =>
+                                            Image.asset(
+                                              Assets.person,
+                                            )),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(16) ,
+                            constraints: BoxConstraints(minWidth: MediaQuery.of(context).size.width * 0.40, maxWidth: MediaQuery.of(context).size.width * 0.80, ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(Dimens.maxRadiusApplication)),
+                            ),
+                            child: Text(
+                              Strings.littleLoremIpsum,
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: Dimens.textSize5,
+                                fontWeight: FontWeight.w600
+                              ),
+                            ),
+                          ),
+                        ],
+                      )]));
+                } else {
 
-                      return InkWell(
-                          onTap: () => {
+                  return InkWell(
+                      onTap: () => {},
+                      child: Column (children: [
 
-                          },
-                          child: Container(
-                              padding: EdgeInsets.only(right:
-                                  Dimens.maxPaddingApplication, left: Dimens.maxPaddingApplication),
-                              child: Column(children: [
-                                SizedBox(height: Dimens.marginApplication,),
+                        SizedBox(height: Dimens.marginApplication,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
 
+                            Container(
+                              padding: EdgeInsets.all(16) ,
+                              constraints: BoxConstraints(minWidth: MediaQuery.of(context).size.width * 0.40, maxWidth: MediaQuery.of(context).size.width * 0.80, ),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    colors: [
+                                      OwnerColors.gradientFirstColor,
+                                      OwnerColors.gradientSecondaryColor,
+                                    ],
+                                    begin: const FractionalOffset(0.0, 0.0),
+                                    end: const FractionalOffset(1.0, 0.0),
+                                    stops: [0.0, 1.0],
+                                    tileMode: TileMode.clamp),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(Dimens.maxRadiusApplication)),
+                              ),
+                              child: Text(
+                                Strings.littleLoremIpsum,
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: Dimens.textSize5,
+                                    fontWeight: FontWeight.w600
+                                ),
+                              ),
+                            ),
 
-                                Styles().div_horizontal,
+                            SizedBox(width: 10,),
+                            // Container(
+                            //   margin: EdgeInsets.only(
+                            //       left: Dimens.minMarginApplication,
+                            //       right: Dimens.minMarginApplication),
+                            //   child: ClipOval(
+                            //     child: SizedBox.fromSize(
+                            //       size: Size.fromRadius(22),
+                            //       // Image radius
+                            //       child: Image.network(
+                            //           ApplicationConstant.URL_PRODUCT,
+                            //           fit: BoxFit.cover,
+                            //           errorBuilder:
+                            //               (context, exception, stackTrack) =>
+                            //               Image.asset(
+                            //                 Assets.person,
+                            //               )),
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        )]));
+                }
+              },
+            )),
+            Container(
+                padding: EdgeInsets.all(Dimens.paddingApplication),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFF494949),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(Dimens.maxRadiusApplication)),
+                            ),
+                            child: IntrinsicHeight(
+                                child: Row(
+                              children: [
+                                Expanded(
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      hintText: 'Digite sua mensagem...',
+                                      hintStyle: TextStyle(color: Colors.white),
+                                      filled: false,
+                                      border: InputBorder.none,
+                                      fillColor: Colors.white,
+                                      contentPadding: EdgeInsets.all(
+                                          Dimens.textFieldPaddingApplication),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: Dimens.textSize5,
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                    constraints: BoxConstraints(
+                                        minWidth: 0, minHeight: 0),
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.mic,
+                                      color: Colors.white,
+                                    )),
+                                SizedBox(
+                                  width: 4,
+                                )
+                              ],
+                            )))),
+                    SizedBox(
+                      width: 14,
+                    ),
+                    Container(
+                        child: RawMaterialButton(
+                      constraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                      onPressed: () {},
+                      elevation: Dimens.elevationApplication,
+                      fillColor: Colors.white,
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.black87,
+                        size: 34,
+                      ),
+                      padding: EdgeInsets.all(8),
+                      shape: CircleBorder(),
+                    )),
+                    SizedBox(
+                      width: 10,
+                    ),
+                  ],
+                ))
+          ],
+        )
 
-                              ],)
+        //       } else {
+        //         return Container(
+        //             padding: EdgeInsets.only(
+        //                 top: MediaQuery.of(context)
+        //                     .size
+        //                     .height /
+        //                     20),
+        //             child: Column(
+        //                 mainAxisAlignment:
+        //                 MainAxisAlignment.center,
+        //                 children: [
+        //                   Center(
+        //                       child: Lottie.network(
+        //                           height: 160,
+        //                           'https://assets10.lottiefiles.com/packages/lf20_KZ1htY.json')),
+        //                   SizedBox(
+        //                       height: Dimens
+        //                           .marginApplication),
+        //                   Text(
+        //                     Strings.empty_list,
+        //                     style: TextStyle(
+        //                       fontFamily: 'Inter',
+        //                       fontSize: Dimens.textSize5,
+        //                       color: Colors.white,
+        //                     ),
+        //                   ),
+        //                 ]));
+        //       }
+        //     } else if (snapshot.hasError) {
+        //       print("**************************************************************\n*******************************************" + snapshot.error.toString());
+        //       return Styles().defaultErrorRequest;
+        //     }
+        //     return Styles().defaultLoading;
+        //   },
+        // ),
 
-                          ));
-                    },
-                  )
-          //       } else {
-          //         return Container(
-          //             padding: EdgeInsets.only(
-          //                 top: MediaQuery.of(context)
-          //                     .size
-          //                     .height /
-          //                     20),
-          //             child: Column(
-          //                 mainAxisAlignment:
-          //                 MainAxisAlignment.center,
-          //                 children: [
-          //                   Center(
-          //                       child: Lottie.network(
-          //                           height: 160,
-          //                           'https://assets10.lottiefiles.com/packages/lf20_KZ1htY.json')),
-          //                   SizedBox(
-          //                       height: Dimens
-          //                           .marginApplication),
-          //                   Text(
-          //                     Strings.empty_list,
-          //                     style: TextStyle(
-          //                       fontFamily: 'Inter',
-          //                       fontSize: Dimens.textSize5,
-          //                       color: Colors.white,
-          //                     ),
-          //                   ),
-          //                 ]));
-          //       }
-          //     } else if (snapshot.hasError) {
-          //       print("**************************************************************\n*******************************************" + snapshot.error.toString());
-          //       return Styles().defaultErrorRequest;
-          //     }
-          //     return Styles().defaultLoading;
-          //   },
-          // ),
-        ),
-    );
+        );
   }
 
   Future<void> _pullRefresh() async {

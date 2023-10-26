@@ -31,6 +31,7 @@ class Dimens {
 
   static const double maxMarginApplication = 20.0;
   static const double maxPaddingApplication = 20.0;
+  static const double maxRadiusApplication = 32.0;
 
 
   static const double zoomMap = 3.5;
