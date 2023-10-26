@@ -19,6 +19,28 @@ class Styles {
     backgroundColor: MaterialStateProperty.all(OwnerColors.colorPrimary),
   );
 
+  var styleDefaultButtonMinimalPadding = ButtonStyle(
+    shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          // Change your radius here
+          borderRadius: BorderRadius.circular(Dimens.radiusApplication),
+        )),
+    padding: MaterialStateProperty.all<EdgeInsets>(
+        EdgeInsets.all(2)),
+    backgroundColor: MaterialStateProperty.all(OwnerColors.colorPrimary),
+  );
+
+  var styleDefaultButtonMinimalPadding2 = ButtonStyle(
+    shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          // Change your radius here
+          borderRadius: BorderRadius.circular(Dimens.radiusApplication),
+        )),
+    padding: MaterialStateProperty.all<EdgeInsets>(
+        EdgeInsets.all(2)),
+    backgroundColor: MaterialStateProperty.all(OwnerColors.lightGrey),
+  );
+
   var styleAlternativeButton = ButtonStyle(
     padding: MaterialStateProperty.all<EdgeInsets>(
         EdgeInsets.all(Dimens.buttonPaddingApplication)),
@@ -56,6 +78,12 @@ class Styles {
   var styleDefaultTextButton2 = TextStyle(
       fontSize: Dimens.textSize4,
       color: Colors.white,
+      wordSpacing: 0.5,
+      fontWeight: FontWeight.w700);
+
+  var styleDefaultTextButton3 = TextStyle(
+      fontSize: Dimens.textSize4,
+      color: Colors.grey,
       wordSpacing: 0.5,
       fontWeight: FontWeight.w700);
 

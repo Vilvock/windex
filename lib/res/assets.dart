@@ -26,6 +26,8 @@ abstract class Assets {
   static const String generic_party = "images/generic_party.png";
   static const String generic_party2 = "images/generic_party_2.png";
   static const String person = "images/person.png";
+  static const String person2 = "images/person2.png";
+  static const String person3 = "images/person3.png";
   static const String menu_wallet = "images/menu_wallet.png";
   static const String chart = "images/chart.png";
   static const String chat = "images/chat.png";

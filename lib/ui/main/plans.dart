@@ -69,6 +69,56 @@ class _Plans extends State<Plans> {
                         ),
                       ],
                     )),
+                SizedBox(
+                  height: Dimens.minMarginApplication,
+                ),
+
+                Row(children: [
+                  SizedBox(width: Dimens.marginApplication,),
+                  Expanded(child:
+                      SizedBox(height: 26, child:
+                  ElevatedButton(
+                    style: Styles().styleDefaultButtonMinimalPadding,
+                    onPressed: () async {
+
+                    },
+                    child: Text("Mensal",
+                        style: Styles().styleDefaultTextButton2),
+                  )
+                  )),
+                  SizedBox(width: Dimens.marginApplication,),
+
+                  Expanded(child:
+                  SizedBox(height: 26, child:
+                  ElevatedButton(
+                    style: Styles().styleDefaultButtonMinimalPadding2,
+                    onPressed: () async {
+
+                    },
+                    child: Text("Semestral",
+                        style: Styles().styleDefaultTextButton3),
+                  )
+                  )),
+                  SizedBox(width: Dimens.marginApplication,),
+                  Expanded(child:
+                  SizedBox(height: 26, child:
+                  ElevatedButton(
+                    style: Styles().styleDefaultButtonMinimalPadding2,
+                    onPressed: () async {
+
+                    },
+                    child: Text("Anual",
+                        style: Styles().styleDefaultTextButton3),
+                  )
+                  )),
+                  SizedBox(width: Dimens.marginApplication,),
+                ],),
+                SizedBox(
+                  height: Dimens.marginApplication,
+                ),
+                SizedBox(
+                  height: Dimens.minMarginApplication,
+                ),
                 Styles().div_horizontal,
                 Container(
                     width: double.infinity,
