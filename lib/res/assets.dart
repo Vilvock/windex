@@ -39,5 +39,6 @@ abstract class Assets {
   static const String generic_maps = "images/generic_maps.png";
   static const String location_gold = "images/location_gold.png";
   static const String calendar_gold = "images/calendar_gold.png";
+  static const String chat_message = "images/chat_message.png";
 
 }

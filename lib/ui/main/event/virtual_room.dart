@@ -394,27 +394,26 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                                   Dimens.minMarginApplication,
                                                 ),
 
+                                                InkWell(onTap: () {
+
+                                                  Navigator.pushNamed(context, "/ui/conversations");
+                                                }, child:
                                                 Container(
-                                                    child: RawMaterialButton(
-                                                      constraints: BoxConstraints(minWidth: 0, minHeight: 0),
-                                                      onPressed: () {
-                                                        Navigator.pushNamed(context, "/ui/conversations");
+                                                  width: 38,
+                                                  height: 38,
+                                                  child: Image.asset(Assets.chat_message, scale: 1.4,),
+                                                  decoration: BoxDecoration(
+                                                    color: OwnerColors.colorAccent,
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(19.0)),
+                                                    border: Border.all(
+                                                      color: Colors.white70,
+                                                      width: 0.2,
+                                                    ),
+                                                  ),
+                                                )),
 
-                                                      },
-                                                      elevation: Dimens
-                                                          .elevationApplication,
-                                                      fillColor: OwnerColors.colorPrimaryDark,
-                                                      child: Icon(
-                                                        Icons
-                                                            .chat_outlined,
-                                                        color: Colors.white,
-                                                        size: 22,
-                                                      ),
-                                                      padding: EdgeInsets.all(8),
-                                                      shape: CircleBorder(),
-                                                    )),
-
-                                                SizedBox(width: 10,),
+                                                SizedBox(width: 14,),
                                               ],
                                             ),
                                             SizedBox(

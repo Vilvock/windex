@@ -899,8 +899,8 @@ class _ContainerHomeState extends State<ContainerHome>
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(18.0)),
                                               border: Border.all(
-                                                color: Colors.white,
-                                                width: 0.3,
+                                                color: Colors.white70,
+                                                width: 0.2,
                                               ),
                                             ),
                                           ),
