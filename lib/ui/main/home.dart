@@ -12,6 +12,7 @@ import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:lottie/lottie.dart';
 import 'package:windex/res/assets.dart';
 import 'package:windex/ui/components/alert_dialog_disable_account.dart';
+import 'package:windex/ui/components/alert_dialog_filter.dart';
 import 'package:windex/ui/components/alert_dialog_logout.dart';
 import 'package:windex/ui/main/notifications/notifications.dart';
 import 'package:windex/ui/main/plans.dart';
@@ -890,6 +891,16 @@ class _ContainerHomeState extends State<ContainerHome>
                                               ),
                                             ),
                                           ),
+                                          InkWell(onTap: () {
+                                            showModalBottomSheet<dynamic>(
+                                                isScrollControlled: true,
+                                                context: context,
+                                                shape: Styles().styleShapeBottomSheet,
+                                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                builder: (BuildContext context) {
+                                                  return FilterAlertDialog();
+                                                });
+                                          } , child:
                                           Container(
                                             width: 34,
                                             height: 34,
@@ -903,7 +914,7 @@ class _ContainerHomeState extends State<ContainerHome>
                                                 width: 0.2,
                                               ),
                                             ),
-                                          ),
+                                          )),
                                           SizedBox(
                                             width: Dimens.marginApplication,
                                           )
