@@ -171,7 +171,12 @@ class _RatingAlertDialog extends State<RatingAlertDialog> {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: Styles().styleDefaultButton,
-                    onPressed: () async {},
+                    onPressed: () async {
+
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+
+                    },
                     child: (_isLoading)
                         ? const SizedBox(
                             width: Dimens.buttonIndicatorWidth,
@@ -180,7 +185,7 @@ class _RatingAlertDialog extends State<RatingAlertDialog> {
                               color: OwnerColors.colorAccent,
                               strokeWidth: Dimens.buttonIndicatorStrokes,
                             ))
-                        : Text("Sim", style: Styles().styleDefaultTextButton),
+                        : Text("Avaliar", style: Styles().styleDefaultTextButton),
                   ),
                 ),
 

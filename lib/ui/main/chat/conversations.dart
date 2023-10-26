@@ -15,14 +15,14 @@ import '../../../../web_service/links.dart';
 import '../../../../web_service/service_response.dart';
 import '../../components/custom_app_bar.dart';
 
-class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+class Conversations extends StatefulWidget {
+  const Conversations({Key? key}) : super(key: key);
 
   @override
-  State<Notifications> createState() => _Notifications();
+  State<Conversations> createState() => _Conversations();
 }
 
-class _Notifications extends State<Notifications> {
+class _Conversations extends State<Conversations> {
   bool _isLoading = false;
 
   @override
@@ -59,7 +59,7 @@ class _Notifications extends State<Notifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(title: "Notificações", isVisibleBackButton: true),
+      appBar: CustomAppBar(title: "Chat", isVisibleBackButton: true),
       body: RefreshIndicator(
           onRefresh: _pullRefresh,
           child:/* FutureBuilder<List<Map<String, dynamic>>>(
@@ -79,6 +79,7 @@ class _Notifications extends State<Notifications> {
                       return InkWell(
                           onTap: () => {
 
+                          Navigator.pushNamed(context, "/ui/chat")
                           },
                           child: Container(
                               padding: EdgeInsets.only(right:
@@ -110,20 +111,33 @@ class _Notifications extends State<Notifications> {
                                       ),
                                     ),
                                     Expanded(
-                                        child:
-                                        Text(
-                                          Strings.shortLoremIpsum,
-                                          style: TextStyle(
-                                              fontSize: Dimens
-                                                  .textSize5,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w300,
-                                              wordSpacing: 1.2
-                                          ),
-                                        )
-
-
-                                    ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Bezerra da Silva",
+                                              style: TextStyle(
+                                                fontSize: Dimens.textSize5,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: Dimens
+                                                  .minMarginApplication,
+                                            ),
+                                            Text(
+                                              "Ultima mensagem enviada...",
+                                              style: TextStyle(
+                                                fontSize: Dimens.textSize4,
+                                                color: Colors.white70,
+                                                fontWeight: FontWeight.w500,
+                                                letterSpacing: 0.6
+                                              ),
+                                            ),
+                                          ],
+                                        )),
                                     SizedBox(width: Dimens.minMarginApplication,),
                                     Text(
                                       "2 minutos atras",

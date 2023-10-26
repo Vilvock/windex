@@ -8,6 +8,8 @@ import 'package:windex/ui/auth/login/login.dart';
 import 'package:windex/ui/auth/register/register_owner_data.dart';
 import 'package:windex/ui/intro/onboarding.dart';
 import 'package:windex/ui/intro/splash.dart';
+import 'package:windex/ui/main/chat/chat.dart';
+import 'package:windex/ui/main/chat/conversations.dart';
 import 'package:windex/ui/main/event/event_details.dart';
 import 'package:windex/ui/main/event/virtual_room.dart';
 import 'package:windex/ui/main/home.dart';
@@ -106,6 +108,8 @@ void main() async {
       '/ui/payments': (context) => Payments(),
       '/ui/partners': (context) => Partners(),
       '/ui/virtual_room': (context) => VirtualRoom(),
+      '/ui/conversations': (context) => Conversations(),
+      '/ui/chat': (context) => Chat(),
 
 
     },

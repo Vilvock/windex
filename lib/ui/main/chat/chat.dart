@@ -15,14 +15,14 @@ import '../../../../web_service/links.dart';
 import '../../../../web_service/service_response.dart';
 import '../../components/custom_app_bar.dart';
 
-class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+class Chat extends StatefulWidget {
+  const Chat({Key? key}) : super(key: key);
 
   @override
-  State<Notifications> createState() => _Notifications();
+  State<Chat> createState() => _Chat();
 }
 
-class _Notifications extends State<Notifications> {
+class _Chat extends State<Chat> {
   bool _isLoading = false;
 
   @override
@@ -59,7 +59,7 @@ class _Notifications extends State<Notifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(title: "Notificações", isVisibleBackButton: true),
+      appBar: CustomAppBar(title: "Chat", isVisibleBackButton: true),
       body: RefreshIndicator(
           onRefresh: _pullRefresh,
           child:/* FutureBuilder<List<Map<String, dynamic>>>(
@@ -85,59 +85,7 @@ class _Notifications extends State<Notifications> {
                                   Dimens.maxPaddingApplication, left: Dimens.maxPaddingApplication),
                               child: Column(children: [
                                 SizedBox(height: Dimens.marginApplication,),
-                                Row(
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                          right: Dimens
-                                              .minMarginApplication),
-                                      child: ClipOval(
-                                        child: SizedBox.fromSize(
-                                          size:
-                                          Size.fromRadius(28),
-                                          // Image radius
-                                          child: Image.network(
-                                              ApplicationConstant
-                                                  .URL_PRODUCT,
-                                              fit: BoxFit.cover,
-                                              errorBuilder: (context,
-                                                  exception,
-                                                  stackTrack) =>
-                                                  Image.asset(
-                                                    'images/main_icon.png',
-                                                  )),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                        child:
-                                        Text(
-                                          Strings.shortLoremIpsum,
-                                          style: TextStyle(
-                                              fontSize: Dimens
-                                                  .textSize5,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w300,
-                                              wordSpacing: 1.2
-                                          ),
-                                        )
 
-
-                                    ),
-                                    SizedBox(width: Dimens.minMarginApplication,),
-                                    Text(
-                                      "2 minutos atras",
-                                      style: TextStyle(
-                                        fontSize: Dimens
-                                            .textSize3,
-                                        color: Colors.white70,
-                                      ),
-                                    )
-
-                                  ],
-                                ),
-
-                                SizedBox(height: Dimens.marginApplication,),
 
                                 Styles().div_horizontal,
 

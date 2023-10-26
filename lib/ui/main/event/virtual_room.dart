@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:windex/ui/components/alert_dialog_rating.dart';
 import 'package:windex/ui/components/alert_dialog_windex.dart';
 
 import '../../../config/preferences.dart';
@@ -206,7 +207,6 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                                 Text(
                                                   "Bezerra da Silva",
                                                   style: TextStyle(
-                                                    fontFamily: 'Inter',
                                                     fontSize: Dimens.textSize6,
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.w500,
@@ -219,7 +219,6 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                                 Text(
                                                   "24 anos | Feminino",
                                                   style: TextStyle(
-                                                      fontFamily: 'Inter',
                                                       fontSize:
                                                           Dimens.textSize5,
                                                       color: OwnerColors
@@ -370,7 +369,6 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                                         Text(
                                                           "Bezerra da Silva",
                                                           style: TextStyle(
-                                                            fontFamily: 'Inter',
                                                             fontSize: Dimens.textSize6,
                                                             color: Colors.white,
                                                             fontWeight: FontWeight.w500,
@@ -383,7 +381,6 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                                         Text(
                                                           "24 anos | Feminino",
                                                           style: TextStyle(
-                                                              fontFamily: 'Inter',
                                                               fontSize:
                                                               Dimens.textSize5,
                                                               color: OwnerColors
@@ -400,7 +397,10 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                                 Container(
                                                     child: RawMaterialButton(
                                                       constraints: BoxConstraints(minWidth: 0, minHeight: 0),
-                                                      onPressed: () {},
+                                                      onPressed: () {
+                                                        Navigator.pushNamed(context, "/ui/conversations");
+
+                                                      },
                                                       elevation: Dimens
                                                           .elevationApplication,
                                                       fillColor: OwnerColors.colorPrimaryDark,
@@ -434,6 +434,14 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                               child: ElevatedButton(
                                   style: Styles().styleOutlinedRedButton,
                                   onPressed: () async {
+                                    showModalBottomSheet<dynamic>(
+                                        isScrollControlled: true,
+                                        context: context,
+                                        shape: Styles().styleShapeBottomSheet,
+                                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                                        builder: (BuildContext context) {
+                                          return RatingAlertDialog();
+                                        });
 
                                   },
                                   child: (_isLoading)
