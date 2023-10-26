@@ -44,4 +44,9 @@ abstract class Assets {
   static const String chat_message = "images/chat_message.png";
   static const String putaria = "images/putaria.png";
 
+  static const String p1 = "images/p1.png";
+  static const String p2 = "images/p2.png";
+  static const String p3 = "images/p3.png";
+  static const String p4 = "images/p4.png";
+
 }

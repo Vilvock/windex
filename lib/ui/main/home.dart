@@ -967,6 +967,7 @@ class _ContainerHomeState extends State<ContainerHome>
                                       Icon(
                                         Icons.map_outlined,
                                         size: 22,
+                                        color: OwnerColors.colorPrimaryDark,
                                       ),
                                       SizedBox(
                                         width: 10,
@@ -1383,38 +1384,48 @@ class _ContainerHomeState extends State<ContainerHome>
                                                                 ),
                                                                 SizedBox(
                                                                   height: Dimens
-                                                                      .marginApplication,
+                                                                      .minMarginApplication,
                                                                 ),
                                                                 Row(
                                                                   children: [
+                                                                    Image.asset(Assets.p1),
                                                                     SizedBox(
                                                                       width:
-                                                                          100,
+                                                                          20,
                                                                     ),
-                                                                    Text(
-                                                                      "Distância: ",
-                                                                      style: TextStyle(
-                                                                          fontSize: Dimens
-                                                                              .textSize4,
-                                                                          fontWeight: FontWeight
-                                                                              .w400,
-                                                                          color: OwnerColors
-                                                                              .colorPrimaryDark,
-                                                                          wordSpacing:
+                                                                    Column(children: [
+                                                                      SizedBox(
+                                                                        height:
+                                                                        12,
+                                                                      ),
+                                                                      Row(children: [
+                                                                        Text(
+                                                                          "Distância: ",
+                                                                          style: TextStyle(
+                                                                              fontSize: Dimens
+                                                                                  .textSize4,
+                                                                              fontWeight: FontWeight
+                                                                                  .w400,
+                                                                              color: OwnerColors
+                                                                                  .colorPrimaryDark,
+                                                                              wordSpacing:
                                                                               0.5),
-                                                                    ),
-                                                                    Text(
-                                                                      '2 km',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: Dimens
-                                                                              .textSize4,
-                                                                          fontWeight: FontWeight
-                                                                              .w400,
-                                                                          wordSpacing:
+                                                                        ),
+                                                                        Text(
+                                                                          '2 km',
+                                                                          style: TextStyle(
+                                                                              color: Colors
+                                                                                  .white,
+                                                                              fontSize: Dimens
+                                                                                  .textSize4,
+                                                                              fontWeight: FontWeight
+                                                                                  .w400,
+                                                                              wordSpacing:
                                                                               0.5),
-                                                                    ),
+                                                                        ),
+                                                                      ],)
+                                                                    ],)
+
                                                                   ],
                                                                 )
                                                               ],

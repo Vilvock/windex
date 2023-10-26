@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:windex/ui/components/alert_dialog_rating.dart';
 import 'package:windex/ui/components/alert_dialog_windex.dart';
+import 'package:windex/ui/components/alert_swipe_cards.dart';
 
 import '../../../config/preferences.dart';
 import '../../../global/application_constant.dart';
@@ -251,7 +252,16 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                             Container(
                                                 child: RawMaterialButton(
                                                   constraints: BoxConstraints(minWidth: 0, minHeight: 0),
-                                                  onPressed: () {},
+                                                  onPressed: () {
+
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (_) {
+                                                          return SwipeCardsAlertDialog(
+                                                          );
+                                                        });
+
+                                                  },
                                                   elevation: Dimens
                                                       .elevationApplication,
                                                   fillColor: OwnerColors.colorPrimary,

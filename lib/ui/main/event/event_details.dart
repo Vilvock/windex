@@ -58,24 +58,40 @@ class _EventDetails extends State<EventDetails> {
                 child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-                width: double.infinity,
-                child: ClipRRect(
-                    child: Image.network(
-                  Assets.generic_party,
-                  fit: BoxFit.fitWidth,
-                  height: 220,
-                  errorBuilder: (context, exception, stackTrack) => Image.asset(
-                    fit: BoxFit.fitWidth,
-                    Assets.generic_party,
-                    height: 220,
-                  ),
-                ))),
+                Container(width: double.infinity, height: 260 , child:
+            Stack(children: [
+              Container(
+                  width: double.infinity,
+                  child: ClipRRect(
+                      child: Image.network(
+                        Assets.generic_party,
+                        fit: BoxFit.fitWidth,
+                        height: 220,
+                        errorBuilder: (context, exception, stackTrack) => Image.asset(
+                          fit: BoxFit.fitWidth,
+                          Assets.generic_party,
+                          height: 220,
+                        ),
+                      ))),
+
+              Positioned(
+                  bottom: -28,
+                left: 26,
+                child:
+              Image.asset(Assets.p3, scale: 1.5,),)
+            ],)),
+
             Container(
               padding: EdgeInsets.all(Dimens.paddingApplication),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // SizedBox(
+                    //   height: Dimens.marginApplication,
+                    // ),
+                    // SizedBox(
+                    //   height: Dimens.marginApplication,
+                    // ),
                     Text(
                       "Computaria unificada",
                       style: TextStyle(
@@ -261,10 +277,10 @@ class _EventDetails extends State<EventDetails> {
                         ),
                         Expanded(
                           child: Text(
-                            Strings.littleLoremIpsum,
+                            "Estacionamento",
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                              fontSize: Dimens.textSize4,
+                              fontSize: Dimens.textSize5,
                               color: Colors.white,
                             ),
                           ),
@@ -286,10 +302,10 @@ class _EventDetails extends State<EventDetails> {
                         ),
                         Expanded(
                           child: Text(
-                            Strings.littleLoremIpsum,
+                            "Área privativa",
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                              fontSize: Dimens.textSize4,
+                              fontSize: Dimens.textSize5,
                               color: Colors.white,
                             ),
                           ),
@@ -317,7 +333,7 @@ class _EventDetails extends State<EventDetails> {
               height: Dimens.marginApplication,
             ),
             Container(
-                height: 192,
+                height: 200,
                 child: PageView.builder(
                   itemCount: 3,
                   controller: _pageController,
@@ -346,7 +362,7 @@ class _EventDetails extends State<EventDetails> {
                               ),
                               child: Container(
                                   child: SizedBox(
-                                      height: 190,
+                                      height: 200,
                                       child: Row(
                                         children: [
                                           Container(
@@ -361,7 +377,7 @@ class _EventDetails extends State<EventDetails> {
                                                   child: Image.network(
                                                     Assets.generic_party2,
                                                     fit: BoxFit.cover,
-                                                    height: 190,
+                                                    height: 200,
                                                     width: 120,
                                                     errorBuilder: (context,
                                                             exception,
@@ -369,7 +385,7 @@ class _EventDetails extends State<EventDetails> {
                                                         Image.asset(
                                                       fit: BoxFit.cover,
                                                       Assets.generic_party2,
-                                                      height: 190,
+                                                      height: 200,
                                                       width: 120,
                                                     ),
                                                   ))),
@@ -440,6 +456,8 @@ class _EventDetails extends State<EventDetails> {
                                                                 FontWeight
                                                                     .w100),
                                                       ),
+                                                      SizedBox(height: 4,),
+                                                      Image.asset(Assets.p2, scale: 1.6,),
                                                       Container(
                                                         margin: EdgeInsets.only(
                                                             top: Dimens
@@ -482,9 +500,9 @@ class _EventDetails extends State<EventDetails> {
                     } else if (index == 1) {
                       return InkWell(
                           onTap: () => {
-                                Navigator.pushNamed(
-                                    context, "/ui/event_details")
-                              },
+                            Navigator.pushNamed(
+                                context, "/ui/event_details")
+                          },
                           child: Container(
                               margin: EdgeInsets.only(
                                   left: Dimens.marginApplication,
@@ -497,7 +515,7 @@ class _EventDetails extends State<EventDetails> {
                               ),
                               child: Container(
                                   child: SizedBox(
-                                      height: 190,
+                                      height: 200,
                                       child: Row(
                                         children: [
                                           Container(
@@ -507,22 +525,22 @@ class _EventDetails extends State<EventDetails> {
                                                           Dimens
                                                               .radiusApplication),
                                                       bottomLeft:
-                                                          Radius.circular(Dimens
-                                                              .radiusApplication)),
+                                                      Radius.circular(Dimens
+                                                          .radiusApplication)),
                                                   child: Image.network(
                                                     Assets.generic_party2,
                                                     fit: BoxFit.cover,
-                                                    height: 190,
+                                                    height: 200,
                                                     width: 120,
                                                     errorBuilder: (context,
-                                                            exception,
-                                                            stackTrack) =>
+                                                        exception,
+                                                        stackTrack) =>
                                                         Image.asset(
-                                                      fit: BoxFit.cover,
-                                                      Assets.generic_party2,
-                                                      height: 190,
-                                                      width: 120,
-                                                    ),
+                                                          fit: BoxFit.cover,
+                                                          Assets.generic_party2,
+                                                          height: 200,
+                                                          width: 120,
+                                                        ),
                                                   ))),
                                           Expanded(
                                               child: Padding(
@@ -530,25 +548,25 @@ class _EventDetails extends State<EventDetails> {
                                                       .paddingApplication),
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    CrossAxisAlignment
+                                                        .start,
                                                     children: [
                                                       RichText(
                                                         text: TextSpan(
                                                           children: <TextSpan>[
                                                             TextSpan(
                                                               text:
-                                                                  "Quarta, 24 de abril ",
+                                                              "Quarta, 24 de abril ",
                                                               style: TextStyle(
                                                                   fontSize: Dimens
                                                                       .textSize4,
                                                                   fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
+                                                                  FontWeight
+                                                                      .w700,
                                                                   color: OwnerColors
                                                                       .colorPrimaryDark,
                                                                   wordSpacing:
-                                                                      0.5),
+                                                                  0.5),
                                                             ),
                                                             TextSpan(
                                                               text: '19:30',
@@ -558,10 +576,10 @@ class _EventDetails extends State<EventDetails> {
                                                                   fontSize: Dimens
                                                                       .textSize4,
                                                                   fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
+                                                                  FontWeight
+                                                                      .w700,
                                                                   wordSpacing:
-                                                                      0.5),
+                                                                  0.5),
                                                             ),
                                                           ],
                                                         ),
@@ -576,8 +594,8 @@ class _EventDetails extends State<EventDetails> {
                                                                 .textSize7,
                                                             color: Colors.white,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .w700),
+                                                            FontWeight
+                                                                .w700),
                                                       ),
                                                       Text(
                                                         "Moc hall Festas",
@@ -585,159 +603,14 @@ class _EventDetails extends State<EventDetails> {
                                                             fontSize: Dimens
                                                                 .textSize4,
                                                             color:
-                                                                Colors.white70,
+                                                            Colors.white70,
                                                             letterSpacing: 1,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .w100),
+                                                            FontWeight
+                                                                .w100),
                                                       ),
-                                                      Container(
-                                                        margin: EdgeInsets.only(
-                                                            top: Dimens
-                                                                .marginApplication),
-                                                        height: 36,
-                                                        width: double.infinity,
-                                                        child: ElevatedButton(
-                                                          style: Styles()
-                                                              .styleDefaultButton,
-                                                          onPressed:
-                                                              () async {},
-                                                          child: (_isLoading)
-                                                              ? const SizedBox(
-                                                                  width: Dimens
-                                                                      .buttonIndicatorWidth,
-                                                                  height: Dimens
-                                                                      .buttonIndicatorHeight,
-                                                                  child:
-                                                                      CircularProgressIndicator(
-                                                                    color: OwnerColors
-                                                                        .colorAccent,
-                                                                    strokeWidth:
-                                                                        Dimens
-                                                                            .buttonIndicatorStrokes,
-                                                                  ))
-                                                              : Text(
-                                                                  "Ver evento",
-                                                                  style: Styles()
-                                                                      .styleDefaultTextButton2),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )))
-                                        ],
-                                      )))));
-                    } else {
-                      return InkWell(
-                          onTap: () => {
-                                Navigator.pushNamed(
-                                    context, "/ui/event_details")
-                              },
-                          child: Container(
-                              margin: EdgeInsets.only(
-                                  left: Dimens.marginApplication,
-                                  right: Dimens.marginApplication),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 0.2, color: Colors.white70),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(Dimens.radiusApplication)),
-                              ),
-                              child: Container(
-                                  child: SizedBox(
-                                      height: 190,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                              child: ClipRRect(
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.circular(
-                                                          Dimens
-                                                              .radiusApplication),
-                                                      bottomLeft:
-                                                          Radius.circular(Dimens
-                                                              .radiusApplication)),
-                                                  child: Image.network(
-                                                    Assets.generic_party2,
-                                                    fit: BoxFit.cover,
-                                                    height: 190,
-                                                    width: 120,
-                                                    errorBuilder: (context,
-                                                            exception,
-                                                            stackTrack) =>
-                                                        Image.asset(
-                                                      fit: BoxFit.cover,
-                                                      Assets.generic_party2,
-                                                      height: 190,
-                                                      width: 120,
-                                                    ),
-                                                  ))),
-                                          Expanded(
-                                              child: Padding(
-                                                  padding: EdgeInsets.all(Dimens
-                                                      .paddingApplication),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      RichText(
-                                                        text: TextSpan(
-                                                          children: <TextSpan>[
-                                                            TextSpan(
-                                                              text:
-                                                                  "Quarta, 24 de abril ",
-                                                              style: TextStyle(
-                                                                  fontSize: Dimens
-                                                                      .textSize4,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  color: OwnerColors
-                                                                      .colorPrimaryDark,
-                                                                  wordSpacing:
-                                                                      0.5),
-                                                            ),
-                                                            TextSpan(
-                                                              text: '19:30',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: Dimens
-                                                                      .textSize4,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  wordSpacing:
-                                                                      0.5),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                          height: Dimens
-                                                              .minMarginApplication),
-                                                      Text(
-                                                        "Computaria unificada",
-                                                        style: TextStyle(
-                                                            fontSize: Dimens
-                                                                .textSize7,
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700),
-                                                      ),
-                                                      Text(
-                                                        "Moc hall Festas",
-                                                        style: TextStyle(
-                                                            fontSize: Dimens
-                                                                .textSize4,
-                                                            color:
-                                                                Colors.white70,
-                                                            letterSpacing: 1,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w100),
-                                                      ),
+                                                      SizedBox(height: 4,),
+                                                      Image.asset(Assets.p2, scale: 1.6,),
                                                       Container(
                                                         margin: EdgeInsets.only(
                                                             top: Dimens
@@ -749,27 +622,181 @@ class _EventDetails extends State<EventDetails> {
                                                               .styleDefaultButton,
                                                           onPressed:
                                                               () async {
+                                                            Navigator.pushNamed(
+                                                                context, "/ui/virtual_room");
 
-
-                                                              },
+                                                          },
                                                           child: (_isLoading)
                                                               ? const SizedBox(
-                                                                  width: Dimens
-                                                                      .buttonIndicatorWidth,
-                                                                  height: Dimens
-                                                                      .buttonIndicatorHeight,
-                                                                  child:
-                                                                      CircularProgressIndicator(
-                                                                    color: OwnerColors
-                                                                        .colorAccent,
-                                                                    strokeWidth:
-                                                                        Dimens
-                                                                            .buttonIndicatorStrokes,
-                                                                  ))
+                                                              width: Dimens
+                                                                  .buttonIndicatorWidth,
+                                                              height: Dimens
+                                                                  .buttonIndicatorHeight,
+                                                              child:
+                                                              CircularProgressIndicator(
+                                                                color: OwnerColors
+                                                                    .colorAccent,
+                                                                strokeWidth:
+                                                                Dimens
+                                                                    .buttonIndicatorStrokes,
+                                                              ))
                                                               : Text(
-                                                                  "Ver evento",
-                                                                  style: Styles()
-                                                                      .styleDefaultTextButton2),
+                                                              "Ver evento",
+                                                              style: Styles()
+                                                                  .styleDefaultTextButton2),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )))
+                                        ],
+                                      )))));
+                    } else {
+                      return InkWell(
+                          onTap: () => {
+                            Navigator.pushNamed(
+                                context, "/ui/event_details")
+                          },
+                          child: Container(
+                              margin: EdgeInsets.only(
+                                  left: Dimens.marginApplication,
+                                  right: Dimens.marginApplication),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 0.2, color: Colors.white70),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(Dimens.radiusApplication)),
+                              ),
+                              child: Container(
+                                  child: SizedBox(
+                                      height: 200,
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                              child: ClipRRect(
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(
+                                                          Dimens
+                                                              .radiusApplication),
+                                                      bottomLeft:
+                                                      Radius.circular(Dimens
+                                                          .radiusApplication)),
+                                                  child: Image.network(
+                                                    Assets.generic_party2,
+                                                    fit: BoxFit.cover,
+                                                    height: 200,
+                                                    width: 120,
+                                                    errorBuilder: (context,
+                                                        exception,
+                                                        stackTrack) =>
+                                                        Image.asset(
+                                                          fit: BoxFit.cover,
+                                                          Assets.generic_party2,
+                                                          height: 200,
+                                                          width: 120,
+                                                        ),
+                                                  ))),
+                                          Expanded(
+                                              child: Padding(
+                                                  padding: EdgeInsets.all(Dimens
+                                                      .paddingApplication),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    children: [
+                                                      RichText(
+                                                        text: TextSpan(
+                                                          children: <TextSpan>[
+                                                            TextSpan(
+                                                              text:
+                                                              "Quarta, 24 de abril ",
+                                                              style: TextStyle(
+                                                                  fontSize: Dimens
+                                                                      .textSize4,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                                  color: OwnerColors
+                                                                      .colorPrimaryDark,
+                                                                  wordSpacing:
+                                                                  0.5),
+                                                            ),
+                                                            TextSpan(
+                                                              text: '19:30',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: Dimens
+                                                                      .textSize4,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                                  wordSpacing:
+                                                                  0.5),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          height: Dimens
+                                                              .minMarginApplication),
+                                                      Text(
+                                                        "Computaria unificada",
+                                                        style: TextStyle(
+                                                            fontSize: Dimens
+                                                                .textSize7,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w700),
+                                                      ),
+                                                      Text(
+                                                        "Moc hall Festas",
+                                                        style: TextStyle(
+                                                            fontSize: Dimens
+                                                                .textSize4,
+                                                            color:
+                                                            Colors.white70,
+                                                            letterSpacing: 1,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w100),
+                                                      ),
+                                                      SizedBox(height: 4,),
+                                                      Image.asset(Assets.p2, scale: 1.6,),
+                                                      Container(
+                                                        margin: EdgeInsets.only(
+                                                            top: Dimens
+                                                                .marginApplication),
+                                                        height: 36,
+                                                        width: double.infinity,
+                                                        child: ElevatedButton(
+                                                          style: Styles()
+                                                              .styleDefaultButton,
+                                                          onPressed:
+                                                              () async {
+                                                            Navigator.pushNamed(
+                                                                context, "/ui/virtual_room");
+
+                                                          },
+                                                          child: (_isLoading)
+                                                              ? const SizedBox(
+                                                              width: Dimens
+                                                                  .buttonIndicatorWidth,
+                                                              height: Dimens
+                                                                  .buttonIndicatorHeight,
+                                                              child:
+                                                              CircularProgressIndicator(
+                                                                color: OwnerColors
+                                                                    .colorAccent,
+                                                                strokeWidth:
+                                                                Dimens
+                                                                    .buttonIndicatorStrokes,
+                                                              ))
+                                                              : Text(
+                                                              "Ver evento",
+                                                              style: Styles()
+                                                                  .styleDefaultTextButton2),
                                                         ),
                                                       ),
                                                     ],
