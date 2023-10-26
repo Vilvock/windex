@@ -194,8 +194,8 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                                       errorBuilder: (context,
                                                               exception,
                                                               stackTrack) =>
-                                                          Image.asset(
-                                                            'images/main_icon.png',
+                                                          Image.asset(index == 2 ?
+                                                            Assets.person2 :  Assets.person3,
                                                           )),
                                                 ),
                                               ),
@@ -365,8 +365,8 @@ class _VirtualRoom extends State<VirtualRoom> with TickerProviderStateMixin {
                                                           errorBuilder: (context,
                                                               exception,
                                                               stackTrack) =>
-                                                              Image.asset(
-                                                                'images/main_icon.png',
+                                                              Image.asset(index == 2 ?
+                                                              Assets.person :  Assets.person3,
                                                               )),
                                                     ),
                                                   ),

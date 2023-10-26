@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:windex/ui/components/alert_dialog_disable_account.dart';
 import 'package:windex/ui/components/alert_dialog_event_not_yet.dart';
 import 'package:windex/ui/components/alert_dialog_logout.dart';
@@ -87,34 +88,52 @@ class _QrCodeReaderState extends State<QrCodeReader> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Container(
-            child: Column(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.end,children: [
-      Container(
-          margin: EdgeInsets.all(Dimens.marginApplication),
-          height: 52,
+        child: Stack (children: [
+        Container(
           width: double.infinity,
-          child: ElevatedButton(
-            style: Styles().styleDefaultButton,
-            onPressed: () async {
-              showModalBottomSheet<dynamic>(
-                  isScrollControlled: true,
-                  context: context,
-                  shape: Styles().styleShapeBottomSheet,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  builder: (BuildContext context) {
-                    return EventNotYetAlertDialog();
-                  });
-            },
-            child: (_isLoading)
-                ? const SizedBox(
-                    width: Dimens.buttonIndicatorWidth,
-                    height: Dimens.buttonIndicatorHeight,
-                    child: CircularProgressIndicator(
-                      color: OwnerColors.colorAccent,
-                      strokeWidth: Dimens.buttonIndicatorStrokes,
-                    ))
-                : Text("Ler QR CODE", style: Styles().styleDefaultTextButton),
-          )),
-    ])));
+        child: Column(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+
+          SizedBox(height: Dimens.marginApplication),
+          QrImageView(
+            data: '1234567890',
+            version: QrVersions.auto,
+            size: 200.0,
+            backgroundColor: Colors.white,
+          ),
+          SizedBox(height: Dimens.marginApplication),
+
+        ],)),
+
+            Container(
+                child: Column(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.end,children: [
+                  Container(
+                      margin: EdgeInsets.all(Dimens.marginApplication),
+                      height: 52,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: Styles().styleDefaultButton,
+                        onPressed: () async {
+                          showModalBottomSheet<dynamic>(
+                              isScrollControlled: true,
+                              context: context,
+                              shape: Styles().styleShapeBottomSheet,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              builder: (BuildContext context) {
+                                return EventNotYetAlertDialog();
+                              });
+                        },
+                        child: (_isLoading)
+                            ? const SizedBox(
+                            width: Dimens.buttonIndicatorWidth,
+                            height: Dimens.buttonIndicatorHeight,
+                            child: CircularProgressIndicator(
+                              color: OwnerColors.colorAccent,
+                              strokeWidth: Dimens.buttonIndicatorStrokes,
+                            ))
+                            : Text("Ler QR CODE", style: Styles().styleDefaultTextButton),
+                      )),
+                ]))
+
+    ]));
   }
 }

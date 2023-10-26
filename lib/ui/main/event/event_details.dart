@@ -75,10 +75,10 @@ class _EventDetails extends State<EventDetails> {
                       ))),
 
               Positioned(
-                  bottom: -28,
-                left: 26,
+                  bottom: -24,
+                left: MediaQuery.of(context).size.width * 0.06,
                 child:
-              Image.asset(Assets.p3, scale: 1.5,),)
+              Image.asset(Assets.p3, scale: 1.6,),)
             ],)),
 
             Container(
@@ -456,7 +456,7 @@ class _EventDetails extends State<EventDetails> {
                                                                 FontWeight
                                                                     .w100),
                                                       ),
-                                                      SizedBox(height: 4,),
+                                                      SizedBox(height: 8,),
                                                       Image.asset(Assets.p2, scale: 1.6,),
                                                       Container(
                                                         margin: EdgeInsets.only(

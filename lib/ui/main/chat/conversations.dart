@@ -13,6 +13,7 @@ import '../../../../res/owner_colors.dart';
 import '../../../../res/strings.dart';
 import '../../../../web_service/links.dart';
 import '../../../../web_service/service_response.dart';
+import '../../../res/assets.dart';
 import '../../components/custom_app_bar.dart';
 
 class Conversations extends StatefulWidget {
@@ -104,8 +105,8 @@ class _Conversations extends State<Conversations> {
                                               errorBuilder: (context,
                                                   exception,
                                                   stackTrack) =>
-                                                  Image.asset(
-                                                    'images/main_icon.png',
+                                                  Image.asset(index == 2 ?
+                                                  Assets.person2 :  Assets.person3,
                                                   )),
                                         ),
                                       ),

@@ -1134,7 +1134,7 @@ class _ContainerHomeState extends State<ContainerHome>
                                             margin: EdgeInsets.only(
                                                 left: 10, right: 10),
                                             child: GridView.count(
-                                              childAspectRatio: 0.57,
+                                              childAspectRatio: 0.53,
                                               primary: false,
                                               shrinkWrap: true,
                                               crossAxisCount: 2,
@@ -1388,15 +1388,15 @@ class _ContainerHomeState extends State<ContainerHome>
                                                                 ),
                                                                 Row(
                                                                   children: [
-                                                                    Image.asset(Assets.p1),
+                                                                    Image.asset(Assets.p1, scale: 1.4,),
                                                                     SizedBox(
                                                                       width:
-                                                                          20,
+                                                                          30,
                                                                     ),
                                                                     Column(children: [
                                                                       SizedBox(
                                                                         height:
-                                                                        12,
+                                                                        14,
                                                                       ),
                                                                       Row(children: [
                                                                         Text(
@@ -1468,7 +1468,7 @@ class _ContainerHomeState extends State<ContainerHome>
                                         margin: EdgeInsets.only(
                                             left: 10, right: 10),
                                         child: GridView.count(
-                                          childAspectRatio: 0.57,
+                                          childAspectRatio: 0.53,
                                           primary: false,
                                           shrinkWrap: true,
                                           crossAxisCount: 2,
