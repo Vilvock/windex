@@ -60,7 +60,7 @@ class _Chat extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar(title: "Chat", isVisibleBackButton: true),
+        appBar: CustomAppBar(title: "Chat", isVisibleBackButton: true, isNotVisibleLine: true, isChat: true,),
         body: /* FutureBuilder<List<Map<String, dynamic>>>(
             future: listNotifications(),
             builder: (context, snapshot) {
